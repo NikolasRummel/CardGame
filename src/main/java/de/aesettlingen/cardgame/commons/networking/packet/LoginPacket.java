@@ -1,6 +1,7 @@
 package de.aesettlingen.cardgame.commons.networking.packet;
 
 import de.aesettlingen.cardgame.commons.event.EventBus;
+import de.aesettlingen.cardgame.commons.event.defaultevents.LoginEvent;
 
 public class LoginPacket extends AbstractPacket {
 
@@ -10,6 +11,6 @@ public class LoginPacket extends AbstractPacket {
 
     @Override
     public void handle(EventBus eventBus) {
-
+        eventBus.callEvent(new LoginEvent(sender));
     }
 }

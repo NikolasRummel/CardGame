@@ -4,6 +4,8 @@ import de.aesettlingen.cardgame.commons.event.DefaultEventBus;
 import de.aesettlingen.cardgame.commons.event.EventBus;
 import de.aesettlingen.cardgame.commons.networking.listener.ClientPacketListener;
 import de.aesettlingen.cardgame.commons.networking.packet.AbstractPacket;
+import de.aesettlingen.cardgame.commons.networking.packet.LoginPacket;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -54,7 +56,6 @@ public class NetworkingClient {
 
     private void openConnection() {
         try {
-            System.out.print(address.getHostName() + "!_!"+ address.getPort());
             socket = new Socket(address.getHostName(), address.getPort());
         } catch(Exception e) {
             System.out.println("Error connecting to server! Reason:" + e);
@@ -71,7 +72,8 @@ public class NetworkingClient {
     }
 
     private void login() {
-
+        System.out.println("loggin in now:");
+        this.sendPacket(new LoginPacket(userName));
     }
 
     private void startListening() {

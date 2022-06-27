@@ -20,4 +20,7 @@ public abstract class AbstractPacket implements Serializable {
 
     public abstract void handle(EventBus eventBus);
 
+    public String getSender() {
+        return sender;
+    }
 }
