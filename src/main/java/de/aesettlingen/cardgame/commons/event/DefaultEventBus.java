@@ -10,8 +10,6 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 /**
  * @author Nikolas Rummel
@@ -119,15 +117,21 @@ public class DefaultEventBus implements EventBus {
         }
     }
 
-    @AllArgsConstructor
     private static class RegisteredHandler {
 
         private final Method method;
         private final Object listener;
 
-        @Getter
+
         private final boolean async;
         private final int priority;
+
+        public RegisteredHandler(Method method, Object listener, boolean async, int priority) {
+            this.method = method;
+            this.listener = listener;
+            this.async = async;
+            this.priority = priority;
+        }
 
         public void invoke(Event event) {
             try {
@@ -136,6 +140,10 @@ public class DefaultEventBus implements EventBus {
                 e.printStackTrace();
                 System.err.println("Could not fire event: " + e.getMessage());
             }
+        }
+
+        public boolean isAsync() {
+            return async;
         }
     }
 }

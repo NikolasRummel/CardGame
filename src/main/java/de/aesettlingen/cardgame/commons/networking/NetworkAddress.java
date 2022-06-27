@@ -7,7 +7,6 @@ package de.aesettlingen.cardgame.commons.networking;
  */
 
 public class NetworkAddress {
-
     private String hostName;
     private int port;
 

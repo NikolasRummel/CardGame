@@ -24,10 +24,10 @@ public class CardGameClient {
 
         this.eventBus = new DefaultEventBus();
         this.networkingClient = new NetworkingClient(
-            new NetworkAddress("localhost", 123),
-            userName,
-            eventBus
+            new NetworkAddress("localhost", 25565),
+            userName
         );
+        this.networkingClient.start();
 
         this.register();
     }

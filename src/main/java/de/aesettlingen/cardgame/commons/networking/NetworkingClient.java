@@ -1,5 +1,6 @@
 package de.aesettlingen.cardgame.commons.networking;
 
+import de.aesettlingen.cardgame.commons.event.DefaultEventBus;
 import de.aesettlingen.cardgame.commons.event.EventBus;
 import de.aesettlingen.cardgame.commons.networking.listener.ClientPacketListener;
 import de.aesettlingen.cardgame.commons.networking.packet.AbstractPacket;
@@ -27,12 +28,12 @@ public class NetworkingClient {
     private final ClientPacketListener packetListener;
     private final EventBus eventBus;
 
-    public NetworkingClient(NetworkAddress address, String userName, EventBus eventBus) {
+    public NetworkingClient(NetworkAddress address, String userName) {
         this.address = address;
         this.userName = userName;
 
         this.packetListener = new ClientPacketListener(this);
-        this.eventBus = eventBus;
+        this.eventBus = new DefaultEventBus();
     }
 
     public void start() {
@@ -53,6 +54,7 @@ public class NetworkingClient {
 
     private void openConnection() {
         try {
+            System.out.print(address.getHostName() + "!_!"+ address.getPort());
             socket = new Socket(address.getHostName(), address.getPort());
         } catch(Exception e) {
             System.out.println("Error connecting to server! Reason:" + e);

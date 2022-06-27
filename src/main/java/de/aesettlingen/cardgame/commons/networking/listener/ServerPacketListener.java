@@ -3,6 +3,7 @@ package de.aesettlingen.cardgame.commons.networking.listener;
 import com.sun.xml.internal.ws.api.message.Packet;
 import de.aesettlingen.cardgame.commons.networking.NetworkingServer;
 import de.aesettlingen.cardgame.commons.networking.packet.AbstractPacket;
+import de.aesettlingen.cardgame.commons.networking.packet.LoginPacket;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -32,9 +33,7 @@ public class ServerPacketListener extends Thread {
         try {
             outputStream = new ObjectOutputStream(socket.getOutputStream());
             inputStream = new ObjectInputStream(socket.getInputStream());
-            loginUser();
-
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             server.info("Error creating input & output steams or doing new login! " + e);
         }
     }
@@ -54,11 +53,6 @@ public class ServerPacketListener extends Thread {
                 break;
             }
         }
-    }
-
-    public void loginUser() throws IOException, ClassNotFoundException {
-
-        server.info(clientName + " has joined the server.");
     }
 
     public ObjectInputStream getInputStream() {
