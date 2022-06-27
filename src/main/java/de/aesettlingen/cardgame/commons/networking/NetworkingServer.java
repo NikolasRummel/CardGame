@@ -10,6 +10,7 @@ package de.aesettlingen.cardgame.commons.networking;
 import de.aesettlingen.cardgame.commons.event.DefaultEventBus;
 import de.aesettlingen.cardgame.commons.event.EventBus;
 import de.aesettlingen.cardgame.commons.networking.listener.ServerPacketListener;
+import de.aesettlingen.cardgame.commons.networking.packet.AbstractPacket;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -71,6 +72,17 @@ public class NetworkingServer {
 
     public void info(String message) {
         System.out.println("[" + getDate() + "] " + message);
+    }
+
+    public void sendPacket(ServerPacketListener handler, AbstractPacket packet) {
+        try {
+            handler.getOutputStream().writeObject(packet);
+        } catch (IOException e) {
+            System.out.println("Error while sending packet! Reason: " + e);
+        }
+    }
+    public void broadcastPacket(AbstractPacket packet) {
+        this.clientHandlers.forEach(handler -> sendPacket(handler, packet));
     }
 
     public void stop() {
