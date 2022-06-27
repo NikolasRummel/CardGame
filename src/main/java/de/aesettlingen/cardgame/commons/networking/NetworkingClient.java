@@ -1,21 +1,18 @@
 package de.aesettlingen.cardgame.commons.networking;
 
-import de.aesettlingen.cardgame.commons.event.DefaultEventBus;
 import de.aesettlingen.cardgame.commons.event.EventBus;
 import de.aesettlingen.cardgame.commons.networking.listener.ClientPacketListener;
 import de.aesettlingen.cardgame.commons.networking.packet.AbstractPacket;
-import de.aesettlingen.cardgame.commons.networking.packet.ClientMessagePacket;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import lombok.Getter;
 
 /**
  * @author Nikolas Rummel
  * @since 18.05.22
  */
-@Getter
+
 public class NetworkingClient {
 
     private boolean running;
@@ -72,12 +69,58 @@ public class NetworkingClient {
     }
 
     private void login() {
+
     }
 
     private void startListening() {
         this.packetListener.start();
     }
 
+    public boolean isRunning() {
+        return running;
+    }
 
+    public void setRunning(boolean running) {
+        this.running = running;
+    }
 
+    public ObjectInputStream getInputStream() {
+        return inputStream;
+    }
+
+    public void setInputStream(ObjectInputStream inputStream) {
+        this.inputStream = inputStream;
+    }
+
+    public ObjectOutputStream getOutputStream() {
+        return outputStream;
+    }
+
+    public void setOutputStream(ObjectOutputStream outputStream) {
+        this.outputStream = outputStream;
+    }
+
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
+    }
+
+    public NetworkAddress getAddress() {
+        return address;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public ClientPacketListener getPacketListener() {
+        return packetListener;
+    }
+
+    public EventBus getEventBus() {
+        return eventBus;
+    }
 }
