@@ -25,7 +25,7 @@ public class CardGameServer {
     }
 
     private void registerListeners() {
-        this.networkingServer.getEventBus().registerListener(new LoginReceiveListener());
+        this.networkingServer.getEventBus().registerListener(new LoginReceiveListener(this));
     }
 
     public void startServer() {

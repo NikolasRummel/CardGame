@@ -10,11 +10,9 @@ import java.io.Serializable;
  */
 public abstract class AbstractPacket implements Serializable {
 
-    protected EventBus eventBus;
     protected String sender;
 
     public AbstractPacket(String sender) {
-        this.eventBus = eventBus;
         this.sender = sender;
     }
 
