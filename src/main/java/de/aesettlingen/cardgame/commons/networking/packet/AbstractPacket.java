@@ -13,11 +13,11 @@ public abstract class AbstractPacket implements Serializable {
     protected EventBus eventBus;
     protected String sender;
 
-    public AbstractPacket(EventBus eventBus, String sender) {
+    public AbstractPacket(String sender) {
         this.eventBus = eventBus;
         this.sender = sender;
     }
 
-    public abstract void handle();
+    public abstract void handle(EventBus eventBus);
 
 }

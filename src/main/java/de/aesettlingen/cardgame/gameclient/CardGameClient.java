@@ -6,13 +6,12 @@ import de.aesettlingen.cardgame.commons.networking.NetworkAddress;
 import de.aesettlingen.cardgame.commons.networking.NetworkingClient;
 import de.aesettlingen.cardgame.commons.networking.packet.ClientMessagePacket;
 import de.aesettlingen.cardgame.gameclient.eventlistener.MessageReceiveListener;
-import lombok.Getter;
 
 /**
  * @author Nikolas Rummel
  * @since 18.05.22
  */
-@Getter
+
 public class CardGameClient {
 
     private String userName;
@@ -34,11 +33,22 @@ public class CardGameClient {
     }
 
     public void sendMessage(String message) {
-        this.networkingClient.sendPacket(new ClientMessagePacket(eventBus, userName, message));
+        this.networkingClient.sendPacket(new ClientMessagePacket(userName, message));
     }
 
     public void register() {
         this.eventBus.registerListener(new MessageReceiveListener(this));
     }
 
+    public EventBus getEventBus() {
+        return eventBus;
+    }
+
+    public NetworkingClient getNetworkingClient() {
+        return networkingClient;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
 }

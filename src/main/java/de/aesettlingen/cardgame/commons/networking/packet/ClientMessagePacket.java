@@ -11,13 +11,13 @@ public class ClientMessagePacket extends AbstractPacket {
 
     private final String message;
 
-    public ClientMessagePacket(EventBus eventBus, String sender, String message) {
-        super(eventBus, sender);
+    public ClientMessagePacket(String sender, String message) {
+        super(sender);
         this.message = message;
     }
 
     @Override
-    public void handle() {
+    public void handle(EventBus eventBus) {
         eventBus.callEvent(new ClientMessageEvent(sender, message));
     }
 

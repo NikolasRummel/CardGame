@@ -7,6 +7,8 @@ package de.aesettlingen.cardgame.commons.networking;
  * @since 18.05.22
  */
 
+import de.aesettlingen.cardgame.commons.event.DefaultEventBus;
+import de.aesettlingen.cardgame.commons.event.EventBus;
 import de.aesettlingen.cardgame.commons.networking.listener.ServerPacketListener;
 
 import java.io.IOException;
@@ -25,10 +27,13 @@ public class NetworkingServer {
 
     public int uniqueId;
 
+    private EventBus eventBus;
+
     public NetworkingServer(int port) {
         this.port = port;
         this.dateFormat = new SimpleDateFormat("HH:mm:ss");
         this.clientHandlers = new ArrayList<>();
+        this.eventBus = new DefaultEventBus();
     }
 
     public void start() {
@@ -115,5 +120,9 @@ public class NetworkingServer {
 
     public void setUniqueId(int uniqueId) {
         this.uniqueId = uniqueId;
+    }
+
+    public EventBus getEventBus() {
+        return eventBus;
     }
 }

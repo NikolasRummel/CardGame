@@ -47,6 +47,7 @@ public class ServerPacketListener extends Thread {
             try {
 
                 AbstractPacket packet = (AbstractPacket) inputStream.readObject();
+                packet.handle(server.getEventBus());
 
             } catch (IOException | ClassNotFoundException e) {
                 server.info("Error while reading " + clientName + "'s packets! " + e);

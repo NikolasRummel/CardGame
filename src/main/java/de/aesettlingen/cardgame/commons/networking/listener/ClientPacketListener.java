@@ -23,7 +23,7 @@ public class ClientPacketListener extends Thread {
 
                 if(inputObject instanceof AbstractPacket) {
                     AbstractPacket packet = (AbstractPacket) inputObject;
-                    packet.handle();
+                    packet.handle(client.getEventBus());
                 }
 
             }catch (Exception e) {
