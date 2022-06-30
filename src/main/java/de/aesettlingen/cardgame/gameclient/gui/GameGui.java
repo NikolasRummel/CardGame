@@ -1,6 +1,8 @@
 package de.aesettlingen.cardgame.gameclient.gui;
 
-import javax.swing.JFrame;
+import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginScreen;
+
+import javax.swing.*;
 
 /**
  * @author Nikolas Rummel
@@ -8,4 +10,7 @@ import javax.swing.JFrame;
  */
 public class GameGui extends JFrame {
 
+    private LoginScreen loginScree = new LoginScreen(lm -> {
+        // TODO: login
+    });
 }
