@@ -1,17 +1,26 @@
 package de.aesettlingen.cardgame.logic;
 
-public class CardHand {
-    private Card[] cards = new Card[0];
 
-    public Card[] getCards() {
-        return new Card[0];
-    }
+import java.util.LinkedList;
+import java.util.Random;
 
-    public int getCombinedValue() {
-        return 0;
-    }
+public class CardHand extends CardCollection {
+
+    private Random random = new Random();
 
     public Card pullRandom() {
-        return null;
+        return cards.remove(random.nextInt(cards.size()));
     }
+    public LinkedList<Card> pullRandom(int number) {
+        LinkedList<Card> randomCards = new LinkedList<>();
+        for (int i = 0; i < number; i++)
+            randomCards.add(pullRandom());
+
+        return randomCards;
+    }
+
+    public void add(Card card) {
+        super.cards.add(card);
+    }
++ add(card: LinkedList<Card>)
 }
