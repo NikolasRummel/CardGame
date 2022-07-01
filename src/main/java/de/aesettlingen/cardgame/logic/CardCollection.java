@@ -20,8 +20,9 @@ abstract public class CardCollection {
     }
 
     public LinkedList<Card> getCards() {
-        return cards;
+        return new LinkedList<>(cards);
     }
+
     public void setCards(LinkedList<Card> cards) {
         this.cards = cards;
     }
