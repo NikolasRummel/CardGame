@@ -5,15 +5,15 @@ import java.util.LinkedList;
 abstract public class CardCollection {
     protected LinkedList<Card> cards;
 
-    CardCollection() {
+     public CardCollection() {
         this.cards = new LinkedList<>();
     }
 
-    CardCollection(LinkedList<Card> cards) {
+    public CardCollection(LinkedList<Card> cards) {
         this.cards = cards;
     }
 
-    CardCollection(Card ... cards) {
+    public CardCollection(Card ... cards) {
         this.cards = new LinkedList<>();
         for (Card card : cards)
             this.cards.addLast(card);
