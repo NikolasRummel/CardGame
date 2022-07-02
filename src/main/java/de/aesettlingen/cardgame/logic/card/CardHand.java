@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class CardHand extends CardCollection {
 
-    CardHand() {
+    public CardHand() {
         super();
     }
 
