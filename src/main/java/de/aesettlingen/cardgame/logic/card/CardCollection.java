@@ -5,7 +5,7 @@ import java.util.LinkedList;
 abstract public class CardCollection {
     protected LinkedList<Card> cards;
 
-     public CardCollection() {
+    public CardCollection() {
         this.cards = new LinkedList<>();
     }
 
