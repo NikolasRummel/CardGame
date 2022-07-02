@@ -10,17 +10,17 @@ abstract class Player {
     protected final String name;
     protected boolean hasePermissionToMove = false;
 
-    Player(String name) {
+    public Player(String name) {
         this.name = name;
         this.hand = new CardHand();
     }
 
-    Player(String name, CardHand hand) {
+    public Player(String name, CardHand hand) {
         this.name = name;
         this.hand = hand;
     }
 
-    Player(String name, LinkedList<Card> cards) {
+    public Player(String name, LinkedList<Card> cards) {
         this.name = name;
         this.hand = new CardHand(cards);
     }
