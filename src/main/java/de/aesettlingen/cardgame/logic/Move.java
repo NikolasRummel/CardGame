@@ -1,2 +1,4 @@
-package de.aesettlingen.cardgame.logic;public class Move {
+package de.aesettlingen.cardgame.logic;
+
+public class Move {
 }
