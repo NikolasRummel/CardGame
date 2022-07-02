@@ -1,4 +1,4 @@
-package de.aesettlingen.cardgame.logic;
+package de.aesettlingen.cardgame.logic.card;
 
 public class CardSteck {
     private Card[] cards = new Card[0];

@@ -1,4 +1,4 @@
-package de.aesettlingen.cardgame.logic;
+package de.aesettlingen.cardgame.logic.card;
 
 import java.util.LinkedList;
 
