@@ -11,20 +11,20 @@ abstract public class Game<T extends Player> {
 
     protected StartMode startMode;
 
-    Game(ArrayList<T> players, int maxNumberOfPlayers, boolean isStarted, StartMode startMode) {
+    public Game(ArrayList<T> players, int maxNumberOfPlayers, boolean isStarted, StartMode startMode) {
         this.players = players;
         this.isStarted = isStarted;
         this.maxNumberOfPlayers = maxNumberOfPlayers;
         this.startMode = startMode;
     }
 
-    Game(ArrayList<T> players, int maxNumberOfPlayers) {
+    public Game(ArrayList<T> players, int maxNumberOfPlayers) {
         this.players = players;
         this.maxNumberOfPlayers = maxNumberOfPlayers;
         this.startMode = StartMode.RANDOM;
     }
 
-    Game() {
+    public Game() {
         this.players = new ArrayList<>();
         this.startMode = StartMode.RANDOM;
     }
