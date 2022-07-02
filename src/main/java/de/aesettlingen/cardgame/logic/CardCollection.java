@@ -6,7 +6,7 @@ abstract public class CardCollection {
     protected LinkedList<Card> cards;
 
     CardCollection() {
-        this.cards = new LinkedList<Card>();
+        this.cards = new LinkedList<>();
     }
 
     CardCollection(LinkedList<Card> cards) {
