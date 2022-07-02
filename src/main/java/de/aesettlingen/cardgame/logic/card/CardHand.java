@@ -9,11 +9,11 @@ public class CardHand extends CardCollection {
         super();
     }
 
-    CardHand(LinkedList<Card> cards) {
+    public CardHand(LinkedList<Card> cards) {
         super(cards);
     }
 
-    CardHand(Card ... cards) {
+    public CardHand(Card ... cards) {
         super(cards);
     }
 
