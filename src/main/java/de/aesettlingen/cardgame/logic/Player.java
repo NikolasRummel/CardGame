@@ -1,14 +1,47 @@
 package de.aesettlingen.cardgame.logic;
 
-public class Player {
-    private CardHand hand = new CardHand();
-    private String name;
+import java.util.LinkedList;
 
-    public int getPoints() {
-        return 0;
+abstract class Player {
+    protected final CardHand hand;
+    protected final String name;
+    protected boolean hasePermissionToMove = false;
+
+    Player(String name) {
+        this.name = name;
+        this.hand = new CardHand();
     }
 
-    public Card pullRandomCard() {
-        return null;
+    Player(String name, CardHand hand) {
+        this.name = name;
+        this.hand = hand;
+    }
+
+    Player(String name, LinkedList<Card> cards) {
+        this.name = name;
+        this.hand = new CardHand(cards);
+    }
+
+    public int getPoints() {
+        return hand.getCombinedValue();
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setCards(LinkedList<Card> cards) {
+        this.hand.setCards(cards);
+    }
+
+    public LinkedList<Card> getCards() {
+        return this.hand.getCards();
+    }
+
+    public void grantPermissionToMove() {
+        hasePermissionToMove = true;
+    }
+    public void depriveToMove() {
+        hasePermissionToMove = false;
     }
 }
