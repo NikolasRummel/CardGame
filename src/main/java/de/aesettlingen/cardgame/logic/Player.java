@@ -24,11 +24,6 @@ abstract class Player {
         this.name = name;
         this.hand = new CardHand(cards);
     }
-
-    public int getPoints() {
-        return hand.getCombinedValue();
-    }
-
     public String getName() {
         return this.name;
     }
