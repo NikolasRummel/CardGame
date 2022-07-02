@@ -29,7 +29,7 @@ public class LoginScreen extends JPanel {
             }
         });
 
-        var panel = new JPanel();
+        JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout());
         panel.add(textForButton, LEFT_ALIGNMENT);
         panel.add(loginButton);
