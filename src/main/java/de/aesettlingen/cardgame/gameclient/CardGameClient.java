@@ -6,6 +6,10 @@ import de.aesettlingen.cardgame.commons.networking.NetworkAddress;
 import de.aesettlingen.cardgame.commons.networking.NetworkingClient;
 import de.aesettlingen.cardgame.commons.networking.packet.ClientMessagePacket;
 import de.aesettlingen.cardgame.gameclient.eventlistener.MessageReceiveListener;
+import de.aesettlingen.cardgame.gameclient.gui.GameGui;
+import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginMethod;
+import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginScreen;
+import java.awt.event.WindowEvent;
 
 /**
  * @author Nikolas Rummel
@@ -16,10 +20,22 @@ public class CardGameClient {
 
     private String userName;
 
-    private final EventBus eventBus;
-    private final NetworkingClient networkingClient;
+    private EventBus eventBus;
+    private NetworkingClient networkingClient;
 
-    public CardGameClient(String userName) {
+    private LoginScreen loginScreen;
+    private GameGui gameGui;
+
+    public CardGameClient() {
+        this.loginScreen = new LoginScreen(new LoginMethod() {
+            @Override
+            public void login(String loginName) {
+                start(loginName);
+            }
+        });
+    }
+
+    public void start(String userName) {
         this.userName = userName;
 
         this.eventBus = new DefaultEventBus();
@@ -29,7 +45,13 @@ public class CardGameClient {
         );
         this.networkingClient.start();
 
+        this.handleNewScreen();
         this.register();
+    }
+
+    public void handleNewScreen() {
+        this.loginScreen.dispatchEvent(new WindowEvent(this.loginScreen, WindowEvent.WINDOW_CLOSING));
+        //Open GameGui
     }
 
     public void sendMessage(String message) {

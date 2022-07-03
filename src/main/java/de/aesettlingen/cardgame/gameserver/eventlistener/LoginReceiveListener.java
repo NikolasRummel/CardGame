@@ -16,6 +16,6 @@ public class LoginReceiveListener implements EventListener {
     @EventHandler
     public void onLogin(LoginEvent event) {
         System.out.println("A new client joined! Welcome, " + event.getSender()+ "!");
-        //this.cardGameServer.addPlayer(event.getSender());
+        this.cardGameServer.addPlayer(event.getSender());
     }
 }
