@@ -14,6 +14,7 @@ import java.awt.*;
 public class GameGui extends JFrame {
 
     private WaitingScreenPanel waitingScreenPanel;
+    //ChatPanel
 
     public GameGui() {
         this.waitingScreenPanel = new WaitingScreenPanel(new StartMethod() {
@@ -30,7 +31,6 @@ public class GameGui extends JFrame {
 
         this.setVisible(true);
     }
-
     public WaitingScreenPanel getWaitingScreenPanel() {
         return waitingScreenPanel;
     }

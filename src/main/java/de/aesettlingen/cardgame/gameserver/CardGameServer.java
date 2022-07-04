@@ -2,6 +2,7 @@ package de.aesettlingen.cardgame.gameserver;
 
 import de.aesettlingen.cardgame.commons.networking.NetworkingServer;
 import de.aesettlingen.cardgame.commons.networking.packet.UsersPacket;
+import de.aesettlingen.cardgame.gameclient.CardGameClient;
 import de.aesettlingen.cardgame.gameserver.eventlistener.LoginReceiveListener;
 
 import java.util.ArrayList;

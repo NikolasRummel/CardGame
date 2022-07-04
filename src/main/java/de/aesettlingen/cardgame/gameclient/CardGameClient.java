@@ -9,6 +9,8 @@ import de.aesettlingen.cardgame.gameclient.eventlistener.MessageReceiveListener;
 import de.aesettlingen.cardgame.gameclient.gui.GameGui;
 import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginMethod;
 import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginScreen;
+import de.aesettlingen.cardgame.logic.card.Card;
+
 import java.awt.event.WindowEvent;
 
 /**
@@ -17,6 +19,11 @@ import java.awt.event.WindowEvent;
  */
 
 public class CardGameClient {
+
+    private static CardGameClient instance;
+    public static CardGameClient getInstance() {
+        return instance;
+    }
 
     private String userName;
 
@@ -27,6 +34,8 @@ public class CardGameClient {
     private GameGui gameGui;
 
     public CardGameClient() {
+        instance = this;
+
         this.loginScreen = new LoginScreen(new LoginMethod() {
             @Override
             public void login(String loginName) {
