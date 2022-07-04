@@ -10,10 +10,12 @@ import de.aesettlingen.cardgame.gameclient.events.ClientMessageEvent;
 public class ClientMessagePacket extends AbstractPacket {
 
     private final String message;
+    private final long timestamp;
 
     public ClientMessagePacket(String sender, String message) {
         super(sender);
         this.message = message;
+        this.timestamp = System.currentTimeMillis();
     }
 
     @Override
@@ -21,4 +23,16 @@ public class ClientMessagePacket extends AbstractPacket {
         eventBus.callEvent(new ClientMessageEvent(sender, message));
     }
 
+    @Override
+    public String getSender() {
+        return super.getSender();
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
 }
