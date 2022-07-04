@@ -29,6 +29,7 @@ public class WaitingScreenPanel extends JPanel {
         playerList.setFixedCellHeight(50);
 
         this.add(playerList);
+        this.setBorder(BorderFactory.createTitledBorder("Players " + getPlayers().size() + "/4"));
     }
 
     public ArrayList<String> getPlayers() {
