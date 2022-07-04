@@ -9,8 +9,6 @@ import java.awt.event.KeyEvent;
 
 public class ChatGui extends JPanel {
 
-    // width = 270
-
     private final JTextArea textDisplay = new JTextArea();
     private final JButton sendButton = new JButton("send");
     private final JTextField inputField = new JTextField();
@@ -32,21 +30,20 @@ public class ChatGui extends JPanel {
         bottomPanel.add(inputField, BorderLayout.CENTER);
         inputField.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyTyped(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    send();
-                }
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER)
+                    onSend();
             }
         });
 
         bottomPanel.add(sendButton, BorderLayout.EAST);
-        sendButton.addActionListener(al -> send());
+        sendButton.addActionListener(al -> onSend());
 
         super.add(bottomPanel, BorderLayout.SOUTH);
     }
 
-    private void send() {
-//        CardGameClient.getInstance().sendMessage(inputField.getText());
+    private void onSend() {
+        CardGameClient.getInstance().sendMessage(inputField.getText());
         inputField.setText("");
     }
 
