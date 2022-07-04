@@ -1,6 +1,6 @@
 package de.aesettlingen.cardgame.gameclient.gui;
 
-import de.aesettlingen.cardgame.commons.networking.packet.ClientMessagePacket;
+import de.aesettlingen.cardgame.commons.networking.packet.MessagePacket;
 import de.aesettlingen.cardgame.gameclient.gui.chatgui.ChatGui;
 import de.aesettlingen.cardgame.gameclient.gui.waiting_screen.StartMethod;
 import de.aesettlingen.cardgame.gameclient.gui.waiting_screen.WaitingScreenPanel;
@@ -15,6 +15,7 @@ import java.awt.*;
 public class GameGui extends JFrame {
 
     private WaitingScreenPanel waitingScreenPanel;
+    private ChatGui chatGui;
     //ChatPanel
 
     public GameGui() {
@@ -27,7 +28,7 @@ public class GameGui extends JFrame {
 
         this.setTitle("CardGame - Waiting");
         //this.setLocation(new Point(500, 300));
-        this.add(this.waitingScreenPanel);
+        //this.add(this.waitingScreenPanel);
         this.setSize(new Dimension(1280, 720));
         this.setResizable(false);
         this.setVisible(true);
@@ -36,10 +37,10 @@ public class GameGui extends JFrame {
     }
 
     private void addChatPanel() {
-        ChatGui chatGui = new ChatGui();
+        this.chatGui = new ChatGui();
 
         for (int i = 0; i < 20; i++)
-            chatGui.onReceiveMessage(new ClientMessagePacket("Simon", "hi"));
+            chatGui.onReceiveMessage(new MessagePacket("Simon", "hi"));
 
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
@@ -51,5 +52,9 @@ public class GameGui extends JFrame {
 
     public WaitingScreenPanel getWaitingScreenPanel() {
         return waitingScreenPanel;
+    }
+
+    public ChatGui getChatGui() {
+        return chatGui;
     }
 }

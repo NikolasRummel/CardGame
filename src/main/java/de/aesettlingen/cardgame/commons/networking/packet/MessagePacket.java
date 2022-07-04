@@ -1,18 +1,18 @@
 package de.aesettlingen.cardgame.commons.networking.packet;
 
 import de.aesettlingen.cardgame.commons.event.EventBus;
-import de.aesettlingen.cardgame.gameclient.events.ClientMessageEvent;
+import de.aesettlingen.cardgame.commons.event.defaultevents.MessageReceivedEvent;
 
 /**
  * @author Nikolas Rummel
  * @since 18.05.22
  */
-public class ClientMessagePacket extends AbstractPacket {
+public class MessagePacket extends AbstractPacket {
 
     private final String message;
     private final long timestamp;
 
-    public ClientMessagePacket(String sender, String message) {
+    public MessagePacket(String sender, String message) {
         super(sender);
         this.message = message;
         this.timestamp = System.currentTimeMillis();
@@ -20,7 +20,7 @@ public class ClientMessagePacket extends AbstractPacket {
 
     @Override
     public void handle(EventBus eventBus) {
-        eventBus.callEvent(new ClientMessageEvent(sender, message));
+        eventBus.callEvent(new MessageReceivedEvent(sender, message));
     }
 
     @Override

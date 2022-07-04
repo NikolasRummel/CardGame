@@ -2,12 +2,10 @@ package de.aesettlingen.cardgame.gameserver;
 
 import de.aesettlingen.cardgame.commons.networking.NetworkingServer;
 import de.aesettlingen.cardgame.commons.networking.packet.UsersPacket;
-import de.aesettlingen.cardgame.gameclient.CardGameClient;
-import de.aesettlingen.cardgame.gameserver.eventlistener.LoginReceiveListener;
+import de.aesettlingen.cardgame.gameserver.eventlistener.PacketReceiveListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Set;
 
 public class CardGameServer {
@@ -42,7 +40,11 @@ public class CardGameServer {
     }
 
     private void registerListeners() {
-        this.networkingServer.getEventBus().registerListener(new LoginReceiveListener(this));
+        this.networkingServer.getEventBus().registerListener(new PacketReceiveListener(this));
+    }
+
+    public NetworkingServer getNetworkingServer() {
+        return networkingServer;
     }
 
     public void startServer() {

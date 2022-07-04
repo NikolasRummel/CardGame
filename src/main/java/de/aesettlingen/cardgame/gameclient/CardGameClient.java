@@ -4,13 +4,12 @@ import de.aesettlingen.cardgame.commons.event.DefaultEventBus;
 import de.aesettlingen.cardgame.commons.event.EventBus;
 import de.aesettlingen.cardgame.commons.networking.NetworkAddress;
 import de.aesettlingen.cardgame.commons.networking.NetworkingClient;
-import de.aesettlingen.cardgame.commons.networking.packet.ClientMessagePacket;
+import de.aesettlingen.cardgame.commons.networking.packet.MessagePacket;
 import de.aesettlingen.cardgame.gameclient.eventlistener.MessageReceiveListener;
 import de.aesettlingen.cardgame.gameclient.eventlistener.UserJoinedListener;
 import de.aesettlingen.cardgame.gameclient.gui.GameGui;
 import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginMethod;
 import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginScreen;
-import de.aesettlingen.cardgame.logic.card.Card;
 
 import java.awt.event.WindowEvent;
 
@@ -65,7 +64,7 @@ public class CardGameClient {
     }
 
     public void sendMessage(String message) {
-        this.networkingClient.sendPacket(new ClientMessagePacket(userName, message));
+        this.networkingClient.sendPacket(new MessagePacket(userName, message));
     }
 
     public void register() {

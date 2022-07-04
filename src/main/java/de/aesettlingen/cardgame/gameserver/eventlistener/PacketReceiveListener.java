@@ -3,13 +3,15 @@ package de.aesettlingen.cardgame.gameserver.eventlistener;
 import de.aesettlingen.cardgame.commons.event.EventHandler;
 import de.aesettlingen.cardgame.commons.event.EventListener;
 import de.aesettlingen.cardgame.commons.event.defaultevents.LoginEvent;
+import de.aesettlingen.cardgame.commons.event.defaultevents.MessageReceivedEvent;
+import de.aesettlingen.cardgame.commons.networking.packet.MessagePacket;
 import de.aesettlingen.cardgame.gameserver.CardGameServer;
 
-public class LoginReceiveListener implements EventListener {
+public class PacketReceiveListener implements EventListener {
 
     private CardGameServer cardGameServer;
 
-    public LoginReceiveListener(CardGameServer cardGameServer) {
+    public PacketReceiveListener(CardGameServer cardGameServer) {
         this.cardGameServer = cardGameServer;
     }
 
@@ -17,5 +19,10 @@ public class LoginReceiveListener implements EventListener {
     public void onLogin(LoginEvent event) {
         System.out.println("A new client joined! Welcome, " + event.getSender()+ "!");
         this.cardGameServer.addPlayer(event.getSender());
+    }
+
+    @EventHandler
+    public void onMessageReceive(MessageReceivedEvent event) {
+        cardGameServer.getNetworkingServer().broadcastPacket(new MessagePacket(event.getSender(), event.getMessage()));
     }
 }

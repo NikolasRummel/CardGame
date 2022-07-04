@@ -2,9 +2,9 @@ package de.aesettlingen.cardgame.gameclient.eventlistener;
 
 import de.aesettlingen.cardgame.commons.event.EventHandler;
 import de.aesettlingen.cardgame.commons.event.EventListener;
-import de.aesettlingen.cardgame.commons.event.defaultevents.UserJoinedEvent;
+import de.aesettlingen.cardgame.commons.event.defaultevents.MessageReceivedEvent;
+import de.aesettlingen.cardgame.commons.networking.packet.MessagePacket;
 import de.aesettlingen.cardgame.gameclient.CardGameClient;
-import de.aesettlingen.cardgame.gameclient.events.ClientMessageEvent;
 
 /**
  * @author Nikolas Rummel
@@ -20,8 +20,9 @@ public class MessageReceiveListener implements EventListener {
     }
 
     @EventHandler
-    public void onReceiveMessage(ClientMessageEvent event) {
+    public void onReceiveMessage(MessageReceivedEvent event) {
         //Eigentlich auf Gui anzeigen
+        cardGameClient.getGameGui().getChatGui().onReceiveMessage(new MessagePacket(event.getSender(), event.getMessage()));
         System.out.println(event.getSender() + " said: " + event.getMessage());
     }
 }

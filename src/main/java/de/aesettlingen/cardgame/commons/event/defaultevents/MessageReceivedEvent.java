@@ -1,14 +1,23 @@
 package de.aesettlingen.cardgame.commons.event.defaultevents;
 
 import de.aesettlingen.cardgame.commons.event.Event;
-import de.aesettlingen.cardgame.commons.networking.listener.ServerPacketListener;
 
-public class LoginEvent extends Event {
+/**
+ * @author Nikolas Rummel
+ * @since 04.07.22
+ */
+public class MessageReceivedEvent extends Event {
 
     private String sender;
+    private String message;
 
-    public LoginEvent(String sender) {
+    public MessageReceivedEvent(String sender, String message) {
         this.sender = sender;
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
     }
 
     public String getSender() {

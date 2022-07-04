@@ -1,6 +1,6 @@
 package de.aesettlingen.cardgame.gameclient.gui.chatgui;
 
-import de.aesettlingen.cardgame.commons.networking.packet.ClientMessagePacket;
+import de.aesettlingen.cardgame.commons.networking.packet.MessagePacket;
 import de.aesettlingen.cardgame.gameclient.CardGameClient;
 
 import javax.swing.*;
@@ -26,7 +26,8 @@ public class ChatGui extends JPanel {
         this.setPreferredSize(new Dimension(270, 720));
 
         this.textDisplay.setEnabled(false);
-        textDisplay.setDisabledTextColor(Color.BLACK);
+        this.textDisplay.setDisabledTextColor(Color.BLACK);
+
         super.add(new JScrollPane(textDisplay), BorderLayout.CENTER);
         Border b = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Group Chat");
         this.setBorder(b);
@@ -54,7 +55,7 @@ public class ChatGui extends JPanel {
         inputField.setText("");
     }
 
-    public void onReceiveMessage(ClientMessagePacket m) {
+    public void onReceiveMessage(MessagePacket m) {
         String time = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date(m.getTimestamp()));
 
         textDisplay.setText(
@@ -67,7 +68,7 @@ public class ChatGui extends JPanel {
         ChatGui c = new ChatGui();
 
         for (int i = 0; i < 20; i++)
-            c.onReceiveMessage(new ClientMessagePacket("Simon", "hi"));
+            c.onReceiveMessage(new MessagePacket("Simon", "hi"));
 
         JPanel p = new JPanel();
         p.setLayout(new BorderLayout());
