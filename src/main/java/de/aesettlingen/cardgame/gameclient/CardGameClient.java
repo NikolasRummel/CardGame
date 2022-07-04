@@ -6,6 +6,7 @@ import de.aesettlingen.cardgame.commons.networking.NetworkAddress;
 import de.aesettlingen.cardgame.commons.networking.NetworkingClient;
 import de.aesettlingen.cardgame.commons.networking.packet.ClientMessagePacket;
 import de.aesettlingen.cardgame.gameclient.eventlistener.MessageReceiveListener;
+import de.aesettlingen.cardgame.gameclient.eventlistener.UserJoinedListener;
 import de.aesettlingen.cardgame.gameclient.gui.GameGui;
 import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginMethod;
 import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginScreen;
@@ -50,7 +51,7 @@ public class CardGameClient {
         this.eventBus = new DefaultEventBus();
         this.networkingClient = new NetworkingClient(
             new NetworkAddress("localhost", 25565),
-            userName
+            userName, eventBus
         );
         this.networkingClient.start();
 
@@ -69,6 +70,7 @@ public class CardGameClient {
 
     public void register() {
         this.eventBus.registerListener(new MessageReceiveListener(this));
+        this.networkingClient.getEventBus().registerListener(new UserJoinedListener(this));
     }
 
     public EventBus getEventBus() {

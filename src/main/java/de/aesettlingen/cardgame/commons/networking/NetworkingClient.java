@@ -30,12 +30,12 @@ public class NetworkingClient {
     private final ClientPacketListener packetListener;
     private final EventBus eventBus;
 
-    public NetworkingClient(NetworkAddress address, String userName) {
+    public NetworkingClient(NetworkAddress address, String userName, EventBus eventBus) {
         this.address = address;
         this.userName = userName;
 
         this.packetListener = new ClientPacketListener(this);
-        this.eventBus = new DefaultEventBus();
+        this.eventBus = eventBus;
     }
 
     public void start() {
