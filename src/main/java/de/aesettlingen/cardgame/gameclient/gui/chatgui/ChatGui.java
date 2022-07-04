@@ -1,11 +1,14 @@
 package de.aesettlingen.cardgame.gameclient.gui.chatgui;
 
+import de.aesettlingen.cardgame.commons.networking.packet.ClientMessagePacket;
 import de.aesettlingen.cardgame.gameclient.CardGameClient;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ChatGui extends JPanel {
 
@@ -22,6 +25,7 @@ public class ChatGui extends JPanel {
         this.setPreferredSize(new Dimension(270, 720));
 
         this.textDisplay.setEnabled(false);
+        textDisplay.setDisabledTextColor(Color.BLACK);
         super.add(new JScrollPane(textDisplay), BorderLayout.CENTER);
 
         JPanel bottomPanel = new JPanel();
@@ -47,9 +51,21 @@ public class ChatGui extends JPanel {
         inputField.setText("");
     }
 
-    public static void main(String[] args) {
+    public void onReceiveMessage(ClientMessagePacket m) {
+        String time = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date(m.getTimestamp()));
+
+        textDisplay.setText(
+                textDisplay.getText() + String.format("[%s] %s\n%s\n\n", time, m.getSender(), m.getMessage())
+        );
+    }
+
+    public static void main(String[] args) { // test chat gui
         JFrame f = new JFrame();
         ChatGui c = new ChatGui();
+
+        for (int i = 0; i < 20; i++)
+            c.onReceiveMessage(new ClientMessagePacket("Simon", "hi"));
+
         JPanel p = new JPanel();
         p.setLayout(new BorderLayout());
         p.add(c, BorderLayout.EAST);
