@@ -1,6 +1,5 @@
 package de.aesettlingen.cardgame.commons.networking.listener;
 
-import com.sun.xml.internal.ws.api.message.Packet;
 import de.aesettlingen.cardgame.commons.networking.NetworkingServer;
 import de.aesettlingen.cardgame.commons.networking.packet.AbstractPacket;
 import de.aesettlingen.cardgame.commons.networking.packet.LoginPacket;
