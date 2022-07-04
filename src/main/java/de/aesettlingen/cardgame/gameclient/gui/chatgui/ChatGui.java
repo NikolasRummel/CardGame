@@ -4,6 +4,7 @@ import de.aesettlingen.cardgame.commons.networking.packet.ClientMessagePacket;
 import de.aesettlingen.cardgame.gameclient.CardGameClient;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -27,6 +28,8 @@ public class ChatGui extends JPanel {
         this.textDisplay.setEnabled(false);
         textDisplay.setDisabledTextColor(Color.BLACK);
         super.add(new JScrollPane(textDisplay), BorderLayout.CENTER);
+        Border b = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Group Chat");
+        this.setBorder(b);
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new BorderLayout());
@@ -72,6 +75,7 @@ public class ChatGui extends JPanel {
         p.add(new JPanel());
         f.add(p);
         f.setSize(new Dimension(1080, 720));
+        f.setResizable(false);
         f.setVisible(true);
     }
 }
