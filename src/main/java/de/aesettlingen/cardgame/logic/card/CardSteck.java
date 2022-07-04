@@ -1,5 +1,6 @@
-package de.aesettlingen.cardgame.logic;
+package de.aesettlingen.cardgame.logic.card;
 
+// TODO: implement and change according to the class diagram
 public class CardSteck {
     private Card[] cards = new Card[0];
 

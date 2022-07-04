@@ -1,14 +1,45 @@
 package de.aesettlingen.cardgame.logic;
 
-public class Player {
-    private CardHand hand = new CardHand();
-    private String name;
+import de.aesettlingen.cardgame.logic.card.Card;
+import de.aesettlingen.cardgame.logic.card.CardHand;
 
-    public int getPoints() {
-        return 0;
+import java.util.LinkedList;
+
+abstract class Player {
+    protected final CardHand hand;
+    protected final String name;
+    protected boolean hasePermissionToMove = false;
+
+    public Player(String name) {
+        this.name = name;
+        this.hand = new CardHand();
     }
 
-    public Card pullRandomCard() {
-        return null;
+    public Player(String name, CardHand hand) {
+        this.name = name;
+        this.hand = hand;
+    }
+
+    public Player(String name, LinkedList<Card> cards) {
+        this.name = name;
+        this.hand = new CardHand(cards);
+    }
+    public String getName() {
+        return this.name;
+    }
+
+    public void setCards(LinkedList<Card> cards) {
+        this.hand.setCards(cards);
+    }
+
+    public LinkedList<Card> getCards() {
+        return this.hand.getCards();
+    }
+
+    public void grantPermissionToMove() {
+        hasePermissionToMove = true;
+    }
+    public void depriveToMove() {
+        hasePermissionToMove = false;
     }
 }
