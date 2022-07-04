@@ -51,7 +51,7 @@ public class CardGameClient {
 
     public void handleNewScreen() {
         this.loginScreen.dispatchEvent(new WindowEvent(this.loginScreen, WindowEvent.WINDOW_CLOSING));
-        //Open GameGui
+        this.gameGui = new GameGui();
     }
 
     public void sendMessage(String message) {
@@ -72,5 +72,9 @@ public class CardGameClient {
 
     public String getUserName() {
         return userName;
+    }
+
+    public GameGui getGameGui() {
+        return gameGui;
     }
 }

@@ -1,9 +1,12 @@
 package de.aesettlingen.cardgame.gameserver;
 
 import de.aesettlingen.cardgame.commons.networking.NetworkingServer;
+import de.aesettlingen.cardgame.commons.networking.packet.UsersPacket;
 import de.aesettlingen.cardgame.gameserver.eventlistener.LoginReceiveListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 public class CardGameServer {
@@ -22,8 +25,11 @@ public class CardGameServer {
     public void addPlayer(String name) {
         if(this.players.keySet().contains(name)) {
             //this.networkingServer.sendPacket(players.get(name), new ClientMessagePacket("SERVER", "This username is already taken! Please try an other one."));
-        }else {
+        } else {
             this.players.put(name, new PlayerInfo()); //TODO: Check if ok?
+
+            ArrayList<String> list = new ArrayList<>(getPlayers());
+            this.networkingServer.broadcastPacket(new UsersPacket("SERVER", list));
         }
 
         System.out.println("Connected Players: ");

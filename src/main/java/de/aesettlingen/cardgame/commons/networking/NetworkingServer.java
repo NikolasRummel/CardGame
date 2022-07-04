@@ -82,6 +82,7 @@ public class NetworkingServer {
         }
     }
     public void broadcastPacket(AbstractPacket packet) {
+        System.out.println("testBoradcast");
         this.clientHandlers.forEach(handler -> sendPacket(handler, packet));
     }
 
