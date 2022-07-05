@@ -82,7 +82,7 @@ public class NetworkingServer {
         }
     }
     public void broadcastPacket(AbstractPacket packet) {
-        System.out.println("testBoradcast");
+        this.clientHandlers.forEach(handler -> System.out.println(handler.getName() + " will get a broadcast Packet"));
         this.clientHandlers.forEach(handler -> sendPacket(handler, packet));
     }
 

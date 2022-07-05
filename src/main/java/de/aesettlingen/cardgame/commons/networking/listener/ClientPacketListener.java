@@ -24,6 +24,7 @@ public class ClientPacketListener extends Thread {
                 if(inputObject instanceof AbstractPacket) {
                     AbstractPacket packet = (AbstractPacket) inputObject;
                     packet.handle(client.getEventBus());
+                    System.out.println("Got a new packet:" + inputObject.getClass().getSimpleName());
                 }
 
             }catch (Exception e) {

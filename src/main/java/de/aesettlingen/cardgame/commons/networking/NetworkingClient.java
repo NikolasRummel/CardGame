@@ -72,7 +72,7 @@ public class NetworkingClient {
     }
 
     private void login() {
-        System.out.println("loggin in now:");
+        System.out.println("loggin in now...");
         this.sendPacket(new LoginPacket(userName));
     }
 

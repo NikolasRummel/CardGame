@@ -69,7 +69,7 @@ public class CardGameClient {
 
     public void register() {
         this.eventBus.registerListener(new MessageReceiveListener(this));
-        this.networkingClient.getEventBus().registerListener(new UserJoinedListener(this));
+        this.eventBus.registerListener(new UserJoinedListener(this));
     }
 
     public EventBus getEventBus() {
