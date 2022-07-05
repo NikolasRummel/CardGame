@@ -3,7 +3,7 @@ package de.aesettlingen.cardgame.logic.card;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-// TODO: implement and change according to the class diagram
+
 public class CardStack extends CardCollection{
 
     // functions
@@ -26,18 +26,19 @@ public class CardStack extends CardCollection{
     }
 
     public void pushToEnd(Card card) {
-
+        super.cards.addFirst(card);
     }
 
     public Card pullToEnd() {
-        return null;
+        return super.cards.removeFirst();
     }
 
     public LinkedList<Card> pullToEnd(int number) {
-        return null;
+        int maxIndex = super.cards.size()-1;
+        return (LinkedList<Card>) super.cards.subList(0, maxIndex-number);
     }
 
     public void pushToEnd(LinkedList<Card> cards) {
-
+        super.cards.addAll(0,cards);
     }
 }

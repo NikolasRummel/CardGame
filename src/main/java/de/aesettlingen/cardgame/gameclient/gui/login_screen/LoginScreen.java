@@ -1,9 +1,14 @@
 package de.aesettlingen.cardgame.gameclient.gui.login_screen;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class LoginScreen extends JFrame {
 
@@ -27,6 +32,14 @@ public class LoginScreen extends JFrame {
 
         this.inputField = new JTextField();
         this.inputField.setBounds(100, 37, 200, 28);
+        this.inputField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    loginMethod.login(inputField.getText());
+                }
+            }
+        });
 
         this.loginButton = new JButton("login");
         this.loginButton.setBounds(150, 110, 100, 30);
