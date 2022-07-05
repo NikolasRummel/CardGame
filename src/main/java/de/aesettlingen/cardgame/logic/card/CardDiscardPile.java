@@ -1,14 +1,17 @@
 package de.aesettlingen.cardgame.logic.card;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 
-// TODO: implement/change according to the class diagram
-public class CardDiscardPile {
-    public ArrayList<Card> getShuffeledCards() {
-
+public class CardDiscardPile extends CardStack{
+    public LinkedList<Card> getShuffeledCards() {
+        LinkedList<Card> shuffeled = new LinkedList<>(cards);
+        Collections.shuffle(shuffeled);
+        return shuffeled;
     }
 
     public void clear() {
-
+        super.cards.clear();
     }
 }
