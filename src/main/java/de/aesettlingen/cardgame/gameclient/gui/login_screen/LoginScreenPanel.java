@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class LoginScreen extends JFrame {
+public class LoginScreenPanel extends JFrame {
 
     private JButton loginButton;
     private JLabel label;
@@ -18,7 +18,7 @@ public class LoginScreen extends JFrame {
 
     private final LoginMethod loginMethod;
 
-    public LoginScreen(LoginMethod loginMethod) {
+    public LoginScreenPanel(LoginMethod loginMethod) {
         this.loginMethod = loginMethod;
         initGuiElements();
     }

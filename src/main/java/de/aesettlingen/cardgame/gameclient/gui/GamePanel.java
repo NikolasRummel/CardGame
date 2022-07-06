@@ -1,24 +1,19 @@
 package de.aesettlingen.cardgame.gameclient.gui;
 
-import java.awt.Color;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
 
-/**
- * @author Nikolas Rummel
- * @since 06.07.22
- */
 public class GamePanel extends JPanel {
 
     public GamePanel() {
-        super.add(new JLabel("CardGame"));
-        super.setBorder(
-            BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(Color.RED),
-                "game gui"
-            )
+
+        // some stuff so you can see the game gui
+        this.add(new JLabel("this is the game gui"));
+        this.setBorder(
+                BorderFactory.createTitledBorder(
+                        BorderFactory.createLineBorder(Color.RED),
+                        "game gui"
+                )
         );
     }
-
 }
