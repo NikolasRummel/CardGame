@@ -1,6 +1,6 @@
 package de.aesettlingen.cardgame.gameclient.gui;
 
-import de.aesettlingen.cardgame.gameclient.gui.chatgui.ChatGui;
+import de.aesettlingen.cardgame.gameclient.gui.chatgui.ChatPanel;
 import de.aesettlingen.cardgame.gameclient.gui.waiting_screen.StartMethod;
 import de.aesettlingen.cardgame.gameclient.gui.waiting_screen.WaitingScreenPanel;
 
@@ -14,8 +14,8 @@ import java.awt.*;
 public class MainFrame extends JFrame {
 
     private WaitingScreenPanel waitingScreenPanel;
-    private ChatGui chatGui;
-    private GamePanel gameGui;
+    private ChatPanel chatPanel;
+    private GamePanel gamePanel;
     private JPanel mainPanel;
 
     public MainFrame() {
@@ -30,8 +30,8 @@ public class MainFrame extends JFrame {
             }
         });
 
-        this.chatGui = new ChatGui();
-        this.gameGui = new GamePanel();
+        this.chatPanel = new ChatPanel();
+        this.gamePanel = new GamePanel();
 
         this.mainPanel = new JPanel();
         this.mainPanel.setLayout(new BorderLayout());
@@ -51,7 +51,7 @@ public class MainFrame extends JFrame {
     }
 
     public void switchToGame() {
-        setContentOfMainFrame(gameGui);
+        setContentOfMainFrame(gamePanel);
     }
 
     public void switchToWaitingScreen() {
@@ -61,7 +61,7 @@ public class MainFrame extends JFrame {
     private void setContentOfMainFrame(JComponent component) {
 
         this.mainPanel.removeAll();
-        this.mainPanel.add(chatGui, BorderLayout.EAST);
+        this.mainPanel.add(chatPanel, BorderLayout.EAST);
         this.mainPanel.add(component, BorderLayout.CENTER);
     }
 
@@ -69,7 +69,7 @@ public class MainFrame extends JFrame {
         return waitingScreenPanel;
     }
 
-    public ChatGui getChatGui() {
-        return chatGui;
+    public ChatPanel getChatPanel() {
+        return chatPanel;
     }
 }

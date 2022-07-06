@@ -9,7 +9,7 @@ import de.aesettlingen.cardgame.gameclient.eventlistener.MessageReceiveListener;
 import de.aesettlingen.cardgame.gameclient.eventlistener.UserJoinedListener;
 import de.aesettlingen.cardgame.gameclient.gui.MainFrame;
 import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginMethod;
-import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginScreen;
+import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginScreenPanel;
 import java.awt.event.WindowEvent;
 
 /**
@@ -30,13 +30,13 @@ public class CardGameClient {
     private EventBus eventBus;
     private NetworkingClient networkingClient;
 
-    private final LoginScreen loginScreen;
+    private final LoginScreenPanel loginScreen;
     private MainFrame gameGui;
 
     public CardGameClient() {
         instance = this;
 
-        this.loginScreen = new LoginScreen(new LoginMethod() {
+        this.loginScreen = new LoginScreenPanel(new LoginMethod() {
             @Override
             public void login(String loginName) {
                 start(loginName);
