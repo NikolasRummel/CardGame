@@ -3,6 +3,7 @@ package de.aesettlingen.cardgame.logic;
 import java.util.ArrayList;
 
 abstract public class Game<T extends Player> {
+
     protected int maxNumberOfPlayers;
     protected ArrayList<T> players;
 
@@ -11,7 +12,8 @@ abstract public class Game<T extends Player> {
 
     protected StartMode startMode;
 
-    public Game(ArrayList<T> players, int maxNumberOfPlayers, boolean isStarted, StartMode startMode) {
+    public Game(ArrayList<T> players, int maxNumberOfPlayers, boolean isStarted,
+        StartMode startMode) {
         this.players = players;
         this.isStarted = isStarted;
         this.maxNumberOfPlayers = maxNumberOfPlayers;
@@ -62,6 +64,6 @@ abstract public class Game<T extends Player> {
     abstract void addPlayer(T player);
 
     public T getLastAddedPlayer() {
-        return players.get(players.size() -1);
+        return players.get(players.size() - 1);
     }
 }

@@ -2,21 +2,29 @@ package de.aesettlingen.cardgame.gameclient.gui.chatgui;
 
 import de.aesettlingen.cardgame.commons.networking.packet.MessagePacket;
 import de.aesettlingen.cardgame.gameclient.CardGameClient;
-
-import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.border.Border;
 
-public class ChatGui extends JPanel {
+public class ChatPanel extends JPanel {
 
     private final JTextArea textDisplay = new JTextArea();
     private final JButton sendButton = new JButton("send");
     private final JTextField inputField = new JTextField();
-    public ChatGui() {
+
+    public ChatPanel() {
         initGuiElements();
     }
 
@@ -29,7 +37,8 @@ public class ChatGui extends JPanel {
         this.textDisplay.setDisabledTextColor(Color.BLACK);
 
         super.add(new JScrollPane(textDisplay), BorderLayout.CENTER);
-        Border b = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Group Chat");
+        Border b = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK),
+            "Group Chat");
         this.setBorder(b);
 
         JPanel bottomPanel = new JPanel();
@@ -39,8 +48,9 @@ public class ChatGui extends JPanel {
         inputField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER)
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     onSend();
+                }
             }
         });
 
@@ -59,16 +69,18 @@ public class ChatGui extends JPanel {
         String time = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date(m.getTimestamp()));
 
         textDisplay.setText(
-                textDisplay.getText() + String.format("[%s] %s\n%s\n\n", time, m.getSender(), m.getMessage())
+            textDisplay.getText() + String.format("[%s] %s\n%s\n\n", time, m.getSender(),
+                m.getMessage())
         );
     }
 
     public static void main(String[] args) { // test chat gui
         JFrame f = new JFrame();
-        ChatGui c = new ChatGui();
+        ChatPanel c = new ChatPanel();
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 20; i++) {
             c.onReceiveMessage(new MessagePacket("Simon", "hi"));
+        }
 
         JPanel p = new JPanel();
         p.setLayout(new BorderLayout());

@@ -3,6 +3,7 @@ package de.aesettlingen.cardgame.logic.card;
 import java.util.LinkedList;
 
 abstract public class CardCollection {
+
     protected LinkedList<Card> cards;
 
     public CardCollection() {
@@ -13,10 +14,11 @@ abstract public class CardCollection {
         this.cards = cards;
     }
 
-    public CardCollection(Card ... cards) {
+    public CardCollection(Card... cards) {
         this.cards = new LinkedList<>();
-        for (Card card : cards)
+        for (Card card : cards) {
             this.cards.addLast(card);
+        }
     }
 
     public LinkedList<Card> getCards() {
@@ -32,9 +34,10 @@ abstract public class CardCollection {
     }
 
     public boolean isEmpty() {
-        return cards.size()  == 0;
+        return cards.size() == 0;
     }
-    public boolean isNotEmpty(){
-        return cards.size()  != 0;
+
+    public boolean isNotEmpty() {
+        return cards.size() != 0;
     }
 }

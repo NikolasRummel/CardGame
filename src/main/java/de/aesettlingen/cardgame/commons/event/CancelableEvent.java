@@ -27,8 +27,12 @@ public abstract class CancelableEvent extends Event {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         CancelableEvent that = (CancelableEvent) o;
         return canceled == that.canceled;
     }

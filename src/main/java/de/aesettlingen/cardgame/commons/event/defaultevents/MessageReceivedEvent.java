@@ -9,7 +9,7 @@ import de.aesettlingen.cardgame.commons.event.Event;
 public class MessageReceivedEvent extends Event {
 
     private String sender;
-    private String message;
+    private final String message;
 
     public MessageReceivedEvent(String sender, String message) {
         this.sender = sender;

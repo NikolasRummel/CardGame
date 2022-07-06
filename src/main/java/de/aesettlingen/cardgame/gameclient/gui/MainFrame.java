@@ -1,12 +1,12 @@
 package de.aesettlingen.cardgame.gameclient.gui;
 
-import de.aesettlingen.cardgame.commons.networking.packet.MessagePacket;
-import de.aesettlingen.cardgame.gameclient.gui.chatgui.ChatGui;
-import de.aesettlingen.cardgame.gameclient.gui.waiting_screen.StartMethod;
+import de.aesettlingen.cardgame.gameclient.gui.chatgui.ChatPanel;
 import de.aesettlingen.cardgame.gameclient.gui.waiting_screen.WaitingScreenPanel;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  * @author Nikolas Rummel
@@ -15,7 +15,7 @@ import java.awt.*;
 public class MainFrame extends JFrame {
 
     private WaitingScreenPanel waitingScreenPanel;
-    private ChatGui chatGui;
+    private ChatPanel chatPanel;
     private GamePanel gameGui;
     private JPanel mainPanel;
 
@@ -26,22 +26,18 @@ public class MainFrame extends JFrame {
     private void initGuiElements() {
         this.waitingScreenPanel = new WaitingScreenPanel(() -> System.out.println("start game"));
 
-        this.chatGui = new ChatGui();
+        this.chatPanel = new ChatPanel();
         this.gameGui = new GamePanel();
 
         this.mainPanel = new JPanel();
         this.mainPanel.setLayout(new BorderLayout());
 
-        setContentOfMainFrame(waitingScreenPanel);
-
+        this.setContentOfMainFrame(waitingScreenPanel);
 
         super.setContentPane(mainPanel);
         super.setTitle("CardGame - Waiting");
-        //this.setLocation(new Point(500, 300));
-        //this.add(this.waitingScreenPanel);
         super.setSize(new Dimension(1280, 720));
         super.setResizable(false);
-//        super.setVisible(true);
 
         this.setVisible(true);
     }
@@ -55,9 +51,8 @@ public class MainFrame extends JFrame {
     }
 
     private void setContentOfMainFrame(JComponent component) {
-
         this.mainPanel.removeAll();
-        this.mainPanel.add(chatGui, BorderLayout.EAST);
+        this.mainPanel.add(chatPanel, BorderLayout.EAST);
         this.mainPanel.add(component, BorderLayout.CENTER);
     }
 
@@ -65,8 +60,8 @@ public class MainFrame extends JFrame {
         return waitingScreenPanel;
     }
 
-    public ChatGui getChatGui() {
-        return chatGui;
+    public ChatPanel getChatPanel() {
+        return chatPanel;
     }
 
 }

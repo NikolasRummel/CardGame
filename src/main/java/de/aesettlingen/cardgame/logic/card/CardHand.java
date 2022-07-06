@@ -13,7 +13,7 @@ public class CardHand extends CardCollection {
         super(cards);
     }
 
-    public CardHand(Card ... cards) {
+    public CardHand(Card... cards) {
         super(cards);
     }
 
@@ -24,13 +24,14 @@ public class CardHand extends CardCollection {
     }
 
     public Card pullRandom() {
-        return cards.remove((int) (Math.random()*cards.size()));
+        return cards.remove((int) (Math.random() * cards.size()));
     }
 
     public LinkedList<Card> pullRandom(int number) {
         LinkedList<Card> out = new LinkedList<>();
-        for (int i = 0; i < number; i++)
+        for (int i = 0; i < number; i++) {
             out.add(pullRandom());
+        }
         return out;
     }
 

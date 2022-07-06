@@ -2,10 +2,10 @@ package de.aesettlingen.cardgame.logic;
 
 import de.aesettlingen.cardgame.logic.card.Card;
 import de.aesettlingen.cardgame.logic.card.CardHand;
-
 import java.util.LinkedList;
 
 abstract class Player {
+
     protected final CardHand hand;
     protected final String name;
     protected boolean hasePermissionToMove = false;
@@ -24,6 +24,7 @@ abstract class Player {
         this.name = name;
         this.hand = new CardHand(cards);
     }
+
     public String getName() {
         return this.name;
     }
@@ -39,6 +40,7 @@ abstract class Player {
     public void grantPermissionToMove() {
         hasePermissionToMove = true;
     }
+
     public void depriveToMove() {
         hasePermissionToMove = false;
     }

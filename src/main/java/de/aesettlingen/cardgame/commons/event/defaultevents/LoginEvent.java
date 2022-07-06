@@ -1,7 +1,6 @@
 package de.aesettlingen.cardgame.commons.event.defaultevents;
 
 import de.aesettlingen.cardgame.commons.event.Event;
-import de.aesettlingen.cardgame.commons.networking.listener.ServerPacketListener;
 
 public class LoginEvent extends Event {
 

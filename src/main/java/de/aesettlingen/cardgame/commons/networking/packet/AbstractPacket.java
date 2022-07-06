@@ -1,6 +1,5 @@
 package de.aesettlingen.cardgame.commons.networking.packet;
 
-import de.aesettlingen.cardgame.commons.event.Event;
 import de.aesettlingen.cardgame.commons.event.EventBus;
 import java.io.Serializable;
 

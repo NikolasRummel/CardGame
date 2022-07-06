@@ -1,6 +1,7 @@
 package de.aesettlingen.cardgame.logic.card;
 
 public class Card {
+
     private final String name;
     private final String color;
     private int value;

@@ -19,10 +19,11 @@ public class MessageReceiveListener implements EventListener {
         this.cardGameClient = cardGameClient;
 
     }
+
     @EventHandler
     public void onReceiveMessage(MessageReceivedEvent event) {
-        //Eigentlich auf Gui anzeigen
-        cardGameClient.getGameGui().getChatGui().onReceiveMessage(new MessagePacket(event.getSender(), event.getMessage()));
+        cardGameClient.getGameGui().getChatPanel()
+            .onReceiveMessage(new MessagePacket(event.getSender(), event.getMessage()));
         System.out.println(event.getSender() + " said: " + event.getMessage());
     }
 

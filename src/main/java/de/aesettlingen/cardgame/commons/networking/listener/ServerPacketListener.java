@@ -3,7 +3,6 @@ package de.aesettlingen.cardgame.commons.networking.listener;
 import de.aesettlingen.cardgame.commons.networking.NetworkingServer;
 import de.aesettlingen.cardgame.commons.networking.packet.AbstractPacket;
 import de.aesettlingen.cardgame.commons.networking.packet.LoginPacket;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -15,12 +14,12 @@ import java.net.Socket;
  */
 public class ServerPacketListener extends Thread {
 
-    private NetworkingServer server;
-    private int id;
+    private final NetworkingServer server;
+    private final int id;
 
     private ObjectInputStream inputStream;
     private ObjectOutputStream outputStream;
-    private Socket socket;
+    private final Socket socket;
 
     private String clientName;
 
@@ -47,7 +46,7 @@ public class ServerPacketListener extends Thread {
                 packet.handle(server.getEventBus());
 
                 //inspect for getting the right object
-                if(packet instanceof LoginPacket) {
+                if (packet instanceof LoginPacket) {
                     LoginPacket loginPacket = (LoginPacket) packet;
                     this.clientName = loginPacket.getSender();
                 }

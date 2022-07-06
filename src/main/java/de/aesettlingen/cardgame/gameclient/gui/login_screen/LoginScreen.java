@@ -16,7 +16,7 @@ public class LoginScreen extends JFrame {
     private JLabel label;
     private JTextField inputField;
 
-    private LoginMethod loginMethod;
+    private final LoginMethod loginMethod;
 
     public LoginScreen(LoginMethod loginMethod) {
         this.loginMethod = loginMethod;

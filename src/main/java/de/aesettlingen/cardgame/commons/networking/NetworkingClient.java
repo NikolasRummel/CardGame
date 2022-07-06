@@ -1,11 +1,9 @@
 package de.aesettlingen.cardgame.commons.networking;
 
-import de.aesettlingen.cardgame.commons.event.DefaultEventBus;
 import de.aesettlingen.cardgame.commons.event.EventBus;
 import de.aesettlingen.cardgame.commons.networking.listener.ClientPacketListener;
 import de.aesettlingen.cardgame.commons.networking.packet.AbstractPacket;
 import de.aesettlingen.cardgame.commons.networking.packet.LoginPacket;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -57,14 +55,15 @@ public class NetworkingClient {
     private void openConnection() {
         try {
             socket = new Socket(address.getHostName(), address.getPort());
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Error connecting to server! Reason:" + e);
         }
 
-        System.out.println("Connection accepted " + socket.getInetAddress() + ":" + socket.getPort());
+        System.out.println(
+            "Connection accepted " + socket.getInetAddress() + ":" + socket.getPort());
 
         try {
-            inputStream  = new ObjectInputStream(socket.getInputStream());
+            inputStream = new ObjectInputStream(socket.getInputStream());
             outputStream = new ObjectOutputStream(socket.getOutputStream());
         } catch (IOException e) {
             System.out.println("Exception creating new Input/output Streams: " + e);

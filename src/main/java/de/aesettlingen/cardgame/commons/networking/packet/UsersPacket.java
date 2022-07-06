@@ -2,12 +2,11 @@ package de.aesettlingen.cardgame.commons.networking.packet;
 
 import de.aesettlingen.cardgame.commons.event.EventBus;
 import de.aesettlingen.cardgame.commons.event.defaultevents.UserJoinedEvent;
-
 import java.util.ArrayList;
 
 public class UsersPacket extends AbstractPacket {
 
-    private ArrayList<String> users;
+    private final ArrayList<String> users;
 
     public UsersPacket(String sender, ArrayList<String> users) {
         super(sender);

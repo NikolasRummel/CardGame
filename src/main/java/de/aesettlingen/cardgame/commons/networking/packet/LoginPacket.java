@@ -2,7 +2,6 @@ package de.aesettlingen.cardgame.commons.networking.packet;
 
 import de.aesettlingen.cardgame.commons.event.EventBus;
 import de.aesettlingen.cardgame.commons.event.defaultevents.LoginEvent;
-import de.aesettlingen.cardgame.commons.networking.listener.ServerPacketListener;
 
 public class LoginPacket extends AbstractPacket {
 

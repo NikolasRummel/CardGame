@@ -1,7 +1,5 @@
 package de.aesettlingen.cardgame.commons.networking;
 
-
-
 /**
  * @author Nikolas Rummel
  * @since 18.05.22
@@ -11,7 +9,6 @@ import de.aesettlingen.cardgame.commons.event.DefaultEventBus;
 import de.aesettlingen.cardgame.commons.event.EventBus;
 import de.aesettlingen.cardgame.commons.networking.listener.ServerPacketListener;
 import de.aesettlingen.cardgame.commons.networking.packet.AbstractPacket;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -28,7 +25,7 @@ public class NetworkingServer {
 
     public int uniqueId;
 
-    private EventBus eventBus;
+    private final EventBus eventBus;
 
     public NetworkingServer(int port) {
         this.port = port;
@@ -46,7 +43,9 @@ public class NetworkingServer {
                 info("Waiting for new Clients on port " + port + ".");
 
                 Socket socket = serverSocket.accept();
-                if(!keepGoing) break;
+                if (!keepGoing) {
+                    break;
+                }
 
                 ServerPacketListener handler = new ServerPacketListener(this, socket);
                 clientHandlers.add(handler);
@@ -61,7 +60,7 @@ public class NetworkingServer {
                     handler.getInputStream().close();
                     handler.getOutputStream().close();
                     handler.getSocket().close();
-                }catch (Exception e) {
+                } catch (Exception e) {
                     info("Error while closing server and clients steams!");
                 }
             });
@@ -81,8 +80,10 @@ public class NetworkingServer {
             System.out.println("Error while sending packet! Reason: " + e);
         }
     }
+
     public void broadcastPacket(AbstractPacket packet) {
-        this.clientHandlers.forEach(handler -> System.out.println(handler.getName() + " will get a broadcast Packet"));
+        this.clientHandlers.forEach(
+            handler -> System.out.println(handler.getName() + " will get a broadcast Packet"));
         this.clientHandlers.forEach(handler -> sendPacket(handler, packet));
     }
 

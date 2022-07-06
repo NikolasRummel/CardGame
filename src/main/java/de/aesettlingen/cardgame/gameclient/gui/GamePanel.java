@@ -12,14 +12,13 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel {
 
     public GamePanel() {
-        this.add(new JLabel("CardGame"));
-        this.setBorder(
+        super.add(new JLabel("CardGame"));
+        super.setBorder(
             BorderFactory.createTitledBorder(
                 BorderFactory.createLineBorder(Color.RED),
                 "game gui"
             )
         );
-
     }
 
 }

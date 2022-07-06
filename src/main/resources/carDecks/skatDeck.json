@@ -1,133 +1,130 @@
 [
-  {
-    "name": "7",
-    "color": "diamonds"
-  },
-  {
-    "name":"8",
-    "color":"diamonds"
-  },
-  {
-    "name":"9",
-    "color":"diamonds"
-  },
-  {
-    "name":"10",
-    "color":"diamonds"
-  },
-  {
-    "name":"jack",
-    "color":"diamonds"
-  },
-  {
-    "name":"queen",
-    "color":"diamonds"
-  },
-  {
-    "name":"king",
-    "color":"diamonds"
-  },
-  {
-    "name":"ace",
-    "color":"diamonds"
-  },
-
-  {
-    "name":"7",
-    "color":"hearts"
-  },
-  {
-    "name":"8",
-    "color":"hearts"
-  },
-  {
-    "name":"9",
-    "color":"hearts"
-  },
-  {
-    "name":"10",
-    "color":"hearts"
-  },
-  {
-    "name":"jack",
-    "color":"hearts"
-  },
-  {
-    "name":"queen",
-    "color":"hearts"
-  },
-  {
-    "name":"king",
-    "color":"hearts"
-  },
-  {
-    "name":"ace",
-    "color":"hearts"
-  },
-
-  {
-    "name":"7",
-    "color":"spades"
-  },
-  {
-    "name":"8",
-    "color":"spades"
-  },
-  {
-    "name":"9",
-    "color":"spades"
-  },
-  {
-    "name":"10",
-    "color":"spades"
-  },
-  {
-    "name":"jack",
-    "color":"spades"
-  },
-  {
-    "name":"queen",
-    "color":"spades"
-  },
-  {
-    "name":"king",
-    "color":"spades"
-  },
-  {
-    "name":"ace",
-    "color":"spades"
-  },
-
-  {
-    "name":"7",
-    "color":"clubs"
-  },
-  {
-    "name":"8",
-    "color":"clubs"
-  },
-  {
-    "name":"9",
-    "color":"clubs"
-  },
-  {
-    "name":"10",
-    "color":"clubs"
-  },
-  {
-    "name":"jack",
-    "color":"clubs"
-  },
-  {
-    "name":"queen",
-    "color":"clubs"
-  },
-  {
-    "name":"king",
-    "color":"clubs"
-  },
-  {
-    "name":"ace",
-    "color":"clubs"
-  }
+    {
+        "name": "7",
+        "color": "diamonds"
+    },
+    {
+        "name": "8",
+        "color": "diamonds"
+    },
+    {
+        "name": "9",
+        "color": "diamonds"
+    },
+    {
+        "name": "10",
+        "color": "diamonds"
+    },
+    {
+        "name": "jack",
+        "color": "diamonds"
+    },
+    {
+        "name": "queen",
+        "color": "diamonds"
+    },
+    {
+        "name": "king",
+        "color": "diamonds"
+    },
+    {
+        "name": "ace",
+        "color": "diamonds"
+    },
+    {
+        "name": "7",
+        "color": "hearts"
+    },
+    {
+        "name": "8",
+        "color": "hearts"
+    },
+    {
+        "name": "9",
+        "color": "hearts"
+    },
+    {
+        "name": "10",
+        "color": "hearts"
+    },
+    {
+        "name": "jack",
+        "color": "hearts"
+    },
+    {
+        "name": "queen",
+        "color": "hearts"
+    },
+    {
+        "name": "king",
+        "color": "hearts"
+    },
+    {
+        "name": "ace",
+        "color": "hearts"
+    },
+    {
+        "name": "7",
+        "color": "spades"
+    },
+    {
+        "name": "8",
+        "color": "spades"
+    },
+    {
+        "name": "9",
+        "color": "spades"
+    },
+    {
+        "name": "10",
+        "color": "spades"
+    },
+    {
+        "name": "jack",
+        "color": "spades"
+    },
+    {
+        "name": "queen",
+        "color": "spades"
+    },
+    {
+        "name": "king",
+        "color": "spades"
+    },
+    {
+        "name": "ace",
+        "color": "spades"
+    },
+    {
+        "name": "7",
+        "color": "clubs"
+    },
+    {
+        "name": "8",
+        "color": "clubs"
+    },
+    {
+        "name": "9",
+        "color": "clubs"
+    },
+    {
+        "name": "10",
+        "color": "clubs"
+    },
+    {
+        "name": "jack",
+        "color": "clubs"
+    },
+    {
+        "name": "queen",
+        "color": "clubs"
+    },
+    {
+        "name": "king",
+        "color": "clubs"
+    },
+    {
+        "name": "ace",
+        "color": "clubs"
+    }
 ]

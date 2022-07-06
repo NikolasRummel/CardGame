@@ -1,6 +1,5 @@
 package de.aesettlingen.cardgame.luncher;
 
-import de.aesettlingen.cardgame.commons.networking.NetworkingServer;
 import de.aesettlingen.cardgame.gameserver.CardGameServer;
 
 /**

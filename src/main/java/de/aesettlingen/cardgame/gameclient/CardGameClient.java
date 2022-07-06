@@ -10,7 +10,6 @@ import de.aesettlingen.cardgame.gameclient.eventlistener.UserJoinedListener;
 import de.aesettlingen.cardgame.gameclient.gui.MainFrame;
 import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginMethod;
 import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginScreen;
-
 import java.awt.event.WindowEvent;
 
 /**
@@ -21,6 +20,7 @@ import java.awt.event.WindowEvent;
 public class CardGameClient {
 
     private static CardGameClient instance;
+
     public static CardGameClient getInstance() {
         return instance;
     }
@@ -30,7 +30,7 @@ public class CardGameClient {
     private EventBus eventBus;
     private NetworkingClient networkingClient;
 
-    private LoginScreen loginScreen;
+    private final LoginScreen loginScreen;
     private MainFrame gameGui;
 
     public CardGameClient() {
@@ -59,7 +59,8 @@ public class CardGameClient {
     }
 
     public void handleNewScreen() {
-        this.loginScreen.dispatchEvent(new WindowEvent(this.loginScreen, WindowEvent.WINDOW_CLOSING));
+        this.loginScreen.dispatchEvent(
+            new WindowEvent(this.loginScreen, WindowEvent.WINDOW_CLOSING));
         this.gameGui = new MainFrame();
     }
 
