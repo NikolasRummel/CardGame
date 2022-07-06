@@ -7,7 +7,7 @@ import de.aesettlingen.cardgame.commons.networking.NetworkingClient;
 import de.aesettlingen.cardgame.commons.networking.packet.MessagePacket;
 import de.aesettlingen.cardgame.gameclient.eventlistener.MessageReceiveListener;
 import de.aesettlingen.cardgame.gameclient.eventlistener.UserJoinedListener;
-import de.aesettlingen.cardgame.gameclient.gui.GameGui;
+import de.aesettlingen.cardgame.gameclient.gui.MainFrame;
 import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginMethod;
 import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginScreen;
 
@@ -31,7 +31,7 @@ public class CardGameClient {
     private NetworkingClient networkingClient;
 
     private LoginScreen loginScreen;
-    private GameGui gameGui;
+    private MainFrame gameGui;
 
     public CardGameClient() {
         instance = this;
@@ -60,7 +60,7 @@ public class CardGameClient {
 
     public void handleNewScreen() {
         this.loginScreen.dispatchEvent(new WindowEvent(this.loginScreen, WindowEvent.WINDOW_CLOSING));
-        this.gameGui = new GameGui();
+        this.gameGui = new MainFrame();
     }
 
     public void sendMessage(String message) {
@@ -84,7 +84,7 @@ public class CardGameClient {
         return userName;
     }
 
-    public GameGui getGameGui() {
+    public MainFrame getGameGui() {
         return gameGui;
     }
 }
