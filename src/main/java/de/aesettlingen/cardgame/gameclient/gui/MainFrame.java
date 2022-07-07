@@ -5,13 +5,14 @@ import de.aesettlingen.cardgame.gameclient.gui.waiting_screen.StartMethod;
 import de.aesettlingen.cardgame.gameclient.gui.waiting_screen.WaitingScreenPanel;
 
 import javax.swing.*;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 
 /**
  * @author Nikolas Rummel
  * @since 18.05.22
  */
-public class MainFrame extends JFrame {
+public class MainFrame extends ColoredFrame {
 
     private WaitingScreenPanel waitingScreenPanel;
     private ChatPanel chatPanel;
@@ -71,5 +72,11 @@ public class MainFrame extends JFrame {
 
     public ChatPanel getChatPanel() {
         return chatPanel;
+    }
+
+    public static void main(String[] args) {
+
+
+        new MainFrame();
     }
 }
