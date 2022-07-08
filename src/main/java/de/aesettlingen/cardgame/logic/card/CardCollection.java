@@ -40,4 +40,8 @@ abstract public class CardCollection {
     public boolean isNotEmpty() {
         return cards.size() != 0;
     }
+
+    public void clear() {
+        cards.clear();
+    }
 }

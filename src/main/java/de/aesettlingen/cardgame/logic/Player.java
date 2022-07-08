@@ -4,7 +4,7 @@ import de.aesettlingen.cardgame.logic.card.Card;
 import de.aesettlingen.cardgame.logic.card.CardHand;
 import java.util.LinkedList;
 
-abstract class Player {
+public abstract class Player {
 
     protected final CardHand hand;
     protected final String name;
@@ -43,5 +43,9 @@ abstract class Player {
 
     public void depriveToMove() {
         hasePermissionToMove = false;
+    }
+
+    public void clearHand() {
+        this.hand.clear();
     }
 }
