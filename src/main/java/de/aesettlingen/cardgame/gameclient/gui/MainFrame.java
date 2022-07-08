@@ -76,7 +76,7 @@ public class MainFrame extends ColoredFrame {
 
     public static void main(String[] args) {
 
-
-        new MainFrame();
+        MainFrame mainFrame = new MainFrame();
+        mainFrame.switchToGame();
     }
 }
