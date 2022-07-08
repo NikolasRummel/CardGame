@@ -41,7 +41,7 @@ abstract public class Game<T extends Player> {
 
     abstract public void move(Move move);
 
-    abstract boolean isMoveValid(Move move);
+    protected abstract boolean isMoveValid(Move move);
 
     public boolean isTurnOfPlayer(String name) {
         return getCurrentPlayer().getName().equals(name);
@@ -59,7 +59,7 @@ abstract public class Game<T extends Player> {
         this.isStarted = true;
     }
 
-    abstract void addPlayer(String name);
+    protected abstract void addPlayer(String name);
 
     abstract void addPlayer(T player);
 

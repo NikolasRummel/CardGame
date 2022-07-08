@@ -1,5 +1,6 @@
-package de.aesettlingen.cardgame.logic;
+package de.aesettlingen.cardgame.logic.mau_mau;
 
+import de.aesettlingen.cardgame.logic.Move;
 import de.aesettlingen.cardgame.logic.card.Card;
 
 public class MauMauMove extends Move {
