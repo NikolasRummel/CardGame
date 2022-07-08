@@ -2,7 +2,11 @@ package de.aesettlingen.cardgame.logic;
 
 public class Move {
 
-    private String playerName;
+    private final String playerName;
+
+    public Move(String PlayerName) {
+        this.playerName = PlayerName;
+    }
 
     public String getPlayerName() {
         return this.playerName;
