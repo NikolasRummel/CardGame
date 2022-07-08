@@ -78,7 +78,7 @@ abstract public class Game<T extends Player> {
     }
 
     abstract public void distributeCards();
-    public void distributeCards(int cardsPerPlayer) {
+    protected void distributeCards(int cardsPerPlayer) {
         LinkedList<Card> shuffledDeck = getShuffledDeck();
         clearCardsOfPlayers();
         for (int i = 0; i < shuffledDeck.size(); i++) {
