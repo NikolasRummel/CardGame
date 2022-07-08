@@ -3,6 +3,9 @@ package de.aesettlingen.cardgame.logic;
 import de.aesettlingen.cardgame.logic.card.Card;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 abstract public class Game<T extends Player> {
 
@@ -72,5 +75,25 @@ abstract public class Game<T extends Player> {
 
     public T getLastAddedPlayer() {
         return players.get(players.size() - 1);
+    }
+
+    abstract public void distributeCards();
+    public void distributeCards(int cardsPerPlayer) {
+        LinkedList<Card> shuffledDeck = getShuffledDeck();
+        clearCardsOfPlayers();
+        for (int i = 0; i < shuffledDeck.size(); i++) {
+            if (i >= cardsPerPlayer*players.size()) return;
+            players.get(i%players.size()).getCards().add(shuffledDeck.get(i));
+        }
+    }
+
+    protected LinkedList<Card> getShuffledDeck() {
+        LinkedList<Card> shuffledDeck = new LinkedList<>(cardDeck);
+        Collections.shuffle(shuffledDeck);
+        return shuffledDeck;
+    }
+
+    protected void clearCardsOfPlayers() {
+        players.forEach(Player::clearHand);
     }
 }
