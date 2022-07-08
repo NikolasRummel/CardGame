@@ -29,7 +29,7 @@ public class GamePanel extends JPanel {
 
     @Override
     public void paintComponent(Graphics graphics) {
-        // super.paintComponent(graphics);
+        super.paintComponent(graphics);
         System.out.println("paintComponent");
 
         graphicsDrawer.drawBackgroundImage(backgroundImage, graphics, this);
