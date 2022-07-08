@@ -29,6 +29,13 @@ abstract public class CardCollection {
         this.cards = cards;
     }
 
+    public void setCards(Card ... cards) {
+        this.cards = new LinkedList<>();
+        for (Card card : cards) {
+            this.cards.addLast(card);
+        }
+    }
+
     public int size() {
         return cards.size();
     }

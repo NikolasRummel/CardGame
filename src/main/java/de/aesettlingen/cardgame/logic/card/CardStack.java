@@ -4,7 +4,20 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 
-public class CardStack extends CardCollection{
+public class CardStack extends CardCollection {
+
+
+    public CardStack() {
+        super();
+    }
+
+    public CardStack(LinkedList<Card> cards) {
+        super(cards);
+    }
+
+    public CardStack(Card... cards) {
+        super(cards);
+    }
 
     // functions
 
