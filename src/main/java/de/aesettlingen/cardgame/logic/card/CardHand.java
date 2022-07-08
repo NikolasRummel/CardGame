@@ -1,5 +1,6 @@
 package de.aesettlingen.cardgame.logic.card;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -33,6 +34,10 @@ public class CardHand extends CardCollection {
             out.add(pullRandom());
         }
         return out;
+    }
+
+    public void rotate(int rotation) {
+        Collections.rotate(cards, rotation);
     }
 
     public void add(Card card) {

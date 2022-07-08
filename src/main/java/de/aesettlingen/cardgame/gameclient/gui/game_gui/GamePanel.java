@@ -11,6 +11,8 @@ public class GamePanel extends JPanel {
 
     public GamePanel() {
 
+        this.setPreferredSize(new Dimension(810, 720));
+
         File file = new File(path);
         System.out.printf("path: %s exists: %b\n", path, file.exists());
 
@@ -24,6 +26,8 @@ public class GamePanel extends JPanel {
 //                )
 //        );
 
+//        this.paintComponent();
+        this.repaint();
     }
 
     {
@@ -32,8 +36,16 @@ public class GamePanel extends JPanel {
 
     @Override
     public void paintComponent(Graphics graphics) {
+         super.paintComponent(graphics);
         System.out.println("paintComponent");
-        graphics.drawImage(backgroundImage, 0, 0, this);
-        super.paintComponent(graphics);
+
+        System.out.println("width: "+  this.getWidth());
+        System.out.println("height: "+ this.getHeight());
+        graphics.drawImage(
+                backgroundImage,
+                0, 0,
+                this.getWidth(), this.getHeight(),
+                this
+        );
     }
 }
