@@ -5,7 +5,6 @@ import de.aesettlingen.cardgame.logic.card.Card;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.concurrent.atomic.AtomicInteger;
 
 abstract public class Game<T extends Player> {
 
@@ -45,8 +44,12 @@ abstract public class Game<T extends Player> {
         return players.get(currentPlayerIndex);
     }
 
-    public void nextPlayer() {
-        currentPlayerIndex++;
+    protected void nextPlayer() {
+        nextPlayer(1);
+    }
+
+    protected void nextPlayer(int step) {
+        currentPlayerIndex = (currentPlayerIndex+step)%players.size();
     }
 
     abstract public void move(Move move);
@@ -66,7 +69,18 @@ abstract public class Game<T extends Player> {
     }
 
     public void start() {
+
+        switch (startMode) {
+            case FIRST -> currentPlayerIndex = 0;
+            case RANDOM -> selectRandomPlayer();
+        }
+
         this.isStarted = true;
+    }
+
+    protected void selectRandomPlayer() {
+        if (players.size() == 0) return;
+        currentPlayerIndex = (int) (Math.random() * players.size());
     }
 
     protected abstract void addPlayer(String name);
@@ -77,14 +91,23 @@ abstract public class Game<T extends Player> {
         return players.get(players.size() - 1);
     }
 
-    abstract public void distributeCards();
-    protected void distributeCards(int cardsPerPlayer) {
+    abstract public LinkedList<Card> distributeCards();
+
+
+    /**
+     * @param cardsPerPlayer
+     * @return leftover cards
+     */
+    protected LinkedList<Card> distributeCards(int cardsPerPlayer) {
         LinkedList<Card> shuffledDeck = getShuffledDeck();
         clearCardsOfPlayers();
         for (int i = 0; i < shuffledDeck.size(); i++) {
-            if (i >= cardsPerPlayer*players.size()) return;
+            if (i >= cardsPerPlayer*players.size())
+                return (LinkedList<Card>) shuffledDeck.subList(0, i-1);
             players.get(i%players.size()).getCards().add(shuffledDeck.get(i));
         }
+
+        return new LinkedList<>();
     }
 
     protected LinkedList<Card> getShuffledDeck() {

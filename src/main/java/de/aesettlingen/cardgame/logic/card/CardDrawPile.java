@@ -15,12 +15,4 @@ public class CardDrawPile extends CardStack {
     public CardDrawPile(Card... cards) {
         super(cards);
     }
-
-    public Card peak() {
-        return cards.getLast();
-    }
-
-    public void removeAllButLast() {
-        this.setCards(this.peak());
-    }
 }

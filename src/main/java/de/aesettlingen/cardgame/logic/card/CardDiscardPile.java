@@ -23,7 +23,11 @@ public class CardDiscardPile extends CardStack{
         return shuffeled;
     }
 
-    public void clear() {
-        super.cards.clear();
+    public Card peak() {
+        return cards.getLast();
+    }
+
+    public void removeAllButLast() {
+        this.setCards(this.peak());
     }
 }
