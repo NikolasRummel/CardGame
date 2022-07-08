@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class GraphicsDrawer {
 
-    public void drawBackgroundImage(Image image, Graphics graphics, JComponent observer) {
+    public static void drawBackgroundImage(Image image, Graphics graphics, JComponent observer) {
         graphics.drawImage(
                 image,
                 0, 0,

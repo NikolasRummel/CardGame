@@ -11,7 +11,6 @@ public class GamePanel extends JPanel {
 
     private final String path = "src/main/resources/images/Table_with_background_without_the_last_Chair_9_to_8.png";
     private final Image backgroundImage = new ImageIcon(path).getImage();
-    private final GraphicsDrawer graphicsDrawer = new GraphicsDrawer();
 
     public GamePanel() {
 
@@ -32,7 +31,7 @@ public class GamePanel extends JPanel {
         super.paintComponent(graphics);
         System.out.println("paintComponent");
 
-        graphicsDrawer.drawBackgroundImage(backgroundImage, graphics, this);
+        GraphicsDrawer.drawBackgroundImage(backgroundImage, graphics, this);
 
 
         // code to draw a rectangle in order to check the size of things

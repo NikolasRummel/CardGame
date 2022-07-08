@@ -2,6 +2,8 @@ package de.aesettlingen.cardgame.gameclient.gui;
 
 import de.aesettlingen.cardgame.logic.card.Card;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 
 public class CardToImageMapper {
@@ -18,6 +20,16 @@ public class CardToImageMapper {
         if (CardToImageMapper.path.endsWith("/")) {
             CardToImageMapper.path += "/";
         }
+    }
+
+    public static ImageIcon mapToIcon(Card card) {
+        String path = mapToPath(card);
+        return new ImageIcon(path);
+    }
+
+    public static Image mapToImage(Card card) {
+        String path = mapToPath(card);
+        return new ImageIcon(path).getImage();
     }
 
     public static String mapToPath(Card card) {

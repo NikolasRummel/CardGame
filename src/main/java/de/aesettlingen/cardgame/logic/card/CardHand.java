@@ -36,6 +36,14 @@ public class CardHand extends CardCollection {
         return out;
     }
 
+    public Card removeCard(int index) {
+        return cards.remove(index);
+    }
+
+    public boolean removeCard(Card card) {
+        return cards.remove(card);
+    }
+
     public void rotate(int rotation) {
         Collections.rotate(cards, rotation);
     }
