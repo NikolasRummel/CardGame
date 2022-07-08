@@ -1,11 +1,11 @@
 package de.aesettlingen.cardgame.gameclient.gui;
 
 import de.aesettlingen.cardgame.gameclient.gui.chatgui.ChatPanel;
+import de.aesettlingen.cardgame.gameclient.gui.game_gui.GamePanel;
 import de.aesettlingen.cardgame.gameclient.gui.waiting_screen.StartMethod;
 import de.aesettlingen.cardgame.gameclient.gui.waiting_screen.WaitingScreenPanel;
 
 import javax.swing.*;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 
 /**
