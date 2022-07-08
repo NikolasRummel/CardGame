@@ -48,4 +48,8 @@ public abstract class Player {
     public void clearHand() {
         this.hand.clear();
     }
+
+    public CardHand getHand() {
+        return hand;
+    }
 }

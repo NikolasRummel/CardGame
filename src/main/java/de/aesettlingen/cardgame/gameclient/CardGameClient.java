@@ -5,11 +5,19 @@ import de.aesettlingen.cardgame.commons.event.EventBus;
 import de.aesettlingen.cardgame.commons.networking.NetworkAddress;
 import de.aesettlingen.cardgame.commons.networking.NetworkingClient;
 import de.aesettlingen.cardgame.commons.networking.packet.MessagePacket;
+import de.aesettlingen.cardgame.gameclient.client_facades.ChatFacade;
+import de.aesettlingen.cardgame.gameclient.client_facades.GameFacade;
 import de.aesettlingen.cardgame.gameclient.eventlistener.MessageReceiveListener;
 import de.aesettlingen.cardgame.gameclient.eventlistener.UserJoinedListener;
 import de.aesettlingen.cardgame.gameclient.gui.MainFrame;
-import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginMethod;
+import de.aesettlingen.cardgame.gameclient.gui.chatgui.SendMessageMethod;
+import de.aesettlingen.cardgame.gameclient.gui.game_gui.card_panel.SelectCardMethod;
 import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginScreenPanel;
+import de.aesettlingen.cardgame.logic.Game;
+import de.aesettlingen.cardgame.logic.card.Card;
+import de.aesettlingen.cardgame.logic.mau_mau.MauMau;
+import de.aesettlingen.cardgame.logic.mau_mau.MauMauPlayer;
+
 import java.awt.event.WindowEvent;
 
 /**
@@ -19,12 +27,6 @@ import java.awt.event.WindowEvent;
 
 public class CardGameClient {
 
-    private static CardGameClient instance;
-
-    public static CardGameClient getInstance() {
-        return instance;
-    }
-
     private String userName;
 
     private EventBus eventBus;
@@ -33,15 +35,34 @@ public class CardGameClient {
     private final LoginScreenPanel loginScreen;
     private MainFrame gameGui;
 
-    public CardGameClient() {
-        instance = this;
+    private final GameFacade gameFacade;
+    private final ChatFacade chatFacade;
+    private final Game<MauMauPlayer> game;
 
-        this.loginScreen = new LoginScreenPanel(new LoginMethod() {
-            @Override
-            public void login(String loginName) {
-                start(loginName);
-            }
-        });
+    public CardGameClient() {
+        this.game = new MauMau();
+
+       this.gameFacade = new GameFacade() {
+           @Override
+           public SelectCardMethod getSelectCardMethod() {
+               return (Card card) -> {
+
+               };
+           }
+
+           @Override
+           public MauMauPlayer getPlayer() {
+               return null;
+           }
+       };
+       this.chatFacade = new ChatFacade() {
+           @Override
+           public SendMessageMethod getSendMessageMethod() {
+               return (String text) -> sendMessage(text);
+           }
+       };
+
+        this.loginScreen = new LoginScreenPanel(this::start);
     }
 
     public void start(String userName) {
@@ -61,7 +82,7 @@ public class CardGameClient {
     public void handleNewScreen() {
         this.loginScreen.dispatchEvent(
             new WindowEvent(this.loginScreen, WindowEvent.WINDOW_CLOSING));
-        this.gameGui = new MainFrame();
+        this.gameGui = new MainFrame(gameFacade, chatFacade);
     }
 
     public void sendMessage(String message) {

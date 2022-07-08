@@ -2,6 +2,8 @@ package de.aesettlingen.cardgame.gameclient.gui.chatgui;
 
 import de.aesettlingen.cardgame.commons.networking.packet.MessagePacket;
 import de.aesettlingen.cardgame.gameclient.CardGameClient;
+import de.aesettlingen.cardgame.gameclient.client_facades.ChatFacade;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,7 +26,10 @@ public class ChatPanel extends JPanel {
     private final JButton sendButton = new JButton("send");
     private final JTextField inputField = new JTextField();
 
-    public ChatPanel() {
+    private final ChatFacade chatFacade;
+
+    public ChatPanel(ChatFacade chatFacade) {
+        this.chatFacade = chatFacade;
         initGuiElements();
     }
 
@@ -61,7 +66,7 @@ public class ChatPanel extends JPanel {
     }
 
     private void onSend() {
-        CardGameClient.getInstance().sendMessage(inputField.getText());
+        chatFacade.getSendMessageMethod().send(inputField.getText());
         inputField.setText("");
     }
 
@@ -76,7 +81,12 @@ public class ChatPanel extends JPanel {
 
     public static void main(String[] args) { // test chat gui
         JFrame f = new JFrame();
-        ChatPanel c = new ChatPanel();
+        ChatPanel c = new ChatPanel(new ChatFacade() {
+            @Override
+            public SendMessageMethod getSendMessageMethod() {
+                return (var messagePacket) -> {};
+            }
+        });
 
         for (int i = 0; i < 20; i++) {
             c.onReceiveMessage(new MessagePacket("Simon", "hi"));

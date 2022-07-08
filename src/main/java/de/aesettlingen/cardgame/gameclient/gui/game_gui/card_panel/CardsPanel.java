@@ -21,7 +21,7 @@ public class CardsPanel extends JPanel {
     private final int heightOfCards = 160;
     private final int panelHeight = heightOfCards+10;
 
-    private final int numberOfDisplayedCards = 5;
+    private final int numberOfDisplayedCards = 9;
 
     private final ArrayList<CardImageLabel> cardLabels;
 
@@ -104,13 +104,20 @@ public class CardsPanel extends JPanel {
         f.add(p);
 
         var hand = new CardHand(
-                        new Card("7", "diamonds"),
-                        new Card("8", "diamonds"),
-                        new Card("9", "diamonds"),
-                        new Card("10", "diamonds"),
-                        new Card("jack", "diamonds"),
-                        new Card("queen", "diamonds"),
-                        new Card("king", "diamonds")
+                new Card("7", "clubs"),
+                new Card("8", "clubs"),
+                new Card("9", "clubs"),
+                new Card("10", "clubs"),
+                new Card("jack", "clubs"),
+                new Card("queen", "clubs"),
+                new Card("king", "clubs"),
+                new Card("7", "diamonds"),
+                new Card("8", "diamonds"),
+                new Card("9", "diamonds"),
+                new Card("10", "diamonds"),
+                new Card("jack", "diamonds"),
+                new Card("queen", "diamonds"),
+                new Card("king", "diamonds")
                 );
 
         var cp = new CardsPanel(

@@ -1,23 +1,34 @@
 package de.aesettlingen.cardgame.gameclient.gui.game_gui;
 
+import de.aesettlingen.cardgame.gameclient.client_facades.GameFacade;
 import de.aesettlingen.cardgame.gameclient.gui.GraphicsDrawer;
+import de.aesettlingen.cardgame.gameclient.gui.game_gui.card_panel.CardsPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.io.File;
 
 public class GamePanel extends JPanel {
 
     private final String path = "src/main/resources/images/Table_with_background_without_the_last_Chair_9_to_8.png";
     private final Image backgroundImage = new ImageIcon(path).getImage();
+    private final CardsPanel cardsPanel;
+    private final GameFacade gameFacade;
 
-    public GamePanel() {
+    public GamePanel(GameFacade gameFacade) {
+        this.gameFacade = gameFacade;
+        this.cardsPanel = new CardsPanel(gameFacade.getPlayer().getHand(), gameFacade.getSelectCardMethod());
 
-        this.setPreferredSize(new Dimension(810, 720));
+        Dimension size = new Dimension(810, 720);
+        this.setPreferredSize(size);
+        this.setSize(size);
 
-        File file = new File(path);
-        System.out.printf("path: %s exists: %b\n", path, file.exists());
+        this.setLayout(new BorderLayout());
+
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new BorderLayout());
+        bottomPanel.add(cardsPanel, BorderLayout.CENTER);
+        this.add(bottomPanel, BorderLayout.SOUTH);
 
         this.repaint();
     }
@@ -29,21 +40,7 @@ public class GamePanel extends JPanel {
     @Override
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        System.out.println("paintComponent");
-
         GraphicsDrawer.drawBackgroundImage(backgroundImage, graphics, this);
-
-
-        // code to draw a rectangle in order to check the size of things
-        // Graphics2D g2=(Graphics2D) graphics;
-        // g2.setPaint(Color.PINK);
-        // int width = 160;
-        // int height = 160;
-        // int x = this.getWidth()/2-width;
-        // int y = this.getHeight()-height;
-        // Rectangle2D rect=new Rectangle2D.Double(x,y,width, height);
-        // g2.draw(rect);
-        // g2.fill(rect);
 
         super.paintComponent(graphics);
     }
