@@ -4,4 +4,7 @@ public class Move {
 
     private String playerName;
 
+    public String getPlayerName() {
+        return this.playerName;
+    }
 }
