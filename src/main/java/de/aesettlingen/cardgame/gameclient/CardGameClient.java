@@ -56,6 +56,7 @@ public class CardGameClient {
 
            @Override
            public void sendCardOfMove(Card card) {
+               MauMauMove move = new MauMauMove(userName, card);
                // TODO: implement
            }
        };
