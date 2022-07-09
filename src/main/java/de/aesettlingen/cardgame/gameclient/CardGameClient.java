@@ -54,6 +54,11 @@ public class CardGameClient {
            public MauMauPlayer getPlayer() {
                return null;
            }
+
+           @Override
+           public Card getTopCard() {
+               return new Card("jack", "spades");
+           }
        };
        this.chatFacade = new ChatFacade() {
            @Override
