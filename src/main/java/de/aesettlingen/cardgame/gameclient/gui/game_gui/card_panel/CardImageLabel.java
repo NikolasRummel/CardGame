@@ -20,7 +20,7 @@ public class CardImageLabel extends JLabel {
     private final int labelHeight;
 
     private final Color defaultBackground = this.getBackground();
-    private final Color hoverColor = Color.RED;
+    private Color hoverColor = new Color(0, 150, 255);
     private Color backgroundColor = defaultBackground;
 
     private boolean isFlipped = false;
@@ -98,6 +98,14 @@ public class CardImageLabel extends JLabel {
 
     public void setHoverEnabled(boolean isHoverEnabled) {
         this.isHoverEnabled = isHoverEnabled;
+    }
+
+    public void setHoverColor(Color hoverColor) {
+        this.hoverColor = hoverColor;
+    }
+
+    public Color getHoverColor() {
+        return this.hoverColor;
     }
 
     @Override
