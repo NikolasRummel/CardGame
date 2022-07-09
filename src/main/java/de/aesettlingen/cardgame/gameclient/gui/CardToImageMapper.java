@@ -7,7 +7,7 @@ import java.awt.*;
 import java.io.File;
 
 public class CardToImageMapper {
-    private static String path = "src/main/resources/images/cards/";
+    private static String path = "src/main/resources/images/cards/cards_01/";
 
     private CardToImageMapper() {}
 
@@ -43,5 +43,13 @@ public class CardToImageMapper {
         System.out.println("path: "+path);
         File file = new File(path);
         System.out.printf("path: %s exists: %b\n", path, file.exists());
+    }
+
+    public static Image getBackImage() {
+        return new ImageIcon(getBackImagePath()).getImage();
+    }
+
+    public static String getBackImagePath() {
+        return path+"card_back.png";
     }
 }
