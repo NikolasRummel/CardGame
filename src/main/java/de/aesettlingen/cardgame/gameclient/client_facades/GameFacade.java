@@ -11,5 +11,5 @@ public abstract class GameFacade {
 
     public abstract Card getTopCard();
 
-    public abstract MauMauMove sendCardOfMove(Card Move);
+    public abstract void sendCardOfMove(Card Move);
 }
