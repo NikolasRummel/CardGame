@@ -1,13 +1,15 @@
 package de.aesettlingen.cardgame.logic.mau_mau;
 
 import de.aesettlingen.cardgame.logic.GameState;
+import de.aesettlingen.cardgame.logic.card.CardHand;
 
 import java.util.ArrayList;
 
 public record MauMauState(
 	String nameOfCurrentPlayer,
 	ArrayList<String> listOfPlayerNames,
-	ArrayList<Integer> numberOfCards
+	ArrayList<Integer> numberOfCards,
+	CardHand hand
 ) implements GameState {
 
 	@Override
