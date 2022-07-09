@@ -9,10 +9,11 @@ import de.aesettlingen.cardgame.gameclient.gui.waiting_screen.WaitingScreenPanel
 import de.aesettlingen.cardgame.logic.card.Card;
 import de.aesettlingen.cardgame.logic.card.CardHand;
 import de.aesettlingen.cardgame.logic.mau_mau.MauMauMove;
-import de.aesettlingen.cardgame.logic.mau_mau.MauMauPlayer;
+import de.aesettlingen.cardgame.logic.mau_mau.MauMauState;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * @author Nikolas Rummel
@@ -28,13 +29,13 @@ public class MainFrame extends ColoredFrame {
     private final MauMauFacade gameFacade;
     private final ChatFacade chatFacade;
 
-    public MainFrame(MauMauFacade gameFacade, ChatFacade chatFacade) {
+    public MainFrame(MauMauFacade gameFacade, ChatFacade chatFacade, MauMauState gameState) {
         this.gameFacade = gameFacade;
         this.chatFacade = chatFacade;
-        initGuiElements();
+        initGuiElements(gameState);
     }
 
-    private void initGuiElements() {
+    private void initGuiElements(MauMauState gameState) {
         this.waitingScreenPanel = new WaitingScreenPanel(new StartMethod() {
             @Override
             public void start() {
@@ -42,8 +43,9 @@ public class MainFrame extends ColoredFrame {
             }
         });
 
+
         this.chatPanel = new ChatPanel(chatFacade);
-        this.gamePanel = new MauMauPanel(gameFacade);
+        this.gamePanel = new MauMauPanel(gameFacade, gameState);
 
         this.mainPanel = new JPanel();
         this.mainPanel.setLayout(new BorderLayout());
@@ -86,49 +88,62 @@ public class MainFrame extends ColoredFrame {
 
         String playerName = "Max Musterman";
 
-        MainFrame mainFrame = new MainFrame(new MauMauFacade() {
+
+        ArrayList<String> listOfPlayerNames = new ArrayList<>();
+        listOfPlayerNames.add("Paul");
+        listOfPlayerNames.add(playerName);
+        listOfPlayerNames.add("Paul");
+        listOfPlayerNames.add("Paul");
+
+        ArrayList<Integer> numberOfCards = new ArrayList<>();
+        numberOfCards.add(4);
+        numberOfCards.add(16);
+        numberOfCards.add(4);
+        numberOfCards.add(4);
+
+            MainFrame mainFrame = new MainFrame(
+              new MauMauFacade() {
                 @Override
-                public MauMauPlayer getPlayer() {
-                    return new MauMauPlayer(
-                                playerName,
-                                new CardHand(
-                                        new Card("7", "clubs"),
-                                        new Card("8", "clubs"),
-                                        new Card("9", "clubs"),
-                                        new Card("10", "clubs")
-//                                        new Card("jack", "clubs"),
-//                                        new Card("queen", "clubs"),
-//                                        new Card("king", "clubs"),
-//                                        new Card("ace", "clubs"),
-//                                        new Card("7", "diamonds"),
-//                                        new Card("8", "diamonds"),
-//                                        new Card("9", "diamonds"),
-//                                        new Card("10", "diamonds"),
-//                                        new Card("jack", "diamonds"),
-//                                        new Card("queen", "diamonds"),
-//                                        new Card("king", "diamonds"),
-//                                        new Card("ace", "diamonds")
-                                )
-                            );
+                public String getNameOfPlayer() {
+                    return playerName;
                 }
 
                 @Override
-                public Card getTopCard() {
-                    return new Card("jack", "spades");
+                public void sendCardOfMove(Card card) {
+                    MauMauMove move = new MauMauMove(playerName, card);
+                    System.out.println( playerName + (move.isRaisingACard()? " raises a card" : " plays a "+move.getCard().getName()+ " " + move.getCard().getColor()));
                 }
-
-            @Override
-            public void sendCardOfMove(Card card) {
-                MauMauMove move = new MauMauMove(playerName, card);
-                System.out.println( playerName + (move.isRaisingACard()? " raises a card" : " plays a "+move.getCard().getName()+ " " + move.getCard().getColor()));
-            }
-        },
+            },
             new ChatFacade() {
                 @Override
                 public void sendMessage(String text) {
                     System.out.println("send message: " + text);
                 }
-            }
+            },
+            new MauMauState (
+              playerName,
+              listOfPlayerNames,
+              numberOfCards,
+              new CardHand(
+                new Card("7", "clubs"),
+                new Card("8", "clubs"),
+                new Card("9", "clubs"),
+                new Card("10", "clubs"),
+                new Card("jack", "clubs"),
+                new Card("queen", "clubs"),
+                new Card("king", "clubs"),
+                new Card("ace", "clubs"),
+                new Card("7", "diamonds"),
+                new Card("8", "diamonds"),
+                new Card("9", "diamonds"),
+                new Card("10", "diamonds"),
+                new Card("jack", "diamonds"),
+                new Card("queen", "diamonds"),
+                new Card("king", "diamonds"),
+                new Card("ace", "diamonds")
+              ),
+              new Card("8", "spades")
+            )
         );
         mainFrame.switchToGame();
     }
