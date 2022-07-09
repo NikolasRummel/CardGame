@@ -128,8 +128,8 @@ public class MainFrame extends ColoredFrame {
         },
             new ChatFacade() {
                 @Override
-                public SendMessageMethod getSendMessageMethod() {
-                    return null;
+                public void sendMessage(String text) {
+                    System.out.println("send message: " + text);
                 }
             }
         );

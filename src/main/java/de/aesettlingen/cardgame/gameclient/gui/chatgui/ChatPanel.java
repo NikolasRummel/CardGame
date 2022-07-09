@@ -66,7 +66,7 @@ public class ChatPanel extends JPanel {
     }
 
     private void onSend() {
-        chatFacade.getSendMessageMethod().send(inputField.getText());
+        chatFacade.sendMessage(inputField.getText());
         inputField.setText("");
     }
 
@@ -83,8 +83,8 @@ public class ChatPanel extends JPanel {
         JFrame f = new JFrame();
         ChatPanel c = new ChatPanel(new ChatFacade() {
             @Override
-            public SendMessageMethod getSendMessageMethod() {
-                return (var messagePacket) -> {};
+            public void sendMessage(String text) {
+
             }
         });
 

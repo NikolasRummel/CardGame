@@ -62,8 +62,8 @@ public class CardGameClient {
        };
        this.chatFacade = new ChatFacade() {
            @Override
-           public SendMessageMethod getSendMessageMethod() {
-               return (String text) -> sendMessage(text);
+           public void sendMessage(String text) {
+               sendMessage(text);
            }
        };
 
