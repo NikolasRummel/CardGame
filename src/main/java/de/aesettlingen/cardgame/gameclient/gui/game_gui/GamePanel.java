@@ -5,6 +5,7 @@ import de.aesettlingen.cardgame.gameclient.gui.GraphicsDrawer;
 import de.aesettlingen.cardgame.gameclient.gui.game_gui.card_panel.CardImageLabel;
 import de.aesettlingen.cardgame.gameclient.gui.game_gui.card_panel.CardsPanel;
 import de.aesettlingen.cardgame.logic.card.Card;
+import de.aesettlingen.cardgame.logic.mau_mau.MauMauMove;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +23,7 @@ public class GamePanel extends JPanel {
 
     public GamePanel(GameFacade gameFacade) {
         this.gameFacade = gameFacade;
-        this.cardsPanel = new CardsPanel(gameFacade.getPlayer().getHand(), gameFacade.getSelectCardMethod());
+        this.cardsPanel = new CardsPanel(gameFacade.getPlayer().getHand(), gameFacade::sendCardOfMove);
 
         Dimension size = new Dimension(810, 720);
         this.setPreferredSize(size);
@@ -71,9 +72,8 @@ public class GamePanel extends JPanel {
     }
 
     private void onRaiseACard() {
-        // TODO: let the player raise a card
-        System.out.println("Player can't raise a card yet. Method not implemented yet.");
-    }
+          gameFacade.sendCardOfMove(null); // this will let the player raise a card
+	    }
 
     @Override
     public void paintComponent(Graphics graphics) {
