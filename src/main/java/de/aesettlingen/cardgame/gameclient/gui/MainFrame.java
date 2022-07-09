@@ -1,9 +1,9 @@
 package de.aesettlingen.cardgame.gameclient.gui;
 
 import de.aesettlingen.cardgame.gameclient.client_facades.ChatFacade;
-import de.aesettlingen.cardgame.gameclient.client_facades.GameFacade;
+import de.aesettlingen.cardgame.gameclient.client_facades.MauMauFacade;
 import de.aesettlingen.cardgame.gameclient.gui.chatgui.ChatPanel;
-import de.aesettlingen.cardgame.gameclient.gui.game_gui.GamePanel;
+import de.aesettlingen.cardgame.gameclient.gui.game_gui.MauMauPanel;
 import de.aesettlingen.cardgame.gameclient.gui.waiting_screen.StartMethod;
 import de.aesettlingen.cardgame.gameclient.gui.waiting_screen.WaitingScreenPanel;
 import de.aesettlingen.cardgame.logic.card.Card;
@@ -22,13 +22,13 @@ public class MainFrame extends ColoredFrame {
 
     private WaitingScreenPanel waitingScreenPanel;
     private ChatPanel chatPanel;
-    private GamePanel gamePanel;
+    private MauMauPanel gamePanel;
     private JPanel mainPanel;
 
-    private final GameFacade gameFacade;
+    private final MauMauFacade gameFacade;
     private final ChatFacade chatFacade;
 
-    public MainFrame(GameFacade gameFacade, ChatFacade chatFacade) {
+    public MainFrame(MauMauFacade gameFacade, ChatFacade chatFacade) {
         this.gameFacade = gameFacade;
         this.chatFacade = chatFacade;
         initGuiElements();
@@ -43,7 +43,7 @@ public class MainFrame extends ColoredFrame {
         });
 
         this.chatPanel = new ChatPanel(chatFacade);
-        this.gamePanel = new GamePanel(gameFacade);
+        this.gamePanel = new MauMauPanel(gameFacade);
 
         this.mainPanel = new JPanel();
         this.mainPanel.setLayout(new BorderLayout());
@@ -86,7 +86,7 @@ public class MainFrame extends ColoredFrame {
 
         String playerName = "Max Musterman";
 
-        MainFrame mainFrame = new MainFrame(new GameFacade() {
+        MainFrame mainFrame = new MainFrame(new MauMauFacade() {
                 @Override
                 public MauMauPlayer getPlayer() {
                     return new MauMauPlayer(

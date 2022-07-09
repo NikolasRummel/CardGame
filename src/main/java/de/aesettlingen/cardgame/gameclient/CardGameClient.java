@@ -6,12 +6,10 @@ import de.aesettlingen.cardgame.commons.networking.NetworkAddress;
 import de.aesettlingen.cardgame.commons.networking.NetworkingClient;
 import de.aesettlingen.cardgame.commons.networking.packet.MessagePacket;
 import de.aesettlingen.cardgame.gameclient.client_facades.ChatFacade;
-import de.aesettlingen.cardgame.gameclient.client_facades.GameFacade;
+import de.aesettlingen.cardgame.gameclient.client_facades.MauMauFacade;
 import de.aesettlingen.cardgame.gameclient.eventlistener.MessageReceiveListener;
 import de.aesettlingen.cardgame.gameclient.eventlistener.UserJoinedListener;
 import de.aesettlingen.cardgame.gameclient.gui.MainFrame;
-import de.aesettlingen.cardgame.gameclient.gui.chatgui.SendMessageMethod;
-import de.aesettlingen.cardgame.gameclient.gui.game_gui.card_panel.SelectCardMethod;
 import de.aesettlingen.cardgame.gameclient.gui.login_screen.LoginScreenPanel;
 import de.aesettlingen.cardgame.logic.Game;
 import de.aesettlingen.cardgame.logic.card.Card;
@@ -36,14 +34,14 @@ public class CardGameClient {
     private final LoginScreenPanel loginScreen;
     private MainFrame gameGui;
 
-    private final GameFacade gameFacade;
+    private final MauMauFacade gameFacade;
     private final ChatFacade chatFacade;
     private final Game<MauMauPlayer> game;
 
     public CardGameClient() {
         this.game = new MauMau();
 
-       this.gameFacade = new GameFacade() {
+       this.gameFacade = new MauMauFacade() {
            @Override
            public MauMauPlayer getPlayer() {
                return null;

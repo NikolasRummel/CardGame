@@ -4,7 +4,7 @@ import de.aesettlingen.cardgame.logic.GameState;
 
 import java.util.ArrayList;
 
-record MauMauState(
+public record MauMauState(
 	String nameOfCurrentPlayer,
 	ArrayList<String> listOfPlayerNames,
 	ArrayList<Integer> numberOfCards

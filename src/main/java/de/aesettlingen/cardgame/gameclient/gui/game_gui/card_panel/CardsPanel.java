@@ -10,7 +10,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Optional;
 
 public class CardsPanel extends JPanel {
     private JButton nextButton;
