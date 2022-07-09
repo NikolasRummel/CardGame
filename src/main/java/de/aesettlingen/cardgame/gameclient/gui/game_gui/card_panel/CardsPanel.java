@@ -10,6 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Optional;
 
 public class CardsPanel extends JPanel {
     private JButton nextButton;
@@ -30,6 +31,8 @@ public class CardsPanel extends JPanel {
     private final SelectCardMethod selectCardMethod;
 
     private final Timer updateTimer = new Timer(200, al -> displayFirstImages());
+
+    private int indexOfTheFirstDisplayedCard = 0;
 
     public CardsPanel(CardHand cardHand, SelectCardMethod selectCardMethod) {
         this.cardHand = cardHand;
@@ -60,7 +63,8 @@ public class CardsPanel extends JPanel {
             label.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    onSelect(label);
+                    if (label.isHoverEnabled())
+                        onSelect(label);
                 }
             });
             createdLabels.add(label);
@@ -75,14 +79,22 @@ public class CardsPanel extends JPanel {
     }
 
     private void displayFirstImages() {
-        for (int i = 0; i < numberOfDisplayedCards; i++)
-            cardLabels.get(i).setCard(i < cardHand.getCards().size()? cardHand.getCards().get(i) : null);
+        for (int i = 0; i < numberOfDisplayedCards; i++) {
+            if (cardHand.size() == 0 || i > cardHand.size()-1) {
+                cardLabels.get(i).setCard(null);
+                cardLabels.get(i).setHover(false);
+            } else {
+                int index = (indexOfTheFirstDisplayedCard + i) % cardHand.size();
+                cardLabels.get(i).setCard(cardHand.getCards().get(index));
+                cardLabels.get(i).setHover(true);
+            }
+        }
 
         this.repaint();
     }
 
     private void onNext() {
-        cardHand.rotate(1);
+        rotate(1);
         displayFirstImages();
     }
 
@@ -91,8 +103,23 @@ public class CardsPanel extends JPanel {
     }
 
     private void onPrevious() {
-        cardHand.rotate(-1);
+        rotate(-1);
         displayFirstImages();
+    }
+
+    private void rotate(int n) {
+        if (cardHand.size() == 0) {
+            indexOfTheFirstDisplayedCard = 0;
+            return;
+        }
+
+        indexOfTheFirstDisplayedCard = indexOfTheFirstDisplayedCard + n;
+
+        if (indexOfTheFirstDisplayedCard < 0)
+            while (indexOfTheFirstDisplayedCard < 0)
+                indexOfTheFirstDisplayedCard = cardHand.size() + indexOfTheFirstDisplayedCard;
+        else
+            indexOfTheFirstDisplayedCard %= cardHand.size();
     }
 
     public static void main(String[] args) {

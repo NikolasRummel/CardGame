@@ -95,17 +95,19 @@ public class MainFrame extends ColoredFrame {
                                         new Card("7", "clubs"),
                                         new Card("8", "clubs"),
                                         new Card("9", "clubs"),
-                                        new Card("10", "clubs"),
-                                        new Card("jack", "clubs"),
-                                        new Card("queen", "clubs"),
-                                        new Card("king", "clubs"),
-                                        new Card("7", "diamonds"),
-                                        new Card("8", "diamonds"),
-                                        new Card("9", "diamonds"),
-                                        new Card("10", "diamonds"),
-                                        new Card("jack", "diamonds"),
-                                        new Card("queen", "diamonds"),
-                                        new Card("king", "diamonds")
+                                        new Card("10", "clubs")
+//                                        new Card("jack", "clubs"),
+//                                        new Card("queen", "clubs"),
+//                                        new Card("king", "clubs"),
+//                                        new Card("ace", "clubs"),
+//                                        new Card("7", "diamonds"),
+//                                        new Card("8", "diamonds"),
+//                                        new Card("9", "diamonds"),
+//                                        new Card("10", "diamonds"),
+//                                        new Card("jack", "diamonds"),
+//                                        new Card("queen", "diamonds"),
+//                                        new Card("king", "diamonds"),
+//                                        new Card("ace", "diamonds")
                                 )
                             );
                 }
