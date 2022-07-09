@@ -10,7 +10,7 @@ public class MauMauMove extends Move {
     public MauMauMove(String playerName, Card card) {
         super(playerName);
         this.card = card;
-        this.isRaisingACard = card != null;
+        this.isRaisingACard = card == null;
     }
 
     public MauMauMove(String playerName) {
