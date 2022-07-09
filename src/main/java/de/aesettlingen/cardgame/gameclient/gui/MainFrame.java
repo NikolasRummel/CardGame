@@ -88,12 +88,11 @@ public class MainFrame extends ColoredFrame {
 
         String playerName = "Max Musterman";
 
-
         ArrayList<String> listOfPlayerNames = new ArrayList<>();
         listOfPlayerNames.add("Paul");
         listOfPlayerNames.add(playerName);
-        listOfPlayerNames.add("Paul");
-        listOfPlayerNames.add("Paul");
+        listOfPlayerNames.add("404");
+        listOfPlayerNames.add("Ken");
 
         ArrayList<Integer> numberOfCards = new ArrayList<>();
         numberOfCards.add(4);
@@ -121,7 +120,7 @@ public class MainFrame extends ColoredFrame {
                 }
             },
             new MauMauState (
-              playerName,
+              listOfPlayerNames.get(3),
               listOfPlayerNames,
               numberOfCards,
               new CardHand(

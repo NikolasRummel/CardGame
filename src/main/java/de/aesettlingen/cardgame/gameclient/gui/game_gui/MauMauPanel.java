@@ -8,6 +8,7 @@ import de.aesettlingen.cardgame.logic.GameState;
 import de.aesettlingen.cardgame.logic.mau_mau.MauMauState;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -58,21 +59,39 @@ public class MauMauPanel extends GamePanel {
         centerPanel.setLayout(null);
         centerPanel.add(cardBackLabel);
         centerPanel.add(topCardLabel);
-        this.add(centerPanel, BorderLayout.CENTER);
 
         // init playerLabels
         playerLabels = new PlayerLabel[3];
-        for (int i = 0; i < playerLabels.length; i++) {
-            playerLabels[i] = new PlayerLabel(i < gameState.listOfPlayerNames().size()? gameState.listOfPlayerNames().get(i) : "");
-            centerPanel.add(playerLabels[i]);
-            if (gameState.nameOfCurrentPlayer().equals(gameFacade.getNameOfPlayer()))
-                playerLabels[i].setPermission(true);
+        for (int i = 0; i < 4; i++) {
+            if (i < gameState.listOfPlayerNames().size())
+                if (gameFacade.getNameOfPlayer().equals(gameState.listOfPlayerNames().get(i))) {
+                    continue;
+                }
+
+            int index = i > 0 && playerLabels[i-1] == null? i -1 : i;
+
+            playerLabels[index] = new PlayerLabel(i < gameState.listOfPlayerNames().size()? gameState.listOfPlayerNames().get(i) : "");
+            if (gameState.nameOfCurrentPlayer().equals(playerLabels[index].getPlayerName()))
+                playerLabels[index].setPermission(true);
         }
         // set positions of PlayerLabels
         // TODO: find right positions for PlayerLabels
         playerLabels[0].setLocation(300, 300);
-        playerLabels[0].setLocation(400, 100);
-        playerLabels[0].setLocation(500, 300);
+        playerLabels[1].setLocation(400, 100);
+        playerLabels[2].setLocation(500, 300);
+
+        for (PlayerLabel pl: playerLabels) {
+            System.out.println(pl.getLocation());
+            JLabel l = new JLabel("name");
+            l.setBorder(new LineBorder(Color.RED, 3));
+            l.setLocation(pl.getLocation());
+            centerPanel.add(pl);
+//            centerPanel.add(l);
+            System.out.println(pl.getPlayerName() + "; "+ pl.setHasMovePermission());
+        }
+
+        System.out.println(gameState.nameOfCurrentPlayer());
+        this.add(centerPanel, BorderLayout.CENTER);
 
         this.repaint();
     }
