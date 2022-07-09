@@ -42,6 +42,7 @@ public class PlayerLabel extends JLabel {
 
 	public void setPermission(boolean hasMovePermission) {
 		this.hasMovePermission = hasMovePermission;
+		super.setText((hasMovePermission? " " : "") + playerName);
 		updateColor();
 	}
 
