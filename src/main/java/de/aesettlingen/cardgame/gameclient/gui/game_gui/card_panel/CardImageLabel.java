@@ -96,7 +96,7 @@ public class CardImageLabel extends JLabel {
         return isHoverEnabled;
     }
 
-    public void setHoverEnabled(boolean isHoverEnabled) {
+    public void setHover(boolean isHoverEnabled) {
         this.isHoverEnabled = isHoverEnabled;
     }
 
