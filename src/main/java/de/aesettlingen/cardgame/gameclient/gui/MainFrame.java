@@ -3,9 +3,7 @@ package de.aesettlingen.cardgame.gameclient.gui;
 import de.aesettlingen.cardgame.gameclient.client_facades.ChatFacade;
 import de.aesettlingen.cardgame.gameclient.client_facades.GameFacade;
 import de.aesettlingen.cardgame.gameclient.gui.chatgui.ChatPanel;
-import de.aesettlingen.cardgame.gameclient.gui.chatgui.SendMessageMethod;
 import de.aesettlingen.cardgame.gameclient.gui.game_gui.GamePanel;
-import de.aesettlingen.cardgame.gameclient.gui.game_gui.card_panel.SelectCardMethod;
 import de.aesettlingen.cardgame.gameclient.gui.waiting_screen.StartMethod;
 import de.aesettlingen.cardgame.gameclient.gui.waiting_screen.WaitingScreenPanel;
 import de.aesettlingen.cardgame.logic.card.Card;
@@ -55,12 +53,9 @@ public class MainFrame extends ColoredFrame {
 
         super.setContentPane(mainPanel);
         super.setTitle("CardGame - Waiting");
-        //this.setLocation(new Point(500, 300));
-        //this.add(this.waitingScreenPanel);
+
         super.setSize(new Dimension(1280, 720));
         super.setResizable(false);
-//        super.setVisible(true);
-
         this.setVisible(true);
     }
 
