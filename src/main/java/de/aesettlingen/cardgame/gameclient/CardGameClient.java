@@ -56,7 +56,7 @@ public class CardGameClient {
 
            @Override
            public void sendCardOfMove(Card Move) {
-               return null;
+               // TODO: implement
            }
        };
        this.chatFacade = new ChatFacade() {
