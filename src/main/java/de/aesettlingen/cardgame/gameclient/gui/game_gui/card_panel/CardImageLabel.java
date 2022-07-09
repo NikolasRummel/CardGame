@@ -71,14 +71,12 @@ public class CardImageLabel extends JLabel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                System.out.println("mouse enters");
                 backgroundColor = hoverColor;
                 resetColor();
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                System.out.println("mouse exits");
                 backgroundColor = defaultBackground;
                 resetColor();
             }

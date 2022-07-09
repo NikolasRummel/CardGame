@@ -81,7 +81,6 @@ public class CardsPanel extends JPanel {
     }
 
     private void onNext() {
-        System.out.println("clicked next");
         cardHand.rotate(1);
         displayFirstImages();
     }
@@ -91,10 +90,7 @@ public class CardsPanel extends JPanel {
     }
 
     private void onPrevious() {
-        System.out.println("clicked previous");
-        System.out.println(cardHand.getCards().toString());
         cardHand.rotate(-1);
-        System.out.println(cardHand.getCards().toString());
         displayFirstImages();
     }
 
