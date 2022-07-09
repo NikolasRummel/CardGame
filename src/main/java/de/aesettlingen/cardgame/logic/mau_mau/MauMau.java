@@ -121,7 +121,7 @@ public class MauMau extends Game<MauMauPlayer> {
         MauMauPlayer player = this.findPlayerByName(playerName);
         if (player == null) return null;
 
-        return new MauMauState(playerName, getNamesOfPlayers(), getNumberOfCardsPerPlayer(), player.getHand());
+        return new MauMauState(playerName, getNamesOfPlayers(), getNumberOfCardsPerPlayer(), player.getHand(), getTopCard());
     }
 
     private MauMauPlayer findPlayerByName(String name) {
