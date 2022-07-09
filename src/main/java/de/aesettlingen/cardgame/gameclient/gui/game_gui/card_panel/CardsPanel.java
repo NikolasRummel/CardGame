@@ -29,8 +29,6 @@ public class CardsPanel extends JPanel {
 
     private final SelectCardMethod selectCardMethod;
 
-    private final Timer updateTimer = new Timer(200, al -> displayFirstImages());
-
     private int indexOfTheFirstDisplayedCard = 0;
 
     public CardsPanel(CardHand cardHand, SelectCardMethod selectCardMethod) {
@@ -73,8 +71,11 @@ public class CardsPanel extends JPanel {
         displayFirstImages();
 
         this.setSize(new Dimension());
+    }
 
-        updateTimer.start();
+    public void update(CardHand cardHand) {
+        this.cardHand = cardHand;
+        displayFirstImages();
     }
 
     private void displayFirstImages() {
