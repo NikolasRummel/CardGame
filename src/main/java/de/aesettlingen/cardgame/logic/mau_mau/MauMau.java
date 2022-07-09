@@ -1,6 +1,7 @@
 package de.aesettlingen.cardgame.logic.mau_mau;
 
 import de.aesettlingen.cardgame.logic.Game;
+import de.aesettlingen.cardgame.logic.GameState;
 import de.aesettlingen.cardgame.logic.Move;
 import de.aesettlingen.cardgame.logic.card.Card;
 import de.aesettlingen.cardgame.logic.card.CardDiscardPile;
@@ -113,6 +114,30 @@ public class MauMau extends Game<MauMauPlayer> {
     @Override
     public LinkedList<Card> distributeCards() {
         return super.distributeCards(startNumberOfCardsPerPlayer);
+    }
+
+    @Override
+    public GameState getStateForPlayer(String playerName) {
+        MauMauPlayer player = this.findPlayerByName(playerName);
+        if (player == null) return null;
+
+        return new MauMauState(playerName, getNamesOfPlayers(), getNumberOfCardsPerPlayer());
+    }
+
+    private MauMauPlayer findPlayerByName(String name) {
+        for (MauMauPlayer p : players)
+            if (p.getName().equals(name))
+                return p;
+
+        return null;
+    }
+
+    private ArrayList<String> getNamesOfPlayers() {
+        return new ArrayList<>(players.stream().map((MauMauPlayer p) -> p.getName()).toList());
+    }
+
+    private ArrayList<Integer> getNumberOfCardsPerPlayer() {
+        return new ArrayList<>(players.stream().map((MauMauPlayer p) -> p.getCards().size()).toList());
     }
 
     private boolean doesCardFitOnDiscardPile(Card card) {

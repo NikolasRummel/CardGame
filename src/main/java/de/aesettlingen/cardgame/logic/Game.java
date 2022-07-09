@@ -119,4 +119,6 @@ abstract public class Game<T extends Player> {
     protected void clearCardsOfPlayers() {
         players.forEach(Player::clearHand);
     }
+
+    public abstract GameState getStateForPlayer(String playerName);
 }
