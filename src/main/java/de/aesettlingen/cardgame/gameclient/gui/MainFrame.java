@@ -116,6 +116,11 @@ public class MainFrame extends ColoredFrame {
                                 )
                             );
                 }
+
+                @Override
+                public Card getTopCard() {
+                    return new Card("jack", "spades");
+                }
             },
             new ChatFacade() {
                 @Override
