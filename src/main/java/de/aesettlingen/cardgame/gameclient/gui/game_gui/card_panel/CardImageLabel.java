@@ -24,6 +24,7 @@ public class CardImageLabel extends JLabel {
     private Color backgroundColor = defaultBackground;
 
     private boolean isFlipped = false;
+    private boolean isHoverEnabled = true;
 
     public CardImageLabel() {
         this.labelHeight = defaultLabelHeight;
@@ -71,7 +72,7 @@ public class CardImageLabel extends JLabel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                backgroundColor = hoverColor;
+                backgroundColor = isHoverEnabled? hoverColor : defaultBackground;
                 resetColor();
             }
 
@@ -89,6 +90,14 @@ public class CardImageLabel extends JLabel {
 
     public boolean isFlipped() {
         return isFlipped;
+    }
+
+    public boolean isHoverEnabled() {
+        return isHoverEnabled;
+    }
+
+    public void isHoverEnabled(boolean isHoverEnabled) {
+        this.isHoverEnabled = isHoverEnabled;
     }
 
     @Override
