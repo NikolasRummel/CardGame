@@ -3,7 +3,6 @@ package de.aesettlingen.cardgame.logic.mau_mau;
 import de.aesettlingen.cardgame.logic.GameState;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 record MauMauState(
 	String nameOfCurrentPlayer,
