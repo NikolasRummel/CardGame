@@ -5,7 +5,6 @@ import de.aesettlingen.cardgame.gameclient.gui.GraphicsDrawer;
 import de.aesettlingen.cardgame.gameclient.gui.game_gui.card_panel.CardImageLabel;
 import de.aesettlingen.cardgame.gameclient.gui.game_gui.card_panel.CardsPanel;
 import de.aesettlingen.cardgame.logic.GameState;
-import de.aesettlingen.cardgame.logic.card.Card;
 import de.aesettlingen.cardgame.logic.mau_mau.MauMauState;
 
 import javax.swing.*;
