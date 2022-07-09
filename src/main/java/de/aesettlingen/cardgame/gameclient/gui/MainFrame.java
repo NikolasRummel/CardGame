@@ -10,6 +10,7 @@ import de.aesettlingen.cardgame.gameclient.gui.waiting_screen.StartMethod;
 import de.aesettlingen.cardgame.gameclient.gui.waiting_screen.WaitingScreenPanel;
 import de.aesettlingen.cardgame.logic.card.Card;
 import de.aesettlingen.cardgame.logic.card.CardHand;
+import de.aesettlingen.cardgame.logic.mau_mau.MauMauMove;
 import de.aesettlingen.cardgame.logic.mau_mau.MauMauPlayer;
 
 import javax.swing.*;
@@ -88,11 +89,13 @@ public class MainFrame extends ColoredFrame {
 
     public static void main(String[] args) {
 
+        String playerName = "Max Musterman";
+
         MainFrame mainFrame = new MainFrame(new GameFacade() {
                 @Override
                 public MauMauPlayer getPlayer() {
                     return new MauMauPlayer(
-                                "Max Musterman",
+                                playerName,
                                 new CardHand(
                                         new Card("7", "clubs"),
                                         new Card("8", "clubs"),
@@ -118,8 +121,9 @@ public class MainFrame extends ColoredFrame {
                 }
 
             @Override
-            public void sendCardOfMove(Card Move) {
-                // TODO: implement
+            public void sendCardOfMove(Card card) {
+                MauMauMove move = new MauMauMove(playerName, card);
+                System.out.println( playerName + (move.isRaisingACard()? " raises a card" : " plays a "+move.getCard().getName()+ " " + move.getCard().getColor()));
             }
         },
             new ChatFacade() {
