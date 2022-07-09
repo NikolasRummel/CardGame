@@ -40,7 +40,7 @@ public class MauMauPanel extends GamePanel {
         this.add(bottomPanel, BorderLayout.SOUTH);
 
         // display the back of a card to show the draw pile
-        CardImageLabel cardBackLabel = new CardImageLabel(new Card("", ""));
+        CardImageLabel cardBackLabel = new CardImageLabel();
         cardBackLabel.flip();
         cardBackLabel.setLocation(350, 300);
         cardBackLabel.addMouseListener(new MouseAdapter() {
