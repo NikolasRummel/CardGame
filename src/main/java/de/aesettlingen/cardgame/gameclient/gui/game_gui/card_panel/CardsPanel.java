@@ -25,8 +25,6 @@ public class CardsPanel extends JPanel {
 
     private final ArrayList<CardImageLabel> cardLabels;
 
-    private final GraphicsDrawer graphicsDrawer = new GraphicsDrawer();
-
     private final SelectCardMethod selectCardMethod;
 
     private int indexOfTheFirstDisplayedCard = 0;
