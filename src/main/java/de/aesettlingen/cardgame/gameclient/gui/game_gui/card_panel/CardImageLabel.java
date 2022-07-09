@@ -23,7 +23,7 @@ public class CardImageLabel extends JLabel {
     private final Color hoverColor = Color.RED;
     private Color backgroundColor = defaultBackground;
 
-    private boolean isFliped = false;
+    private boolean isFlipped = false;
 
     public CardImageLabel() {
         this.labelHeight = defaultLabelHeight;
@@ -84,11 +84,11 @@ public class CardImageLabel extends JLabel {
     }
 
     public void flip() {
-        isFliped=!isFliped;
+        isFlipped =!isFlipped;
     }
 
-    public boolean isFliped() {
-        return isFliped;
+    public boolean isFlipped() {
+        return isFlipped;
     }
 
     @Override
@@ -96,7 +96,7 @@ public class CardImageLabel extends JLabel {
         super.paintComponent(graphics);
         if (card == null) return;
 
-        if (!isFliped)
+        if (!isFlipped)
                 GraphicsDrawer.drawBackgroundImage(CardToImageMapper.mapToImage(card), graphics, this);
             else
                 GraphicsDrawer.drawBackgroundImage(CardToImageMapper.getBackImage(), graphics, this);
