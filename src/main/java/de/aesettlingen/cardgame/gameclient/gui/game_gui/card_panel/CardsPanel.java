@@ -40,9 +40,10 @@ public class CardsPanel extends JPanel {
         this.setPreferredSize(size);
         this.setSize(size);
 
-        nextButton = new JButton(">");
+        nextButton = new JButton("");
+
         nextButton.addActionListener(al -> onNext());
-        previousButton = new JButton("<");
+        previousButton = new JButton("");
         previousButton.addActionListener(al -> onPrevious());
 
         JPanel middlePanel = new JPanel();
