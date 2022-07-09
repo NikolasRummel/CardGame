@@ -4,7 +4,7 @@ import de.aesettlingen.cardgame.logic.Move;
 import de.aesettlingen.cardgame.logic.card.Card;
 
 public class MauMauMove extends Move {
-    private Card card = null;
+    private final Card card;
     private final boolean isRaisingACard;
 
     public MauMauMove(String playerName, Card card) {
@@ -15,6 +15,7 @@ public class MauMauMove extends Move {
 
     public MauMauMove(String playerName) {
         super(playerName);
+        this.card = null;
         this.isRaisingACard = true;
     }
 
