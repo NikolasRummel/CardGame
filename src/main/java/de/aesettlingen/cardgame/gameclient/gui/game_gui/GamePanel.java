@@ -2,11 +2,14 @@ package de.aesettlingen.cardgame.gameclient.gui.game_gui;
 
 import de.aesettlingen.cardgame.gameclient.client_facades.GameFacade;
 import de.aesettlingen.cardgame.gameclient.gui.GraphicsDrawer;
+import de.aesettlingen.cardgame.gameclient.gui.game_gui.card_panel.CardImageLabel;
 import de.aesettlingen.cardgame.gameclient.gui.game_gui.card_panel.CardsPanel;
+import de.aesettlingen.cardgame.logic.card.Card;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class GamePanel extends JPanel {
 
@@ -14,6 +17,8 @@ public class GamePanel extends JPanel {
     private final Image backgroundImage = new ImageIcon(path).getImage();
     private final CardsPanel cardsPanel;
     private final GameFacade gameFacade;
+
+    private CardImageLabel topCardLabel;
 
     public GamePanel(GameFacade gameFacade) {
         this.gameFacade = gameFacade;
@@ -30,11 +35,44 @@ public class GamePanel extends JPanel {
         bottomPanel.add(cardsPanel, BorderLayout.CENTER);
         this.add(bottomPanel, BorderLayout.SOUTH);
 
+        // display the back of a card to show the draw pile
+        CardImageLabel cardBackLabel = new CardImageLabel(new Card("", ""));
+        cardBackLabel.flip();
+//        cardBackLabel.setHover(false);
+        cardBackLabel.setLocation(350, 300);
+        cardBackLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                onRaiseACard();
+            }
+        });
+
+        this.topCardLabel = new CardImageLabel();
+        topCardLabel.setHover(false);
+        topCardLabel.setLocation(500, 300);
+
+        JPanel centerPanel = new JPanel();
+        centerPanel.setOpaque(false); // make JComponent Transparent
+        centerPanel.setLayout(null);
+        centerPanel.add(cardBackLabel);
+        centerPanel.add(topCardLabel);
+        this.add(centerPanel, BorderLayout.CENTER);
+
+        updateTopCard();
         this.repaint();
     }
 
     {
         setOpaque(false);
+    }
+
+    private void updateTopCard() {
+        this.topCardLabel.setCard(gameFacade.getTopCard());
+    }
+
+    private void onRaiseACard() {
+        // TODO: let the player raise a card
+        System.out.println("Player can't raise a card yet. Method not implemented yet.");
     }
 
     @Override
