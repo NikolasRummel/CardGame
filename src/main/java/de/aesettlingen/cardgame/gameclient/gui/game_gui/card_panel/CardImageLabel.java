@@ -19,9 +19,7 @@ public class CardImageLabel extends JLabel {
     private final int labelWidth;
     private final int labelHeight;
 
-    private final Color defaultBackground = this.getBackground();
     private Color hoverColor = new Color(0, 150, 255);
-    private Color backgroundColor = defaultBackground;
 
     private boolean isFlipped = false;
     private boolean isHoverEnabled = true;
@@ -60,26 +58,27 @@ public class CardImageLabel extends JLabel {
         this.card = card;
     }
 
-    public void resetColor() {
-        this.setBackground(backgroundColor);
-        setBorder(new LineBorder(backgroundColor, 2));
+    private void hover() {
+        super.setBorder(new LineBorder(hoverColor, 2));
+    }
+
+    private void removeHover() {
+        setBorder(null);
     }
 
     private void initGuiElements() {
         this.setPreferredSize(new Dimension(labelWidth, labelHeight));
         this.setSize(new Dimension(labelWidth, labelHeight));
-        this.setBackground(backgroundColor);
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                backgroundColor = isHoverEnabled? hoverColor : defaultBackground;
-                resetColor();
+                if (isHoverEnabled)
+                    hover();
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                backgroundColor = defaultBackground;
-                resetColor();
+                removeHover();
             }
         });
     }
@@ -98,6 +97,7 @@ public class CardImageLabel extends JLabel {
 
     public void setHover(boolean isHoverEnabled) {
         this.isHoverEnabled = isHoverEnabled;
+        if (!isHoverEnabled) removeHover();
     }
 
     public void setHoverColor(Color hoverColor) {
@@ -118,7 +118,5 @@ public class CardImageLabel extends JLabel {
             else
                 GraphicsDrawer.drawBackgroundImage(CardToImageMapper.getBackImage(), graphics, this);
         super.paintComponent(graphics);
-
-        this.setBackground(backgroundColor);
     }
 }
