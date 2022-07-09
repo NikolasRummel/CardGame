@@ -90,11 +90,6 @@ public class MainFrame extends ColoredFrame {
 
         MainFrame mainFrame = new MainFrame(new GameFacade() {
                 @Override
-                public SelectCardMethod getSelectCardMethod() {
-                    return (Card card) -> {};
-                }
-
-                @Override
                 public MauMauPlayer getPlayer() {
                     return new MauMauPlayer(
                                 "Max Musterman",
@@ -121,7 +116,12 @@ public class MainFrame extends ColoredFrame {
                 public Card getTopCard() {
                     return new Card("jack", "spades");
                 }
-            },
+
+            @Override
+            public void sendCardOfMove(Card Move) {
+                // TODO: implement
+            }
+        },
             new ChatFacade() {
                 @Override
                 public SendMessageMethod getSendMessageMethod() {
