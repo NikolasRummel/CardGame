@@ -55,7 +55,7 @@ public class CardGameClient {
            }
 
            @Override
-           public void sendCardOfMove(Card Move) {
+           public void sendCardOfMove(Card card) {
                // TODO: implement
            }
        };
