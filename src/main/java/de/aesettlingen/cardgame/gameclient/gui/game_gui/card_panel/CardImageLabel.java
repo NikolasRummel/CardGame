@@ -111,7 +111,7 @@ public class CardImageLabel extends JLabel {
     @Override
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        if (card == null) return;
+        if (card == null && !isFlipped) return;
 
         if (!isFlipped)
                 GraphicsDrawer.drawBackgroundImage(CardToImageMapper.mapToImage(card), graphics, this);
