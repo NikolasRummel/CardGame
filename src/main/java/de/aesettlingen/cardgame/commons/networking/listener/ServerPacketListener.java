@@ -2,6 +2,7 @@ package de.aesettlingen.cardgame.commons.networking.listener;
 
 import de.aesettlingen.cardgame.commons.networking.NetworkingServer;
 import de.aesettlingen.cardgame.commons.networking.packet.AbstractPacket;
+import de.aesettlingen.cardgame.commons.networking.packet.HandShakePacket;
 import de.aesettlingen.cardgame.commons.networking.packet.LoginPacket;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -50,6 +51,9 @@ public class ServerPacketListener extends Thread {
                     LoginPacket loginPacket = (LoginPacket) packet;
                     this.clientName = loginPacket.getSender();
                 }
+
+                //handshake
+                server.sendPacket(this, new HandShakePacket("SERVER", packet.getHandshakeId()));
 
             } catch (IOException | ClassNotFoundException e) {
                 server.info("Error while reading " + clientName + "'s packets! " + e);

@@ -31,8 +31,11 @@ public class ClientPacketListener extends Thread {
                         "Got a new packet:" + inputObject.getClass().getSimpleName());
 
                     //handshake
-                    UUID incomingHanshakeId = packet.getHandshakeId();
-                    if(incomingHanshakeId.toString().equals(client.getLastSendedHandshakeId().toString())) {
+                    UUID incomingHandshakeId = packet.getHandshakeId();
+                    System.out.println("-----Handshake-----");
+                    System.out.println(incomingHandshakeId + " ==" + client.getLastSendedHandshakeId());
+                    System.out.println("-----Handshake-----");
+                    if(incomingHandshakeId.toString().equals(client.getLastSendedHandshakeId().toString())) {
                         System.out.println("Handshake success!");
                     }else {
                         System.out.println("Handshake failed!");
