@@ -41,7 +41,7 @@ public abstract class Player {
         hasePermissionToMove = true;
     }
 
-    public void depriveToMove() {
+    public void deprivePermissionToMove() {
         hasePermissionToMove = false;
     }
 
