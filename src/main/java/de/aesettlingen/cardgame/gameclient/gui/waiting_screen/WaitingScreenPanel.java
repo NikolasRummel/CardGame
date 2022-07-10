@@ -42,9 +42,9 @@ public class WaitingScreenPanel extends JPanel {
         JPanel leftPanel = new JPanel();
 //        leftPanel.setBorder(new LineBorder(Color.RED));
         playerList = new JList<>();
-        playerList.setPreferredSize(new Dimension(100, 200));
+        playerList.setPreferredSize(new Dimension(100, 250));
         playerList.setFixedCellHeight(50);
-        updatePlayerList();
+        updateDisplayOfPlayer();
         leftPanel.add(playerList);
         this.add(leftPanel, BorderLayout.WEST);
 
@@ -68,7 +68,7 @@ public class WaitingScreenPanel extends JPanel {
     public void setPlayers(ArrayList<String> players) {
         this.players = players;
 
-        updatePlayerList();
+        updateDisplayOfPlayer();
     }
 
     public void addPlayer(String playerName) {
