@@ -37,7 +37,6 @@ public class CardToImageMapper {
     }
 
     public static void main(String[] args) {
-
         Card card = new Card("jack", "hearts");
         String path = CardToImageMapper.mapToPath(card);
         System.out.println("path: "+path);

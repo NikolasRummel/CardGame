@@ -29,13 +29,17 @@ public class MainFrame extends ColoredFrame {
     private final MauMauFacade gameFacade;
     private final ChatFacade chatFacade;
 
-    public MainFrame(MauMauFacade gameFacade, ChatFacade chatFacade, MauMauState gameState) {
-        this.gameFacade = gameFacade;
+    public MainFrame(MauMauFacade gameFacade, ChatFacade chatFacade) {
         this.chatFacade = chatFacade;
-        initGuiElements(gameState);
+        this.gameFacade = gameFacade;
+        this.initWaitingGuiElements();
     }
 
-    private void initGuiElements(MauMauState gameState) {
+    public void startGame(MauMauState gameState) {
+        initGameGuiElements(gameState);
+    }
+
+    private void initWaitingGuiElements() {
         this.waitingScreenPanel = new WaitingScreenPanel(new StartMethod() {
             @Override
             public void start() {
@@ -43,9 +47,7 @@ public class MainFrame extends ColoredFrame {
             }
         });
 
-
         this.chatPanel = new ChatPanel(chatFacade);
-        this.gamePanel = new MauMauPanel(gameFacade, gameState);
 
         this.mainPanel = new JPanel();
         this.mainPanel.setLayout(new BorderLayout());
@@ -61,6 +63,11 @@ public class MainFrame extends ColoredFrame {
         this.setVisible(true);
     }
 
+    private void initGameGuiElements(MauMauState gameState) {
+        this.gamePanel = new MauMauPanel(gameFacade, gameState);
+        setContentOfMainFrame(gamePanel);
+    }
+
     public void switchToGame() {
         setContentOfMainFrame(gamePanel);
     }
@@ -70,7 +77,6 @@ public class MainFrame extends ColoredFrame {
     }
 
     private void setContentOfMainFrame(JComponent component) {
-
         this.mainPanel.removeAll();
         this.mainPanel.add(chatPanel, BorderLayout.EAST);
         this.mainPanel.add(component, BorderLayout.CENTER);
@@ -100,6 +106,7 @@ public class MainFrame extends ColoredFrame {
         numberOfCards.add(4);
         numberOfCards.add(4);
 
+        /*
             MainFrame mainFrame = new MainFrame(
               new MauMauFacade() {
                 @Override
@@ -143,7 +150,7 @@ public class MainFrame extends ColoredFrame {
               ),
               new Card("8", "spades")
             )
-        );
-        mainFrame.switchToGame();
+        );*/
+       // mainFrame.switchToGame();
     }
 }

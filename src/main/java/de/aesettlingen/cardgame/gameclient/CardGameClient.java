@@ -16,7 +16,6 @@ import de.aesettlingen.cardgame.logic.card.Card;
 import de.aesettlingen.cardgame.logic.mau_mau.MauMau;
 import de.aesettlingen.cardgame.logic.mau_mau.MauMauMove;
 import de.aesettlingen.cardgame.logic.mau_mau.MauMauPlayer;
-import de.aesettlingen.cardgame.logic.mau_mau.MauMauState;
 
 import java.awt.event.WindowEvent;
 
@@ -56,7 +55,7 @@ public class CardGameClient {
        this.chatFacade = new ChatFacade() {
            @Override
            public void sendMessage(String text) {
-               sendMessage(text);
+               CardGameClient.this.sendMessage(text);
            }
        };
 
@@ -65,6 +64,7 @@ public class CardGameClient {
 
     public void start(String userName) {
         this.userName = userName;
+        this.game.addPlayer(userName);
 
         this.eventBus = new DefaultEventBus();
         this.networkingClient = new NetworkingClient(
@@ -80,7 +80,7 @@ public class CardGameClient {
     public void handleNewScreen() {
         this.loginScreen.dispatchEvent(
             new WindowEvent(this.loginScreen, WindowEvent.WINDOW_CLOSING));
-        this.gameGui = new MainFrame(gameFacade, chatFacade, (MauMauState) game.getStateForPlayer(userName));
+        this.gameGui = new MainFrame(gameFacade, chatFacade); //Wating screen
     }
 
     public void sendMessage(String message) {
