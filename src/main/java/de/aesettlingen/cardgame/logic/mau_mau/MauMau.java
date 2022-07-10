@@ -56,7 +56,7 @@ public class MauMau extends Game<MauMauPlayer> {
 
             switch (getTopCard().getName()) {
                 case "9" -> direction*=-1;
-                case "8" -> currentPlayerIndex++;
+                case "8" -> currentPlayerIndex+=direction;
             }
 
             nextPlayer();
