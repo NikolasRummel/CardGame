@@ -1,6 +1,5 @@
 package de.aesettlingen.cardgame.logic.card;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 
