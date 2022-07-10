@@ -21,7 +21,7 @@ abstract public class Game<T extends Player> {
     public Game(ArrayList<T> players, int maxNumberOfPlayers, boolean isStarted,
                 StartMode startMode, ArrayList<Card> cardDeck) {
         this.players = players;
-        this.isStarted = isStarted;
+        if (isStarted) start();
         this.maxNumberOfPlayers = maxNumberOfPlayers;
         this.startMode = startMode;
         this.cardDeck = cardDeck;
