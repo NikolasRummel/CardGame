@@ -2,6 +2,7 @@ package de.aesettlingen.cardgame.commons.networking.listener;
 
 import de.aesettlingen.cardgame.commons.networking.NetworkingClient;
 import de.aesettlingen.cardgame.commons.networking.packet.AbstractPacket;
+import java.util.UUID;
 
 /**
  * @author Nikolas Rummel
@@ -28,6 +29,15 @@ public class ClientPacketListener extends Thread {
                     packet.handle(client.getEventBus());
                     System.out.println(
                         "Got a new packet:" + inputObject.getClass().getSimpleName());
+
+                    //handshake
+                    UUID incomingHanshakeId = packet.getHandshakeId();
+                    if(incomingHanshakeId.toString().equals(client.getLastSendedHandshakeId().toString())) {
+                        System.out.println("Handshake success!");
+                    }else {
+                        System.out.println("Handshake failed!");
+                    }
+
                 }
 
             } catch (Exception e) {

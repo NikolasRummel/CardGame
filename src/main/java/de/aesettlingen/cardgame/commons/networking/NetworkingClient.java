@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.UUID;
 
 /**
  * @author Nikolas Rummel
@@ -28,6 +29,8 @@ public class NetworkingClient {
     private final ClientPacketListener packetListener;
     private final EventBus eventBus;
 
+    private UUID lastSendedHandshakeId;
+
     public NetworkingClient(NetworkAddress address, String userName, EventBus eventBus) {
         this.address = address;
         this.userName = userName;
@@ -46,6 +49,8 @@ public class NetworkingClient {
 
     public void sendPacket(AbstractPacket packet) {
         try {
+            this.lastSendedHandshakeId = packet.getHandshakeId();
+
             outputStream.writeObject(packet);
         } catch (IOException e) {
             System.out.println("Error while sending packet! Reason: " + e);
@@ -125,5 +130,9 @@ public class NetworkingClient {
 
     public EventBus getEventBus() {
         return eventBus;
+    }
+
+    public UUID getLastSendedHandshakeId() {
+        return lastSendedHandshakeId;
     }
 }
