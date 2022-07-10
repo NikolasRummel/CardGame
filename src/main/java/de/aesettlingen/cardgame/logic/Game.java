@@ -49,7 +49,12 @@ abstract public class Game<T extends Player> {
     }
 
     protected void nextPlayer(int step) {
-        currentPlayerIndex = (currentPlayerIndex+step)%players.size();
+        currentPlayerIndex = currentPlayerIndex+step;
+        if (currentPlayerIndex >= 0)
+            currentPlayerIndex%=players.size();
+        else
+            while (currentPlayerIndex < 0)
+                currentPlayerIndex=players.size()+currentPlayerIndex;
     }
 
     abstract public void move(Move move);
