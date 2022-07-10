@@ -2,6 +2,7 @@ package de.aesettlingen.cardgame.commons.networking.listener;
 
 import de.aesettlingen.cardgame.commons.networking.NetworkingClient;
 import de.aesettlingen.cardgame.commons.networking.packet.AbstractPacket;
+import de.aesettlingen.cardgame.commons.networking.packet.HandShakePacket;
 import java.util.UUID;
 
 /**
@@ -31,16 +32,17 @@ public class ClientPacketListener extends Thread {
                         "Got a new packet:" + inputObject.getClass().getSimpleName());
 
                     //handshake
-                    UUID incomingHandshakeId = packet.getHandshakeId();
-                    System.out.println("-----Handshake-----");
-                    System.out.println(incomingHandshakeId + " ==" + client.getLastSendedHandshakeId());
-                    System.out.println("-----Handshake-----");
-                    if(incomingHandshakeId.toString().equals(client.getLastSendedHandshakeId().toString())) {
-                        System.out.println("Handshake success!");
-                    }else {
-                        System.out.println("Handshake failed!");
+                    if(packet instanceof HandShakePacket) {
+                        UUID incomingHandshakeId = packet.getHandshakeId();
+                        System.out.println("-----Handshake-----");
+                        System.out.println(incomingHandshakeId + " ==" + client.getLastSendedHandshakeId());
+                        System.out.println("-----Handshake-----");
+                        if(incomingHandshakeId.toString().equals(client.getLastSendedHandshakeId().toString())) {
+                            System.out.println("Handshake success!");
+                        }else {
+                            System.out.println("Handshake failed!");
+                        }
                     }
-
                 }
 
             } catch (Exception e) {
