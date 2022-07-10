@@ -97,10 +97,11 @@ public class MauMauPanel extends GamePanel {
         setOpaque(false);
     }
 
-    private void update(MauMauState gameState) {
+    public void update(MauMauState gameState) {
         cardsPanel.update(gameState.hand());
         topCardLabel.setCard(gameState.topCard());
         updatePlayerLabels(gameState.nameOfCurrentPlayer());
+        displayPermissionOfThisPlayer(gameState.nameOfCurrentPlayer());
     }
 
     private void updatePlayerLabels(String nameOfCurrentPlayer) {
@@ -109,6 +110,14 @@ public class MauMauPanel extends GamePanel {
             pl.updateSize();
             pl.setPermission(nameOfCurrentPlayer.equals(pl.getPlayerName()));
         }
+    }
+
+    private void displayPermissionOfThisPlayer(String nameOfCurrentPlayer) {
+        cardsPanel.setBorder(
+          nameOfCurrentPlayer.equals(gameFacade.getNameOfPlayer())?
+            new LineBorder(UIManager.getColor("hoverColor")) :
+            null
+        );
     }
 
     private void onRaiseACard() {
