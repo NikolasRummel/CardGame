@@ -7,12 +7,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * The type Card game server.
+ */
 public class CardGameServer {
 
     private final HashMap<String, PlayerInfo> players;
 
     private final NetworkingServer networkingServer;
 
+    /**
+     * Instantiates a new Card game server.
+     */
     public CardGameServer() {
         this.players = new HashMap<>();
         this.networkingServer = new NetworkingServer(25565);
@@ -20,6 +26,11 @@ public class CardGameServer {
         this.registerListeners();
     }
 
+    /**
+     * Add player.
+     *
+     * @param name the name
+     */
     public void addPlayer(String name) {
         if (this.players.containsKey(name)) {
             //this.networkingServer.sendPacket(players.get(name), new ClientMessagePacket("SERVER", "This username is already taken! Please try an other one."));
@@ -31,6 +42,11 @@ public class CardGameServer {
         getPlayers().forEach(System.out::println);
     }
 
+    /**
+     * Gets players.
+     *
+     * @return the players
+     */
     public Set<String> getPlayers() {
         return this.players.keySet();
     }
@@ -43,6 +59,9 @@ public class CardGameServer {
         return networkingServer;
     }
 
+    /**
+     * Start server.
+     */
     public void startServer() {
         this.networkingServer.start();
     }

@@ -6,6 +6,9 @@ import de.aesettlingen.cardgame.logic.card.CardHand;
 
 import java.util.ArrayList;
 
+/**
+ * The type Mau mau state.
+ */
 public record MauMauState(
 	String nameOfCurrentPlayer,
 	ArrayList<String> listOfPlayerNames,

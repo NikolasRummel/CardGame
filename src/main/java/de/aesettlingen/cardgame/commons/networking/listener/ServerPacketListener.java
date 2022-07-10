@@ -10,6 +10,9 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 /**
+ * The type Server packet listener.
+ * This is the entrypoint for messages from a client
+ * 
  * @author Nikolas Rummel
  * @since 18.05.22
  */
@@ -24,6 +27,12 @@ public class ServerPacketListener extends Thread {
 
     private String clientName;
 
+    /**
+     * Instantiates a new Server packet listener.
+     *
+     * @param server the server
+     * @param socket the socket
+     */
     public ServerPacketListener(NetworkingServer server, Socket socket) {
         this.server = server;
         this.socket = socket;
@@ -63,18 +72,38 @@ public class ServerPacketListener extends Thread {
         }
     }
 
+    /**
+     * Gets input stream.
+     *
+     * @return the input stream
+     */
     public ObjectInputStream getInputStream() {
         return inputStream;
     }
 
+    /**
+     * Gets output stream.
+     *
+     * @return the output stream
+     */
     public ObjectOutputStream getOutputStream() {
         return outputStream;
     }
 
+    /**
+     * Gets socket.
+     *
+     * @return the socket
+     */
     public Socket getSocket() {
         return socket;
     }
 
+    /**
+     * Gets unique id.
+     *
+     * @return the unique id
+     */
     public int getUniqueId() {
         return id;
     }

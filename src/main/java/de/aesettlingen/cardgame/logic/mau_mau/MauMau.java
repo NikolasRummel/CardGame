@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 
+/**
+ * The type Mau mau.
+ * One implememtion of the abstract class Game
+ */
 public class MauMau extends Game<MauMauPlayer> {
 
     private final CardDiscardPile cardDiscardPile; // Ablegestapel
@@ -19,6 +23,9 @@ public class MauMau extends Game<MauMauPlayer> {
 
     private int direction = 1;
 
+    /**
+     * Instantiates a new Mau mau.
+     */
     public MauMau() {
         super(new ArrayList<>());
 

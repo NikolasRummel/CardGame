@@ -8,6 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
+/**
+ * The type Waiting screen panel.
+ */
 public class WaitingScreenPanel extends JPanel {
 
     private final StartMethod startMethod;
@@ -16,6 +19,11 @@ public class WaitingScreenPanel extends JPanel {
 
     private JList<Object> playerList;
 
+    /**
+     * Instantiates a new Waiting screen panel.
+     *
+     * @param startMethod the start method
+     */
     public WaitingScreenPanel(StartMethod startMethod) {
         this.startMethod = startMethod;
         this.players = new ArrayList<>();
@@ -23,12 +31,13 @@ public class WaitingScreenPanel extends JPanel {
         this.initGuiElements();
     }
 
+    /**
+     * Adds the gui elements (labels, playerList...)
+     */
     private void initGuiElements() {
-//        this.setLayout(new FlowLayout(FlowLayout.LEFT));
         this.setLayout(new BorderLayout());
 
         JPanel topPanel = new JPanel();
-//        topPanel.setBorder(new LineBorder(Color.RED));
         topPanel.setLayout(new FlowLayout());
         JLabel waitingLabel = new JLabel("Waiting for other players...");
         waitingLabel.setFont(new Font("Verdana", Font.BOLD, 30));
@@ -36,9 +45,7 @@ public class WaitingScreenPanel extends JPanel {
 
         this.add(topPanel, BorderLayout.NORTH);
 
-
         JPanel leftPanel = new JPanel();
-//        leftPanel.setBorder(new LineBorder(Color.RED));
         playerList = new JList<>();
         playerList.setPreferredSize(new Dimension(100, 250));
         playerList.setFixedCellHeight(50);
@@ -48,7 +55,6 @@ public class WaitingScreenPanel extends JPanel {
 
 
         JPanel bottomPanel = new JPanel();
-//        bottomPanel.setBorder(new LineBorder(Color.RED));
         bottomPanel.setLayout(new FlowLayout());
         startButton = new JButton("Start Game");
         startButton.setFont(new Font("Verdana", Font.BOLD, 20));
@@ -59,21 +65,41 @@ public class WaitingScreenPanel extends JPanel {
         updateBorder();
     }
 
+    /**
+     * Gets players.
+     *
+     * @return the players
+     */
     public ArrayList<String> getPlayers() {
         return players;
     }
 
+    /**
+     * Sets players.
+     *
+     * @param players the players
+     */
     public void setPlayers(ArrayList<String> players) {
         this.players = players;
 
         updateDisplayOfPlayer();
     }
 
+    /**
+     * Add player.
+     *
+     * @param playerName the player name
+     */
     public void addPlayer(String playerName) {
         players.add(playerName);
         updateDisplayOfPlayer();
     }
 
+    /**
+     * Remove player.
+     *
+     * @param playerName the player name
+     */
     public void removePlayer(String playerName) {
         players.remove(playerName);
         updateDisplayOfPlayer();

@@ -15,43 +15,86 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
+ * The type Json document.
+ *
  * @author Nikolas Rummel
  * @since 06.07.22
  */
 public class JsonDocument implements IDocument<JsonDocument> {
 
+    /**
+     * The constant GSON.
+     */
     public static final Gson GSON = new GsonBuilder()
         .registerTypeAdapter(UUID.class, TypeAdapters.UUID)
         .disableHtmlEscaping()
         .setPrettyPrinting()
         .create();
 
+    /**
+     * The Json object.
+     */
     protected final JsonObject jsonObject;
 
+    /**
+     * Instantiates a new Json document.
+     *
+     * @param jsonObject the json object
+     */
     public JsonDocument(JsonObject jsonObject) {
         this.jsonObject = jsonObject;
     }
 
+    /**
+     * Instantiates a new Json document.
+     *
+     * @param jsonElement the json element
+     */
     public JsonDocument(JsonElement jsonElement) {
         this(jsonElement.isJsonObject() ? jsonElement.getAsJsonObject() : new JsonObject());
     }
 
+    /**
+     * Instantiates a new Json document.
+     */
     public JsonDocument() {
         this(new JsonObject());
     }
 
+    /**
+     * Instantiates a new Json document.
+     *
+     * @param object the object
+     */
     public JsonDocument(Object object) {
         this(GSON.toJsonTree(object));
     }
 
+    /**
+     * Create document json document.
+     *
+     * @return the json document
+     */
     public static JsonDocument createDocument() {
         return new JsonDocument();
     }
 
+    /**
+     * Create document json document.
+     *
+     * @param object the object
+     * @return the json document
+     */
     public static JsonDocument createDocument(Object object) {
         return new JsonDocument(GSON.toJsonTree(object));
     }
 
+    /**
+     * Create document json document.
+     *
+     * @param json the json
+     * @return the json document
+     */
     public static JsonDocument createDocument(String json) {
         try {
             return new JsonDocument(JsonParser.parseString(json));
@@ -137,6 +180,12 @@ public class JsonDocument implements IDocument<JsonDocument> {
         return this;
     }
 
+    /**
+     * Append json document.
+     *
+     * @param jsonObject the json object
+     * @return the json document
+     */
     public JsonDocument append(JsonObject jsonObject) {
         for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
             this.jsonObject.add(entry.getKey(), entry.getValue());
@@ -193,6 +242,7 @@ public class JsonDocument implements IDocument<JsonDocument> {
             return 0;
         }
     }
+
 
     @Override
     public double getDouble(String key) {
@@ -315,6 +365,15 @@ public class JsonDocument implements IDocument<JsonDocument> {
         return this.get(key, GSON, type);
     }
 
+    /**
+     * Get t.
+     *
+     * @param <T>    the type parameter
+     * @param key    the key
+     * @param gson   the gson
+     * @param tClass the t class
+     * @return the t
+     */
     public <T> T get(String key, Gson gson, Class<T> tClass) {
         if (key == null || gson == null || tClass == null) {
             return null;
@@ -329,6 +388,15 @@ public class JsonDocument implements IDocument<JsonDocument> {
         }
     }
 
+    /**
+     * Get t.
+     *
+     * @param <T>  the type parameter
+     * @param key  the key
+     * @param gson the gson
+     * @param type the type
+     * @return the t
+     */
     public <T> T get(String key, Gson gson, Type type) {
         if (key == null || gson == null || type == null) {
             return null;
@@ -347,6 +415,12 @@ public class JsonDocument implements IDocument<JsonDocument> {
         }
     }
 
+    /**
+     * Get json element.
+     *
+     * @param key the key
+     * @return the json element
+     */
     public JsonElement get(String key) {
         if (!this.contains(key)) {
             return null;

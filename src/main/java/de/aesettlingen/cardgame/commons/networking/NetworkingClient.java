@@ -12,10 +12,11 @@ import java.net.Socket;
 import java.util.UUID;
 
 /**
+ * The type Networking client.
+ *
  * @author Nikolas Rummel
  * @since 18.05.22
  */
-
 public class NetworkingClient {
 
     private CardGameClient cardGameClient;
@@ -33,6 +34,14 @@ public class NetworkingClient {
 
     private UUID lastSendedHandshakeId;
 
+    /**
+     * Instantiates a new Networking client.
+     *
+     * @param cardGameClient the card game client
+     * @param address        the address
+     * @param userName       the user name
+     * @param eventBus       the event bus
+     */
     public NetworkingClient(CardGameClient cardGameClient, NetworkAddress address, String userName, EventBus eventBus) {
         this.cardGameClient = cardGameClient;
         this.address = address;
@@ -42,6 +51,9 @@ public class NetworkingClient {
         this.eventBus = eventBus;
     }
 
+    /**
+     * Start.
+     */
     public void start() {
         this.running = true;
 
@@ -50,6 +62,11 @@ public class NetworkingClient {
         this.login();
     }
 
+    /**
+     * Send packet.
+     *
+     * @param packet the packet
+     */
     public void sendPacket(AbstractPacket packet) {
         try {
             this.lastSendedHandshakeId = packet.getHandshakeId();
@@ -60,6 +77,9 @@ public class NetworkingClient {
         }
     }
 
+    /**
+     * Connects to the server
+     */
     private void openConnection() {
         try {
             socket = new Socket(address.getHostName(), address.getPort());
@@ -78,6 +98,9 @@ public class NetworkingClient {
         }
     }
 
+    /**
+     * Sends the login packet to the server
+     */
     private void login() {
         System.out.println("loggin in now...");
         this.sendPacket(new LoginPacket(userName));
@@ -87,58 +110,128 @@ public class NetworkingClient {
         this.packetListener.start();
     }
 
+    /**
+     * Is running boolean.
+     *
+     * @return the boolean
+     */
     public boolean isRunning() {
         return running;
     }
 
+    /**
+     * Sets running.
+     *
+     * @param running the running
+     */
     public void setRunning(boolean running) {
         this.running = running;
     }
 
+    /**
+     * Gets input stream.
+     *
+     * @return the input stream
+     */
     public ObjectInputStream getInputStream() {
         return inputStream;
     }
 
+    /**
+     * Sets input stream.
+     *
+     * @param inputStream the input stream
+     */
     public void setInputStream(ObjectInputStream inputStream) {
         this.inputStream = inputStream;
     }
 
+    /**
+     * Gets output stream.
+     *
+     * @return the output stream
+     */
     public ObjectOutputStream getOutputStream() {
         return outputStream;
     }
 
+    /**
+     * Sets output stream.
+     *
+     * @param outputStream the output stream
+     */
     public void setOutputStream(ObjectOutputStream outputStream) {
         this.outputStream = outputStream;
     }
 
+    /**
+     * Gets socket.
+     *
+     * @return the socket
+     */
     public Socket getSocket() {
         return socket;
     }
 
+    /**
+     * Sets socket.
+     *
+     * @param socket the socket
+     */
     public void setSocket(Socket socket) {
         this.socket = socket;
     }
 
+    /**
+     * Gets address.
+     *
+     * @return the address
+     */
     public NetworkAddress getAddress() {
         return address;
     }
 
+    /**
+     * Gets user name.
+     *
+     * @return the user name
+     */
     public String getUserName() {
         return userName;
     }
 
+    /**
+     * Gets packet listener.
+     *
+     * @return the packet listener
+     */
     public ClientPacketListener getPacketListener() {
         return packetListener;
     }
 
+    /**
+     * Gets event bus.
+     *
+     * @return the event bus
+     */
     public EventBus getEventBus() {
         return eventBus;
     }
 
+    /**
+     * Gets last sended handshake id.
+     *
+     * @return the last sended handshake id
+     */
     public UUID getLastSendedHandshakeId() {
         return lastSendedHandshakeId;
     }
 
+    /**
+     * Gets card game client.
+     *
+     * @return the card game client
+     */
     public CardGameClient getCardGameClient() {
         return cardGameClient;
     }

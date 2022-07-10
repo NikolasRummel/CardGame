@@ -13,6 +13,9 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * The type Mau mau panel.
+ */
 public class MauMauPanel extends GamePanel {
 
     private final String path = "src/main/resources/images/Table_with_background_without_the_last_Chair_9_to_8.png";
@@ -24,6 +27,12 @@ public class MauMauPanel extends GamePanel {
 
     private final PlayerLabel[] playerLabels;
 
+    /**
+     * Instantiates a new Mau mau panel.
+     *
+     * @param gameFacade the game facade
+     * @param gameState  the game state
+     */
     public MauMauPanel(MauMauFacade gameFacade, MauMauState gameState) {
         this.gameFacade = gameFacade;
         this.cardsPanel = new CardsPanel(gameState.hand(), gameFacade::sendCardOfMove);
@@ -97,6 +106,11 @@ public class MauMauPanel extends GamePanel {
         setOpaque(false);
     }
 
+    /**
+     * Update.
+     *
+     * @param gameState the game state
+     */
     public void update(MauMauState gameState) {
         cardsPanel.update(gameState.hand());
         topCardLabel.setCard(gameState.topCard());
@@ -122,7 +136,7 @@ public class MauMauPanel extends GamePanel {
 
     private void onRaiseACard() {
           gameFacade.sendCardOfMove(null); // this will let the player raise a card
-	    }
+    }
 
     @Override
     public void paintComponent(Graphics graphics) {

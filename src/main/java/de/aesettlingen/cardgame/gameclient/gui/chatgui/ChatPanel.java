@@ -20,6 +20,9 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 
+/**
+ * The type Chat panel.
+ */
 public class ChatPanel extends JPanel {
 
     private final JTextArea textDisplay = new JTextArea();
@@ -28,11 +31,19 @@ public class ChatPanel extends JPanel {
 
     private final ChatFacade chatFacade;
 
+    /**
+     * Instantiates a new Chat panel.
+     *
+     * @param chatFacade the chat facade
+     */
     public ChatPanel(ChatFacade chatFacade) {
         this.chatFacade = chatFacade;
         initGuiElements();
     }
 
+    /**
+     * Adds the gui elements (textfield, inputField, sendButton)
+     */
     private void initGuiElements() {
 
         super.setLayout(new BorderLayout());
@@ -69,6 +80,12 @@ public class ChatPanel extends JPanel {
         inputField.setText("");
     }
 
+    /**
+     * When the MessageRecievedEvent is triggerd,
+     * this method is called
+     *
+     * @param m the m
+     */
     public void onReceiveMessage(MessagePacket m) {
         String time = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date(m.getTimestamp()));
 
@@ -78,6 +95,12 @@ public class ChatPanel extends JPanel {
         );
     }
 
+    /**
+     * The entry point of application.
+     * ONLY FOR THE GAME GUI -> START THE CLIENT WITH ITS LUNCHER
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) { // test chat gui
         JFrame f = new JFrame();
         ChatPanel c = new ChatPanel(new ChatFacade() {

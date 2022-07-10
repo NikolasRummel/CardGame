@@ -4,8 +4,15 @@ import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 
+/**
+ * The type Colored frame.
+ */
 public class ColoredFrame extends JFrame {
 
+	/**
+	 * Instantiates a new Colored frame.
+	 * For the different colors in the JComponents
+	 */
 	public ColoredFrame() {
 		try {
 			UIManager.setLookAndFeel(new NimbusLookAndFeel());

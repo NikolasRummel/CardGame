@@ -10,6 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * The type Login screen panel.
+ */
 public class LoginScreenPanel extends JFrame {
 
     private JButton loginButton;
@@ -18,11 +21,19 @@ public class LoginScreenPanel extends JFrame {
 
     private final LoginMethod loginMethod;
 
+    /**
+     * Instantiates a new Login screen panel.
+     *
+     * @param loginMethod the login method
+     */
     public LoginScreenPanel(LoginMethod loginMethod) {
         this.loginMethod = loginMethod;
         initGuiElements();
     }
 
+    /**
+     * Adds the gui elements for the login sceen (inputField, button)
+     */
     private void initGuiElements() {
         JPanel panel = new JPanel();
         panel.setLayout(null);

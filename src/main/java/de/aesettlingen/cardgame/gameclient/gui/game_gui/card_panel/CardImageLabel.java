@@ -10,6 +10,9 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * The type Card image label.
+ */
 public class CardImageLabel extends JLabel {
     private Card card;
 
@@ -24,12 +27,20 @@ public class CardImageLabel extends JLabel {
     private boolean isFlipped = false;
     private boolean isHoverEnabled = true;
 
+    /**
+     * Instantiates a new Card image label.
+     */
     public CardImageLabel() {
         this.labelHeight = defaultLabelHeight;
         this.labelWidth = defaultLabelWidth;
         initGuiElements();
     }
 
+    /**
+     * Instantiates a new Card image label.
+     *
+     * @param card the card
+     */
     public CardImageLabel(Card card) {
         this.card = card;
         this.labelHeight = defaultLabelHeight;
@@ -37,12 +48,25 @@ public class CardImageLabel extends JLabel {
         initGuiElements();
     }
 
+    /**
+     * Instantiates a new Card image label.
+     *
+     * @param labelWidth  the label width
+     * @param labelHeight the label height
+     */
     public CardImageLabel(int labelWidth, int labelHeight) {
         this.labelHeight = labelHeight;
         this.labelWidth = labelWidth;
         initGuiElements();
     }
 
+    /**
+     * Instantiates a new Card image label.
+     *
+     * @param card        the card
+     * @param labelWidth  the label width
+     * @param labelHeight the label height
+     */
     public CardImageLabel(Card card, int labelWidth, int labelHeight) {
         this.card = card;
         this.labelHeight = labelHeight;
@@ -50,10 +74,20 @@ public class CardImageLabel extends JLabel {
         initGuiElements();
     }
 
+    /**
+     * Gets card.
+     *
+     * @return the card
+     */
     public Card getCard() {
         return card;
     }
 
+    /**
+     * Sets card.
+     *
+     * @param card the card
+     */
     public void setCard(Card card) {
         this.card = card;
     }
@@ -83,27 +117,55 @@ public class CardImageLabel extends JLabel {
         });
     }
 
+    /**
+     * Flip.
+     */
     public void flip() {
         isFlipped =!isFlipped;
     }
 
+    /**
+     * Is flipped boolean.
+     *
+     * @return the boolean
+     */
     public boolean isFlipped() {
         return isFlipped;
     }
 
+    /**
+     * Is hover enabled boolean.
+     *
+     * @return the boolean
+     */
     public boolean isHoverEnabled() {
         return isHoverEnabled;
     }
 
+    /**
+     * Sets hover.
+     *
+     * @param isHoverEnabled the is hover enabled
+     */
     public void setHover(boolean isHoverEnabled) {
         this.isHoverEnabled = isHoverEnabled;
         if (!isHoverEnabled) removeHover();
     }
 
+    /**
+     * Sets hover color.
+     *
+     * @param hoverColor the hover color
+     */
     public void setHoverColor(Color hoverColor) {
         this.hoverColor = hoverColor;
     }
 
+    /**
+     * Gets hover color.
+     *
+     * @return the hover color
+     */
     public Color getHoverColor() {
         return this.hoverColor;
     }

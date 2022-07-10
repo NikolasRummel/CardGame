@@ -8,6 +8,8 @@ import de.aesettlingen.cardgame.gameclient.CardGameClient;
 import java.util.UUID;
 
 /**
+ * The type Client
+ *
  * @author Nikolas Rummel
  * @since 18.05.22
  */
@@ -17,6 +19,12 @@ public class ClientPacketListener extends Thread {
     private int errorCount = 0;
     private long lastError;
 
+    /**
+     * Instantiates a new Client packet listener.
+     * This is the entrypoint for messages from the server
+     *
+     * @param client the client
+     */
     public ClientPacketListener(NetworkingClient client) {
         this.client = client;
     }

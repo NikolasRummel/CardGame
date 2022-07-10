@@ -6,6 +6,10 @@ package de.aesettlingen.cardgame.commons.event;
  */
 public class EventPriority {
 
+    /**
+     * Defines which EventHandlermethod will be called first
+     */
+
     public static final int FIRST = 0;
     public static final int SECOND = 25;
     public static final int DEFAULT = 50;

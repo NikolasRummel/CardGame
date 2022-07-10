@@ -16,6 +16,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * The type Networking server.
+ */
 public class NetworkingServer {
 
     private ArrayList<ServerPacketListener> clientHandlers;
@@ -23,10 +26,18 @@ public class NetworkingServer {
     private int port;
     private boolean keepGoing;
 
+    /**
+     * The Unique id.
+     */
     public int uniqueId;
 
     private final EventBus eventBus;
 
+    /**
+     * Instantiates a new Networking server.
+     *
+     * @param port the port
+     */
     public NetworkingServer(int port) {
         this.port = port;
         this.dateFormat = new SimpleDateFormat("HH:mm:ss");
@@ -34,6 +45,9 @@ public class NetworkingServer {
         this.eventBus = new DefaultEventBus();
     }
 
+    /**
+     * Starts the server and waits for clients to connect
+     */
     public void start() {
         keepGoing = true;
 
@@ -69,10 +83,21 @@ public class NetworkingServer {
         }
     }
 
+    /**
+     * Logging
+     *
+     * @param message the message
+     */
     public void info(String message) {
         System.out.println("[" + getDate() + "] " + message);
     }
 
+    /**
+     * Sends packet.
+     *
+     * @param handler the handler
+     * @param packet  the packet
+     */
     public void sendPacket(ServerPacketListener handler, AbstractPacket packet) {
         try {
             handler.getOutputStream().writeObject(packet);
@@ -81,12 +106,20 @@ public class NetworkingServer {
         }
     }
 
+    /**
+     * Broadcasts a packet.
+     *
+     * @param packet the packet
+     */
     public void broadcastPacket(AbstractPacket packet) {
         this.clientHandlers.forEach(
             handler -> System.out.println(handler.getName() + " will get a broadcast Packet"));
         this.clientHandlers.forEach(handler -> sendPacket(handler, packet));
     }
 
+    /**
+     * Stops the server
+     */
     public void stop() {
         keepGoing = false;
         System.exit(0);
@@ -96,46 +129,101 @@ public class NetworkingServer {
         return dateFormat.format(new Date());
     }
 
+    /**
+     * Gets client handlers.
+     *
+     * @return the client handlers
+     */
     public ArrayList<ServerPacketListener> getClientHandlers() {
         return clientHandlers;
     }
 
+    /**
+     * Sets client handlers.
+     *
+     * @param clientHandlers the client handlers
+     */
     public void setClientHandlers(ArrayList<ServerPacketListener> clientHandlers) {
         this.clientHandlers = clientHandlers;
     }
 
+    /**
+     * Gets date format.
+     *
+     * @return the date format
+     */
     public SimpleDateFormat getDateFormat() {
         return dateFormat;
     }
 
+    /**
+     * Sets date format.
+     *
+     * @param dateFormat the date format
+     */
     public void setDateFormat(SimpleDateFormat dateFormat) {
         this.dateFormat = dateFormat;
     }
 
+    /**
+     * Gets port.
+     *
+     * @return the port
+     */
     public int getPort() {
         return port;
     }
 
+    /**
+     * Sets port.
+     *
+     * @param port the port
+     */
     public void setPort(int port) {
         this.port = port;
     }
 
+    /**
+     * Is keep going boolean.
+     *
+     * @return the boolean
+     */
     public boolean isKeepGoing() {
         return keepGoing;
     }
 
+    /**
+     * Sets keep going.
+     *
+     * @param keepGoing the keep going
+     */
     public void setKeepGoing(boolean keepGoing) {
         this.keepGoing = keepGoing;
     }
 
+    /**
+     * Gets unique id.
+     *
+     * @return the unique id
+     */
     public int getUniqueId() {
         return uniqueId;
     }
 
+    /**
+     * Sets unique id.
+     *
+     * @param uniqueId the unique id
+     */
     public void setUniqueId(int uniqueId) {
         this.uniqueId = uniqueId;
     }
 
+    /**
+     * Gets event bus.
+     *
+     * @return the event bus
+     */
     public EventBus getEventBus() {
         return eventBus;
     }

@@ -16,6 +16,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
+ * The type Main frame.
+ *
  * @author Nikolas Rummel
  * @since 18.05.22
  */
@@ -29,16 +31,30 @@ public class MainFrame extends ColoredFrame {
     private final MauMauFacade gameFacade;
     private final ChatFacade chatFacade;
 
+    /**
+     * Instantiates a new Main frame.
+     *
+     * @param gameFacade the game facade
+     * @param chatFacade the chat facade
+     */
     public MainFrame(MauMauFacade gameFacade, ChatFacade chatFacade) {
         this.chatFacade = chatFacade;
         this.gameFacade = gameFacade;
         this.initWaitingGuiElements();
     }
 
+    /**
+     * Start game.
+     *
+     * @param gameState the game state
+     */
     public void startGame(MauMauState gameState) {
         initGameGuiElements(gameState);
     }
 
+    /**
+     * Initializes the WaitingScreen and the Frame
+     */
     private void initWaitingGuiElements() {
         this.waitingScreenPanel = new WaitingScreenPanel(new StartMethod() {
             @Override
@@ -63,15 +79,25 @@ public class MainFrame extends ColoredFrame {
         this.setVisible(true);
     }
 
+    /**
+     *
+     * @param gameState
+     */
     private void initGameGuiElements(MauMauState gameState) {
         this.gamePanel = new MauMauPanel(gameFacade, gameState);
         setContentOfMainFrame(gamePanel);
     }
 
+    /**
+     * Switch to game.
+     */
     public void switchToGame() {
         setContentOfMainFrame(gamePanel);
     }
 
+    /**
+     * Switch to waiting screen.
+     */
     public void switchToWaitingScreen() {
         setContentOfMainFrame(waitingScreenPanel);
     }
@@ -82,14 +108,29 @@ public class MainFrame extends ColoredFrame {
         this.mainPanel.add(component, BorderLayout.CENTER);
     }
 
+    /**
+     * Gets waiting screen panel.
+     *
+     * @return the waiting screen panel
+     */
     public WaitingScreenPanel getWaitingScreenPanel() {
         return waitingScreenPanel;
     }
 
+    /**
+     * Gets chat panel.
+     *
+     * @return the chat panel
+     */
     public ChatPanel getChatPanel() {
         return chatPanel;
     }
 
+    /**
+     * Update game.
+     *
+     * @param gameState the game state
+     */
     public void updateGame(MauMauState gameState) {
         this.gamePanel.update(gameState);
     }

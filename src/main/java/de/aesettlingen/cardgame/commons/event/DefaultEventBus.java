@@ -12,6 +12,8 @@ import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
 /**
+ * The type Default event bus.
+ *
  * @author Nikolas Rummel
  * @since 18.05.22
  */
@@ -20,10 +22,16 @@ public class DefaultEventBus implements EventBus {
     private final Map<Class<? extends Event>, List<RegisteredHandler>> listeners;
     private final ExecutorService service = Executors.newCachedThreadPool();
 
+    /**
+     * Instantiates a new Default event bus.
+     */
     public DefaultEventBus() {
         this.listeners = new HashMap<>();
     }
 
+    /**
+     * @param listener
+     */
     @Override
     public void registerListener(Object listener) {
         for (Method method : listener.getClass().getDeclaredMethods()) {
@@ -41,12 +49,22 @@ public class DefaultEventBus implements EventBus {
         }
     }
 
+    /**
+     *
+     * @param listener
+     */
     @Override
     public void unregisterListener(Object listener) {
         this.listeners.values()
             .forEach(listeners -> listeners.removeIf(l -> l.listener.equals(listener)));
     }
 
+    /**
+     *
+     * @param listener
+     * @param method
+     * @param handler
+     */
     @SuppressWarnings("unchecked")
     private void registerHandler(Object listener, Method method, EventHandler handler) {
         if (handler.handles().length == 0) {
@@ -63,6 +81,13 @@ public class DefaultEventBus implements EventBus {
         this.sortListeners();
     }
 
+    /**
+     *
+     * @param clazz
+     * @param listener
+     * @param method
+     * @param handler
+     */
     private void register(Class<? extends Event> clazz, Object listener, Method method,
         EventHandler handler) {
         if (!this.listeners.containsKey(clazz)) {
@@ -81,6 +106,10 @@ public class DefaultEventBus implements EventBus {
             );
     }
 
+    /**
+     *  Sorts the listeners by their priority
+     *  The highest will be called first
+     */
     private void sortListeners() {
         for (List<RegisteredHandler> handlers : this.listeners.values()) {
             handlers.sort(
@@ -89,6 +118,11 @@ public class DefaultEventBus implements EventBus {
         }
     }
 
+    /**
+     * Triggers the event
+     *
+     * @param event
+     */
     @Override
     public void callEvent(Event event) {
         final List<RegisteredHandler> list = this.listeners.get(event.getClass());
@@ -107,6 +141,11 @@ public class DefaultEventBus implements EventBus {
         });
     }
 
+    /**
+     *
+     * @param event
+     * @param eventConsumer
+     */
     @Override
     public void callEventAndExecuteIfNotCanceled(CancelableEvent event,
         Consumer<CancelableEvent> eventConsumer) {
@@ -126,6 +165,14 @@ public class DefaultEventBus implements EventBus {
         private final boolean async;
         private final int priority;
 
+        /**
+         * Instantiates a new Registered handler.
+         *
+         * @param method   the method
+         * @param listener the listener
+         * @param async    the async
+         * @param priority the priority
+         */
         public RegisteredHandler(Method method, Object listener, boolean async, int priority) {
             this.method = method;
             this.listener = listener;
@@ -133,6 +180,11 @@ public class DefaultEventBus implements EventBus {
             this.priority = priority;
         }
 
+        /**
+         * Invoke.
+         *
+         * @param event the event
+         */
         public void invoke(Event event) {
             try {
                 this.method.invoke(listener, event);
@@ -142,6 +194,11 @@ public class DefaultEventBus implements EventBus {
             }
         }
 
+        /**
+         * Is async boolean.
+         *
+         * @return the boolean
+         */
         public boolean isAsync() {
             return async;
         }

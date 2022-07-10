@@ -21,10 +21,11 @@ import de.aesettlingen.cardgame.logic.mau_mau.MauMauPlayer;
 import java.awt.event.WindowEvent;
 
 /**
+ * The type Card game client.
+ *
  * @author Nikolas Rummel
  * @since 18.05.22
  */
-
 public class CardGameClient {
 
     private String userName;
@@ -39,6 +40,9 @@ public class CardGameClient {
     private final ChatFacade chatFacade;
     private final Game<MauMauPlayer> game;
 
+    /**
+     * Instantiates a new Card game client.
+     */
     public CardGameClient() {
         this.game = new MauMau();
 
@@ -63,6 +67,11 @@ public class CardGameClient {
         this.loginScreen = new LoginScreenPanel(this::start);
     }
 
+    /**
+     * Starts the client and opens the connection to the server
+     *
+     * @param userName the user name
+     */
     public void start(String userName) {
         this.userName = userName;
         this.game.addPlayer(userName);
@@ -79,6 +88,9 @@ public class CardGameClient {
         this.register();
     }
 
+    /**
+     * Handle new screen. (from login to waiting gui)
+     */
     public void handleNewScreen() {
         this.loginScreen.dispatchEvent(
             new WindowEvent(this.loginScreen, WindowEvent.WINDOW_CLOSING));
@@ -86,28 +98,56 @@ public class CardGameClient {
         this.networkingClient.sendPacket(new RequestUsersPacket(this.userName));
     }
 
+    /**
+     * Send a message to the server
+     *
+     * @param message the message
+     */
     public void sendMessage(String message) {
         this.networkingClient.sendPacket(new MessagePacket(userName, message));
     }
 
+    /**
+     * Register.
+     */
     public void register() {
         this.eventBus.registerListener(new MessageReceiveListener(this));
         this.eventBus.registerListener(new UserJoinedListener(this));
     }
 
 
+    /**
+     * Gets event bus.
+     *
+     * @return the event bus
+     */
     public EventBus getEventBus() {
         return eventBus;
     }
 
+    /**
+     * Gets networking client.
+     *
+     * @return the networking client
+     */
     public NetworkingClient getNetworkingClient() {
         return networkingClient;
     }
 
+    /**
+     * Gets user name.
+     *
+     * @return the user name
+     */
     public String getUserName() {
         return userName;
     }
 
+    /**
+     * Gets game gui.
+     *
+     * @return the game gui
+     */
     public MainFrame getGameGui() {
         return gameGui;
     }

@@ -10,6 +10,9 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+/**
+ * The type Cards panel.
+ */
 public class CardsPanel extends JPanel {
     private JButton nextButton;
     private JButton previousButton;
@@ -28,6 +31,12 @@ public class CardsPanel extends JPanel {
 
     private int indexOfTheFirstDisplayedCard = 0;
 
+    /**
+     * Instantiates a new Cards panel.
+     *
+     * @param cardHand         the card hand
+     * @param selectCardMethod the select card method
+     */
     public CardsPanel(CardHand cardHand, SelectCardMethod selectCardMethod) {
         this.cardHand = cardHand;
         this.selectCardMethod = selectCardMethod;
@@ -70,6 +79,11 @@ public class CardsPanel extends JPanel {
         this.setSize(new Dimension());
     }
 
+    /**
+     * Update.
+     *
+     * @param cardHand the card hand
+     */
     public void update(CardHand cardHand) {
         this.cardHand = cardHand;
         displayFirstImages();
@@ -104,6 +118,11 @@ public class CardsPanel extends JPanel {
         displayFirstImages();
     }
 
+    /**
+     * Slides throgh the cards
+     *
+     * @param n
+     */
     private void rotate(int n) {
         if (cardHand.size() == 0) {
             indexOfTheFirstDisplayedCard = 0;
@@ -119,6 +138,11 @@ public class CardsPanel extends JPanel {
             indexOfTheFirstDisplayedCard %= cardHand.size();
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         var f = new JFrame();
         var p = new JPanel();

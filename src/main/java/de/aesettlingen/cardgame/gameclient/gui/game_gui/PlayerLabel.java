@@ -3,6 +3,10 @@ package de.aesettlingen.cardgame.gameclient.gui.game_gui;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * The type Player label.
+ * Shows the info about the other players
+ */
 public class PlayerLabel extends JPanel {
 
 	private String playerName;
@@ -15,32 +19,61 @@ public class PlayerLabel extends JPanel {
 
 	private boolean isNumberOfCardsLabelEnabled = true;
 
+	/**
+	 * Instantiates a new Player label.
+	 */
 	PlayerLabel() {
 		initGuiElements();
 		disable();
 	}
 
+	/**
+	 * Instantiates a new Player label.
+	 *
+	 * @param name the name
+	 */
 	PlayerLabel(String name) {
 		initGuiElements();
 		this.setPlayerName(name);
 		this.setIsNumberOfCardsLabelEnabled(false);
 	}
 
+	/**
+	 * Instantiates a new Player label.
+	 *
+	 * @param name          the name
+	 * @param numberOfCards the number of cards
+	 */
 	PlayerLabel(String name, int numberOfCards) {
 		initGuiElements();
 		this.setPlayerName(name);
 	}
 
+	/**
+	 * Sets player name.
+	 *
+	 * @param name the name
+	 */
 	public void setPlayerName(String name) {
 		this.playerName = name;
 		this.nameLabel.setText(name);
 	}
 
+	/**
+	 * Sets number of cards label.
+	 *
+	 * @param number the number
+	 */
 	public void setNumberOfCardsLabel(int number) {
 		numberOfCards = number;
 		this.numberOfCardsLabel.setText(String.valueOf(number));
 	}
 
+	/**
+	 * Sets is number of cards label enabled.
+	 *
+	 * @param value the value
+	 */
 	public void setIsNumberOfCardsLabelEnabled(boolean value) {
 		this.isNumberOfCardsLabelEnabled = value;
 		this.numberOfCardsLabel.setVisible(value);
@@ -56,6 +89,9 @@ public class PlayerLabel extends JPanel {
 		super.setVisible(true);
 	}
 
+	/**
+	 * Init gui elements.
+	 */
 	public void initGuiElements() {
 		super.setOpaque(false);
 		this.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -69,6 +105,9 @@ public class PlayerLabel extends JPanel {
 		updateSize();
 	}
 
+	/**
+	 * Update size.
+	 */
 	public void updateSize() {
 
 		int additionalWidthForPermissionDisplay = 0;
@@ -97,10 +136,20 @@ public class PlayerLabel extends JPanel {
 		return string == null? 0 : string.length();
 	}
 
+	/**
+	 * Sets has move permission.
+	 *
+	 * @return the has move permission
+	 */
 	public boolean setHasMovePermission() {
 		return hasMovePermission;
 	}
 
+	/**
+	 * Sets permission.
+	 *
+	 * @param hasMovePermission the has move permission
+	 */
 	public void setPermission(boolean hasMovePermission) {
 		this.hasMovePermission = hasMovePermission;
 		this.nameLabel.setText((hasMovePermission? "> " : "") + playerName);
@@ -109,6 +158,11 @@ public class PlayerLabel extends JPanel {
 		this.numberOfCardsLabel.setForeground(color);
 	}
 
+	/**
+	 * Gets player name.
+	 *
+	 * @return the player name
+	 */
 	public String getPlayerName() {
 		return this.playerName;
 	}
