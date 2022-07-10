@@ -25,9 +25,6 @@ public class CardGameServer {
             //this.networkingServer.sendPacket(players.get(name), new ClientMessagePacket("SERVER", "This username is already taken! Please try an other one."));
         } else {
             this.players.put(name, new PlayerInfo()); //TODO: Check if ok?
-
-            ArrayList<String> list = new ArrayList<>(getPlayers());
-            this.networkingServer.broadcastPacket(new UsersPacket("SERVER", list));
         }
 
         System.out.println("Connected Players: ");

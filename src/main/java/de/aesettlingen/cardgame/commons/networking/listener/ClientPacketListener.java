@@ -3,6 +3,8 @@ package de.aesettlingen.cardgame.commons.networking.listener;
 import de.aesettlingen.cardgame.commons.networking.NetworkingClient;
 import de.aesettlingen.cardgame.commons.networking.packet.AbstractPacket;
 import de.aesettlingen.cardgame.commons.networking.packet.HandShakePacket;
+import de.aesettlingen.cardgame.commons.networking.packet.UsersPacket;
+import de.aesettlingen.cardgame.gameclient.CardGameClient;
 import java.util.UUID;
 
 /**
@@ -30,6 +32,12 @@ public class ClientPacketListener extends Thread {
                     packet.handle(client.getEventBus());
                     System.out.println(
                         "Got a new packet:" + inputObject.getClass().getSimpleName());
+
+                    //Users for waitingscreen
+                    if(packet instanceof UsersPacket) {
+                        UsersPacket usersPacket = (UsersPacket) packet;
+                        client.getCardGameClient().getGameGui().getWaitingScreenPanel().setPlayers(usersPacket.getUsers());
+                    }
 
                     //handshake
                     if(packet instanceof HandShakePacket) {

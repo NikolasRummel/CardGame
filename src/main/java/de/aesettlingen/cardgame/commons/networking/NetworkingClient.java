@@ -4,6 +4,7 @@ import de.aesettlingen.cardgame.commons.event.EventBus;
 import de.aesettlingen.cardgame.commons.networking.listener.ClientPacketListener;
 import de.aesettlingen.cardgame.commons.networking.packet.AbstractPacket;
 import de.aesettlingen.cardgame.commons.networking.packet.LoginPacket;
+import de.aesettlingen.cardgame.gameclient.CardGameClient;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -17,6 +18,7 @@ import java.util.UUID;
 
 public class NetworkingClient {
 
+    private CardGameClient cardGameClient;
     private boolean running;
 
     private ObjectInputStream inputStream;
@@ -31,7 +33,8 @@ public class NetworkingClient {
 
     private UUID lastSendedHandshakeId;
 
-    public NetworkingClient(NetworkAddress address, String userName, EventBus eventBus) {
+    public NetworkingClient(CardGameClient cardGameClient, NetworkAddress address, String userName, EventBus eventBus) {
+        this.cardGameClient = cardGameClient;
         this.address = address;
         this.userName = userName;
 
@@ -134,5 +137,9 @@ public class NetworkingClient {
 
     public UUID getLastSendedHandshakeId() {
         return lastSendedHandshakeId;
+    }
+
+    public CardGameClient getCardGameClient() {
+        return cardGameClient;
     }
 }

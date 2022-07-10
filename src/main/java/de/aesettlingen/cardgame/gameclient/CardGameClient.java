@@ -5,6 +5,7 @@ import de.aesettlingen.cardgame.commons.event.EventBus;
 import de.aesettlingen.cardgame.commons.networking.NetworkAddress;
 import de.aesettlingen.cardgame.commons.networking.NetworkingClient;
 import de.aesettlingen.cardgame.commons.networking.packet.MessagePacket;
+import de.aesettlingen.cardgame.commons.networking.packet.RequestUsersPacket;
 import de.aesettlingen.cardgame.gameclient.client_facades.ChatFacade;
 import de.aesettlingen.cardgame.gameclient.client_facades.MauMauFacade;
 import de.aesettlingen.cardgame.gameclient.eventlistener.MessageReceiveListener;
@@ -68,6 +69,7 @@ public class CardGameClient {
 
         this.eventBus = new DefaultEventBus();
         this.networkingClient = new NetworkingClient(
+            this,
             new NetworkAddress("localhost", 25565),
             userName, eventBus
         );
@@ -81,6 +83,7 @@ public class CardGameClient {
         this.loginScreen.dispatchEvent(
             new WindowEvent(this.loginScreen, WindowEvent.WINDOW_CLOSING));
         this.gameGui = new MainFrame(gameFacade, chatFacade); //Wating screen
+        this.networkingClient.sendPacket(new RequestUsersPacket(this.userName));
     }
 
     public void sendMessage(String message) {
@@ -91,6 +94,7 @@ public class CardGameClient {
         this.eventBus.registerListener(new MessageReceiveListener(this));
         this.eventBus.registerListener(new UserJoinedListener(this));
     }
+
 
     public EventBus getEventBus() {
         return eventBus;
