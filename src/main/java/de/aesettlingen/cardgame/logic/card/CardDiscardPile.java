@@ -17,10 +17,10 @@ public class CardDiscardPile extends CardStack{
         super(cards);
     }
 
-    public LinkedList<Card> getShuffledCards() {
-        LinkedList<Card> shuffled = new LinkedList<>(cards);
-        Collections.shuffle(shuffled);
-        return shuffled;
+    public LinkedList<Card> getShuffeledCards() {
+        LinkedList<Card> shuffeled = new LinkedList<>(cards);
+        Collections.shuffle(shuffeled);
+        return shuffeled;
     }
 
     public Card peak() {
