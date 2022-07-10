@@ -70,24 +70,21 @@ public class MauMauPanel extends GamePanel {
 
             int index = i > 0 && playerLabels[i-1] == null? i -1 : i;
 
-            playerLabels[index] = new PlayerLabel(i < gameState.listOfPlayerNames().size()? gameState.listOfPlayerNames().get(i) : "");
+            playerLabels[index] = i < gameState.listOfPlayerNames().size()?
+              new PlayerLabel(gameState.listOfPlayerNames().get(i), gameState.numberOfCards().get(i)) :
+              new PlayerLabel();
             if (gameState.nameOfCurrentPlayer().equals(playerLabels[index].getPlayerName()))
                 playerLabels[index].setPermission(true);
         }
         // set positions of PlayerLabels
         // TODO: find right positions for PlayerLabels
-        playerLabels[0].setLocation(300, 300);
-        playerLabels[1].setLocation(400, 100);
-        playerLabels[2].setLocation(500, 300);
+        playerLabels[0].setLocation(150, 350);
+        playerLabels[1].setLocation(450, 50);
+        playerLabels[2].setLocation(750, 350);
 
         for (PlayerLabel pl: playerLabels) {
-            System.out.println(pl.getLocation());
-            JLabel l = new JLabel("name");
-            l.setBorder(new LineBorder(Color.RED, 3));
-            l.setLocation(pl.getLocation());
             centerPanel.add(pl);
-//            centerPanel.add(l);
-            System.out.println(pl.getPlayerName() + "; "+ pl.setHasMovePermission());
+            pl.updateSize();
         }
 
         System.out.println(gameState.nameOfCurrentPlayer());
@@ -102,12 +99,16 @@ public class MauMauPanel extends GamePanel {
 
     private void update(MauMauState gameState) {
         cardsPanel.update(gameState.hand());
-        updatePlayerLabels();
+        topCardLabel.setCard(gameState.topCard());
+        updatePlayerLabels(gameState.nameOfCurrentPlayer());
     }
 
-    private void updatePlayerLabels() {
-        for (PlayerLabel pl : playerLabels)
+    private void updatePlayerLabels(String nameOfCurrentPlayer) {
+        for (PlayerLabel pl : playerLabels) {
             pl.setPermission(pl.getPlayerName().equals(gameFacade.getNameOfPlayer()));
+            pl.updateSize();
+            pl.setPermission(nameOfCurrentPlayer.equals(pl.getPlayerName()));
+        }
     }
 
     private void onRaiseACard() {

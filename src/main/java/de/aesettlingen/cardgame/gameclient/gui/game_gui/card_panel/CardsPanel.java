@@ -1,6 +1,5 @@
 package de.aesettlingen.cardgame.gameclient.gui.game_gui.card_panel;
 
-import de.aesettlingen.cardgame.gameclient.gui.GraphicsDrawer;
 import de.aesettlingen.cardgame.logic.card.Card;
 import de.aesettlingen.cardgame.logic.card.CardHand;
 

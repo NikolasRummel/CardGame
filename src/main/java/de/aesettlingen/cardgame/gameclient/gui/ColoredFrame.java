@@ -25,6 +25,10 @@ public class ColoredFrame extends JFrame {
 			UIManager.put("nimbusSelectionBackground", new Color(104, 93, 156));
 			UIManager.put("text", new Color(0, 150, 255));
 			UIManager.put("nimbusBlueGrey", new Color(10, 10, 10));
+
+			UIManager.put("hasPermissionColor", new Color(0, 255, 0));
+			UIManager.put("hoverColor", new Color(0, 150, 255));
+
 			SwingUtilities.updateComponentTreeUI(this);
 		} catch (UnsupportedLookAndFeelException exc) {
 			System.err.println("Nimbus: Unsupported Look and feel!");

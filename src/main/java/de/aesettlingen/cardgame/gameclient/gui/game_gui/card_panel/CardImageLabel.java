@@ -19,7 +19,7 @@ public class CardImageLabel extends JLabel {
     private final int labelWidth;
     private final int labelHeight;
 
-    private Color hoverColor = new Color(0, 150, 255);
+    private Color hoverColor = UIManager.getColor("hoverColor");
 
     private boolean isFlipped = false;
     private boolean isHoverEnabled = true;
