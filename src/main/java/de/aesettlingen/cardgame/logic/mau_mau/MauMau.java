@@ -89,7 +89,7 @@ public class MauMau extends Game<MauMauPlayer> {
     private void refillCardDrawPile() {
         LinkedList<Card> newCards = (LinkedList<Card>) cardDiscardPile.getCards().subList(0, cardDiscardPile.size() - 2);
         Collections.shuffle(newCards);
-        cardDrawPile.pushFromEnd(newCards);
+        cardDrawPile.pushToEnd(newCards);
         cardDiscardPile.removeAllButLast();
     }
 
