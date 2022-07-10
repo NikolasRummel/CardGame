@@ -50,7 +50,7 @@ public class NetworkingClient {
     public void sendPacket(AbstractPacket packet) {
         try {
             this.lastSendedHandshakeId = packet.getHandshakeId();
-
+            System.out.println("Curremt HandSHakeID:" + this.lastSendedHandshakeId);
             outputStream.writeObject(packet);
         } catch (IOException e) {
             System.out.println("Error while sending packet! Reason: " + e);

@@ -33,7 +33,7 @@ public class ClientPacketListener extends Thread {
 
                     //handshake
                     if(packet instanceof HandShakePacket) {
-                        UUID incomingHandshakeId = packet.getHandshakeId();
+                        UUID incomingHandshakeId = ((HandShakePacket) packet).getHandshakeResponseId();
                         System.out.println("-----Handshake-----");
                         System.out.println(incomingHandshakeId + " ==" + client.getLastSendedHandshakeId());
                         System.out.println("-----Handshake-----");

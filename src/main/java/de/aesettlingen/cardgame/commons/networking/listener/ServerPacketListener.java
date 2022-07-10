@@ -54,6 +54,7 @@ public class ServerPacketListener extends Thread {
 
                 //handshake
                 server.sendPacket(this, new HandShakePacket("SERVER", packet.getHandshakeId()));
+                System.out.println("Server CUrrentShakeId: " + packet.getHandshakeId());
 
             } catch (IOException | ClassNotFoundException e) {
                 server.info("Error while reading " + clientName + "'s packets! " + e);
