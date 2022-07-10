@@ -17,7 +17,6 @@ public class MessageReceiveListener implements EventListener {
 
     public MessageReceiveListener(CardGameClient cardGameClient) {
         this.cardGameClient = cardGameClient;
-
     }
 
     @EventHandler
@@ -27,8 +26,4 @@ public class MessageReceiveListener implements EventListener {
         System.out.println(event.getSender() + " said: " + event.getMessage());
     }
 
-    @EventHandler
-    public void onUserJoined(UserJoinedEvent event) {
-        System.out.println("!!!!!!!!!!!!!!!!!UserJoinedListener!!!!!!!!!");
-    }
 }

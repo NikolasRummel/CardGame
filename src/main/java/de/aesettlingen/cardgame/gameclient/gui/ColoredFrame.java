@@ -7,7 +7,6 @@ import java.awt.*;
 public class ColoredFrame extends JFrame {
 
 	public ColoredFrame() {
-
 		try {
 			UIManager.setLookAndFeel(new NimbusLookAndFeel());
 			UIManager.put("control", new Color(0, 0, 0));
@@ -26,6 +25,8 @@ public class ColoredFrame extends JFrame {
 			UIManager.put("text", new Color(0, 150, 255));
 			UIManager.put("nimbusBlueGrey", new Color(10, 10, 10));
 
+			//Custom
+			UIManager.put("textFieldForeground", new Color(57, 183, 177));
 			UIManager.put("hasPermissionColor", new Color(0, 255, 0));
 			UIManager.put("hoverColor", new Color(0, 150, 255));
 

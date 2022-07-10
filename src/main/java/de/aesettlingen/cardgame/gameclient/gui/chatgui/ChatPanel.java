@@ -1,7 +1,6 @@
 package de.aesettlingen.cardgame.gameclient.gui.chatgui;
 
 import de.aesettlingen.cardgame.commons.networking.packet.MessagePacket;
-import de.aesettlingen.cardgame.gameclient.CardGameClient;
 import de.aesettlingen.cardgame.gameclient.client_facades.ChatFacade;
 
 import java.awt.BorderLayout;
@@ -18,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 
 public class ChatPanel extends JPanel {
@@ -39,7 +39,7 @@ public class ChatPanel extends JPanel {
         this.setPreferredSize(new Dimension(270, 720));
 
         this.textDisplay.setEnabled(false);
-        this.textDisplay.setDisabledTextColor(Color.BLACK);
+        this.textDisplay.setDisabledTextColor(UIManager.getColor("textFieldForeground"));
 
         super.add(new JScrollPane(textDisplay), BorderLayout.CENTER);
         Border b = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK),
@@ -58,7 +58,6 @@ public class ChatPanel extends JPanel {
                 }
             }
         });
-
         bottomPanel.add(sendButton, BorderLayout.EAST);
         sendButton.addActionListener(al -> onSend());
 

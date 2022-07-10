@@ -57,7 +57,7 @@ abstract public class Game<T extends Player> {
                 currentPlayerIndex=players.size()+currentPlayerIndex;
     }
 
-    abstract public void move(Move move);
+    public abstract void move(Move move);
 
     protected abstract boolean isMoveValid(Move move);
 
@@ -83,20 +83,20 @@ abstract public class Game<T extends Player> {
         this.isStarted = true;
     }
 
-    protected void selectRandomPlayer() {
+    public void selectRandomPlayer() {
         if (players.size() == 0) return;
         currentPlayerIndex = (int) (Math.random() * players.size());
     }
 
-    protected abstract void addPlayer(String name);
+    public abstract void addPlayer(String name);
 
-    protected abstract void addPlayer(T player);
+    public abstract void addPlayer(T player);
 
     public T getLastAddedPlayer() {
         return players.get(players.size() - 1);
     }
 
-    abstract protected LinkedList<Card> distributeCards();
+    protected abstract LinkedList<Card> distributeCards();
 
     /**
      * @param cardsPerPlayer

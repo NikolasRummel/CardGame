@@ -2,6 +2,8 @@ package de.aesettlingen.cardgame.commons.networking.packet;
 
 import de.aesettlingen.cardgame.commons.event.EventBus;
 import de.aesettlingen.cardgame.commons.event.defaultevents.UserJoinedEvent;
+import de.aesettlingen.cardgame.gameclient.CardGameClient;
+import de.aesettlingen.cardgame.logic.card.Card;
 import java.util.ArrayList;
 
 public class UsersPacket extends AbstractPacket {
@@ -15,8 +17,8 @@ public class UsersPacket extends AbstractPacket {
 
     @Override
     public void handle(EventBus eventBus) {
-        System.out.println("Calling UsersEvent!");
-        eventBus.callEvent(new UserJoinedEvent(users));
+        System.out.println("Hardcoded in ClientPacketListener!");
+
     }
 
     @Override

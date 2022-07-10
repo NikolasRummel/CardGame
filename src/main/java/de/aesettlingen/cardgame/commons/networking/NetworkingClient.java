@@ -4,10 +4,12 @@ import de.aesettlingen.cardgame.commons.event.EventBus;
 import de.aesettlingen.cardgame.commons.networking.listener.ClientPacketListener;
 import de.aesettlingen.cardgame.commons.networking.packet.AbstractPacket;
 import de.aesettlingen.cardgame.commons.networking.packet.LoginPacket;
+import de.aesettlingen.cardgame.gameclient.CardGameClient;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.UUID;
 
 /**
  * @author Nikolas Rummel
@@ -16,6 +18,7 @@ import java.net.Socket;
 
 public class NetworkingClient {
 
+    private CardGameClient cardGameClient;
     private boolean running;
 
     private ObjectInputStream inputStream;
@@ -28,7 +31,10 @@ public class NetworkingClient {
     private final ClientPacketListener packetListener;
     private final EventBus eventBus;
 
-    public NetworkingClient(NetworkAddress address, String userName, EventBus eventBus) {
+    private UUID lastSendedHandshakeId;
+
+    public NetworkingClient(CardGameClient cardGameClient, NetworkAddress address, String userName, EventBus eventBus) {
+        this.cardGameClient = cardGameClient;
         this.address = address;
         this.userName = userName;
 
@@ -46,6 +52,8 @@ public class NetworkingClient {
 
     public void sendPacket(AbstractPacket packet) {
         try {
+            this.lastSendedHandshakeId = packet.getHandshakeId();
+            System.out.println("Curremt HandSHakeID:" + this.lastSendedHandshakeId);
             outputStream.writeObject(packet);
         } catch (IOException e) {
             System.out.println("Error while sending packet! Reason: " + e);
@@ -125,5 +133,13 @@ public class NetworkingClient {
 
     public EventBus getEventBus() {
         return eventBus;
+    }
+
+    public UUID getLastSendedHandshakeId() {
+        return lastSendedHandshakeId;
+    }
+
+    public CardGameClient getCardGameClient() {
+        return cardGameClient;
     }
 }

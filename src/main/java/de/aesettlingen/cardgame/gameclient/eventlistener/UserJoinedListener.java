@@ -15,8 +15,6 @@ public class UserJoinedListener implements EventListener {
 
     @EventHandler
     public void onUserJoined(UserJoinedEvent event) {
-        System.out.println("----------------UserJoinedListener------------------");
         cardGameClient.getGameGui().getWaitingScreenPanel().setPlayers(event.getUsers());
-        System.out.println("!Test!" + event.getUsers());
     }
 }
