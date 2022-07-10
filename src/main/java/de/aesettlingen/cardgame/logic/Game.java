@@ -96,8 +96,7 @@ abstract public class Game<T extends Player> {
         return players.get(players.size() - 1);
     }
 
-    abstract public LinkedList<Card> distributeCards();
-
+    abstract protected LinkedList<Card> distributeCards();
 
     /**
      * @param cardsPerPlayer
