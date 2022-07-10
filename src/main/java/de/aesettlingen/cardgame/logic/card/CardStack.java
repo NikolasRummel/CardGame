@@ -37,20 +37,20 @@ public class CardStack extends CardCollection {
         super.cards.addAll(cards);
     }
 
-    public void pushToEnd(Card card) {
+    public void pushFromEnd(Card card) {
         super.cards.addFirst(card);
     }
 
-    public Card pullToEnd() {
+    public Card pullFromEnd() {
         return super.cards.removeFirst();
     }
 
-    public LinkedList<Card> pullToEnd(int number) {
+    public LinkedList<Card> pullFromEnd(int number) {
         int maxIndex = super.cards.size()-1;
         return (LinkedList<Card>) super.cards.subList(0, maxIndex-number);
     }
 
-    public void pushToEnd(LinkedList<Card> cards) {
+    public void pushFromEnd(LinkedList<Card> cards) {
         super.cards.addAll(0,cards);
     }
 }
